@@ -1,0 +1,111 @@
+{
+    "common": {
+        "name": "growatt",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Growatt Shine API",
+        "titleLang": {
+            "en": "Growatt Shine API",
+            "de": "Growatt Shine API",
+            "ru": "Growatt Shine API",
+            "pt": "Growatt Shine API",
+            "nl": "Growatt Shine API",
+            "fr": "Growatt Shine API",
+            "it": "Growatt Shine API",
+            "es": "Growatt Shine API",
+            "pl": "Growatt Shine API",
+            "zh-cn": "Growatt Shine API"
+        },
+        "desc": {
+            "en": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "de": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "ru": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "pt": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "nl": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "fr": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "it": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "es": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "pl": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+            "zh-cn": "ioBroker Growatt Adapter to communiacte with ShineAPI"
+        },
+        "authors": [
+            "PLCHome <ioBroker@traeger-welt.de>"
+        ],
+        "keywords": [
+            "growatt",
+            "shine",
+            "shinephone",
+            "shineapi",
+            "ioBroker",
+            "smart home",
+            "solarenergy",
+            "home automation",
+            "solar power",
+            "solar power plant",
+            "solaranlage"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "growatt.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/PLCHome/ioBroker.growatt/master/admin/growatt.png",
+        "readme": "https://github.com/PLCHome/ioBroker.growatt/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "energy",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=1.4.2"
+            }
+        ]
+    },
+    "native": {
+        "weather" : true,
+        "totalData" : true,
+        "statusData" : true,
+        "plantData" : true,
+        "deviceData" : true
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "If connected to MQTT broker",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
+}
