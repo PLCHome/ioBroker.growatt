@@ -45,7 +45,7 @@ class Growatt extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            clearTimeout(this.callInterval);
+            clearInterval(this.callInterval);
             this.setStateAsync('info.connection', { val: false, ack: true});
 
             callback();
