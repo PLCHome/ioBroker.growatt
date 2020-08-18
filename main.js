@@ -34,18 +34,6 @@ class Growatt extends utils.Adapter {
      */
     async onReady() {
 
-        await this.setObjectNotExistsAsync('info.connection', {
-            type: 'state',
-            common: {
-                name: 'info.connection',
-                type: 'boolean',
-                role: 'indicator',
-                read: true,
-                write: true,
-            },
-            native: {},
-        });
-
         this.growattData();
         this.callInterval = setInterval(() => {this.growattData()}, 30000);
 
@@ -145,7 +133,7 @@ class Growatt extends utils.Adapter {
     async growattData() {
         this.log.debug('Growatt login');
         await api.login(this.config.user,this.config.password).catch(e => {this.log.error('Login:'+((typeof e === 'object')?JSON.stringify(e):e))});
-        this.log.info('Growatt connected '+api.isConnected());
+        this.log.debug('Growatt connected '+api.isConnected());
         if (api.isConnected()) {
             this.setStateAsync('info.connection', { val: true, ack: true});
             let allPlantData = await api.getAllPlantData({

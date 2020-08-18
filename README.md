@@ -41,10 +41,20 @@ This data record contains some data from the device. Some data are also availabl
 ### Read weather
 This data set contains the weather forecast
 
+
+
+
 ## Changelog
+
+### 0.0.2
+* (PLCHome) initial release
 
 ### 0.0.1
 * (PLCHome) initial release
+
+
+
+
 
 ## License
 MIT License
