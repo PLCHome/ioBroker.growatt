@@ -1,5 +1,5 @@
 {
-  "name": "ioBroker.growatt",
+  "name": "iobroker.growatt",
   "version": "0.0.5",
   "description": "ioBroker Growatt Adapter to communiacte with ShineAPI",
   "author": {

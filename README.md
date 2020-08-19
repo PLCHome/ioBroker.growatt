@@ -1,14 +1,14 @@
 ![Logo](admin/glogo.png)
 # ioBroker.growatt
 
-[![NPM version](http://img.shields.io/npm/v/ioBroker.growatt.svg)](https://www.npmjs.com/package/ioBroker.growatt)
-[![Downloads](https://img.shields.io/npm/dm/ioBroker.growatt.svg)](https://www.npmjs.com/package/ioBroker.growatt)
+[![NPM version](http://img.shields.io/npm/v/iobroker.growatt.svg)](https://www.npmjs.com/package/iobroker.growatt)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.growatt.svg)](https://www.npmjs.com/package/iobroker.growatt)
 ![Number of Installations (latest)](http://iobroker.live/badges/growatt-installed.svg)
 ![Number of Installations (stable)](http://iobroker.live/badges/growatt-stable.svg)
 [![Dependency Status](https://img.shields.io/david/PLCHome/ioBroker.growatt.svg)](https://david-dm.org/PLCHome/ioBroker.growatt)
 [![Known Vulnerabilities](https://snyk.io/test/github/PLCHome/ioBroker.growatt/badge.svg)](https://snyk.io/test/github/PLCHome/ioBroker.growatt)
 
-[![NPM](https://nodei.co/npm/ioBroker.growatt.png?downloads=true)](https://nodei.co/npm/ioBroker.growatt/)
+[![NPM](https://nodei.co/npm/iobroker.growatt.png?downloads=true)](https://nodei.co/npm/ioBroker.growatt/)
 
 ## growatt adapter for ioBroker
 
