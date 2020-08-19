@@ -1,4 +1,5 @@
 node_modules/*
 test/
+.travis.yml
 package-lock.json
 test.json
