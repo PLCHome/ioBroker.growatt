@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "news": {
             "0.0.5": {
                 "en": "initial release",
@@ -21,25 +21,25 @@
             "en": "Growatt Shine API",
             "de": "Growatt Shine API",
             "ru": "Growatt Shine API",
-            "pt": "Growatt Shine API",
+            "pt": "API Growatt Shine",
             "nl": "Growatt Shine API",
-            "fr": "Growatt Shine API",
+            "fr": "API Growatt Shine",
             "it": "Growatt Shine API",
-            "es": "Growatt Shine API",
+            "es": "API Growatt Shine",
             "pl": "Growatt Shine API",
             "zh-cn": "Growatt Shine API"
         },
         "desc": {
             "en": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "de": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "ru": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "pt": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "nl": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "fr": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "it": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "es": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "pl": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "zh-cn": "ioBroker Growatt Adapter to communiacte with ShineAPI"
+            "de": "ioBroker Growatt Adapter zur Kommunikation mit ShineAPI",
+            "ru": "Адаптер ioBroker Growatt для связи с ShineAPI",
+            "pt": "Adaptador ioBroker Growatt para comunicação com ShineAPI",
+            "nl": "ioBroker Growatt-adapter voor communicatie met ShineAPI",
+            "fr": "ioBroker Growatt Adaptateur pour communiquer avec ShineAPI",
+            "it": "Adattatore per Growatt ioBroker da comunicare con ShineAPI",
+            "es": "Adaptador ioBroker Growatt para comunicarse con ShineAPI",
+            "pl": "ioBroker Growatt Adapter do komunikacji z ShineAPI",
+            "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
         },
         "authors": [
             "PLCHome <ioBroker@traeger-welt.de>"
@@ -99,7 +99,7 @@
             "type": "state",
             "common": {
                 "role": "indicator.connected",
-                "name": "If connected to MQTT broker",
+                "name": "If connected to Growatt Server",
                 "type": "boolean",
                 "read": true,
                 "write": false,

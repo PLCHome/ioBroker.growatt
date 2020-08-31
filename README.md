@@ -39,18 +39,20 @@ This data record contains aggregation data.
 This data record contains some data from the device. Some data are also available in the other categories.
 
 ### Read weather
-This data set contains the weather forecast
+This data set contains the weather forecast. 
 
 
 
 
 ## Changelog
+### 0.0.6 (31.08.20202)
+* (PLCHome) translation with ioBroker tool.
 
 ### 0.0.5
-* (PLCHome) initial release
+* (PLCHome) initial release.
 
 ### 0.0.1
-* (PLCHome) initial release
+* (PLCHome) initial release. 
 
 
 
