@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.8",
+        "version": "0.0.9",
         "news": {
-            "0.0.8": {
+            "0.0.9": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
                 "ru": "Начальная версия",

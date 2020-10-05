@@ -40,9 +40,9 @@ class Growatt extends utils.Adapter {
                 } else {
                     this.config.password = this.decrypt('Zgfr56gFe87jJOM', this.config.password);
                 }
-                this.growattData();
-                this.callInterval = setInterval(() => {this.growattData()}, 30000);
             }
+            this.growattData();
+            this.callInterval = setInterval(() => {this.growattData()}, 30000);
         });
     }
     

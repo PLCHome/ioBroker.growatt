@@ -45,6 +45,9 @@ This data set contains the weather forecast.
 
 
 ## Changelog
+### 0.0.9 (05.10.2020)
+* (PLCHome) fix no feature 'ADAPTER_AUTO_DECRYPT_NATIVE'
+
 ### 0.0.8 (05.10.2020)
 * (PLCHome) fix io-package
 
