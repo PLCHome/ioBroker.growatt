@@ -33,10 +33,30 @@ class Growatt extends utils.Adapter {
      * Is called when databases are connected and adapter received configuration.
      */
     async onReady() {
-
-        this.growattData();
-        this.callInterval = setInterval(() => {this.growattData()}, 30000);
-
+        this.getForeignObject('system.config', (err, obj) => {
+            if (!this.supportsFeature || !this.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
+                if (obj && obj.native && obj.native.secret) {
+                    this.config.password = this.decrypt(obj.native.secret, this.config.password);
+                } else {
+                    this.config.password = this.decrypt('Zgfr56gFe87jJOM', this.config.password);
+                }
+                this.growattData();
+                this.callInterval = setInterval(() => {this.growattData()}, 30000);
+            }
+        });
+    }
+    
+    /**
+     * Is called to decrypt the Password
+     * @param {key} the secret
+     * @param {value} the encrypted password
+    **/
+    decrypt(key, value) {
+        let result = '';
+        for (let i = 0; i < value.length; ++i) {
+            result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
+        }
+        return result;
     }
 
     /**

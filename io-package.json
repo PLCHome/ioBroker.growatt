@@ -73,11 +73,19 @@
         "materialize": true,
         "dependencies": [
             {
-                "js-controller": ">=1.4.2"
+                "js-controller": ">=2.0.0"
             }
         ]
     },
+    "encryptedNative": [
+        "password"
+    ],
+    "protectedNative": [
+        "password"
+    ],
     "native": {
+        "user" : "",
+        "password" : "",
         "weather" : true,
         "totalData" : true,
         "statusData" : true,

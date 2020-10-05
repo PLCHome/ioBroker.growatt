@@ -14,7 +14,6 @@ systemDictionary = {
         "pl": "Ustawienia adaptera dla growatt",
         "zh-cn": "growatt的适配器设置"
     },
-    {
     "User": {
         "en": "User",
         "de": "Benutzer",
@@ -26,9 +25,7 @@ systemDictionary = {
         "es": "Usuario",
         "pl": "Użytkownik",
         "zh-cn": "用户"
-      }
     },
-    {
     "Password": {
         "en": "Password",
         "de": "Passwort",
@@ -40,9 +37,7 @@ systemDictionary = {
         "es": "Contraseña",
         "pl": "Hasło",
         "zh-cn": "密码"
-      }
     },
-    {
     "Read weather": {
         "en": "Read weather",
         "de": "Wetter lesen",
@@ -54,9 +49,7 @@ systemDictionary = {
         "es": "Leer el tiempo",
         "pl": "Czytaj pogodę",
         "zh-cn": "阅读天气"
-      }
     },
-    {
     "Read device data": {
         "en": "Read device data",
         "de": "Gerätedaten lesen",
@@ -68,9 +61,7 @@ systemDictionary = {
         "es": "Leer datos del dispositivo",
         "pl": "Czytaj dane urządzenia",
         "zh-cn": "读取设备数据"
-      }
     },
-    {
     "Read total data": {
         "en": "Read total data",
         "de": "Gesamtdaten lesen",
@@ -82,9 +73,7 @@ systemDictionary = {
         "es": "Leer datos totales",
         "pl": "Przeczytaj wszystkie dane",
         "zh-cn": "读取总数据"
-      }
     },
-    {
     "Read status data": {
         "en": "Read status data",
         "de": "Statusdaten lesen",
@@ -96,9 +85,7 @@ systemDictionary = {
         "es": "Leer datos de estado",
         "pl": "Przeczytaj dane o stanie",
         "zh-cn": "读取状态数据"
-      }
     },
-    {
     "Read plant data": {
         "en": "Read plant data",
         "de": "Anlagendaten lesen",
@@ -110,6 +97,5 @@ systemDictionary = {
         "es": "Leer datos de la planta",
         "pl": "Przeczytaj dane zakładu",
         "zh-cn": "读取工厂数据"
-      }
-    },
+    }
 };

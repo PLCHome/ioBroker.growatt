@@ -45,7 +45,12 @@ This data set contains the weather forecast.
 
 
 ## Changelog
-### 0.0.6 (31.08.20202)
+### 0.0.7 (05.10.2020)
+* (PLCHome) with "@iobroker/adapter-core": "^2.4.0", the js-controller dep needs to be >=2.0.0!
+* (PLCHome) io-package native defined 5 values, admin sets 7
+* (PLCHome) store password encrypted
+
+### 0.0.6 (31.08.2020)
 * (PLCHome) translation with ioBroker tool.
 
 ### 0.0.5
@@ -53,7 +58,6 @@ This data set contains the weather forecast.
 
 ### 0.0.1
 * (PLCHome) initial release. 
-
 
 
 
