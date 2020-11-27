@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.9",
+        "version": "0.0.10",
         "news": {
+            "0.0.10": {
+                 "en": "Shared key login\nLast value of the graph if there are no live data.\nChange of the polling interval",
+                 "de": "Login mit gemeinsamem Schlüssel\nLetzter Wert des Diagramms, wenn keine Live-Daten vorhanden sind.\nÄnderung des Abfrageintervalls",
+                 "ru": "Логин с общим ключом\nПоследнее значение графика, если нет данных в реальном времени.\nИзменение интервала опроса",
+                 "pt": "Login de chave compartilhada\nÚltimo valor do gráfico se não houver dados ativos.\nMudança do intervalo de votação",
+                 "nl": "Inloggen met gedeelde sleutel\nLaatste waarde van de grafiek als er geen live gegevens zijn.\nWijziging van het polling-interval",
+                 "fr": "Connexion par clé partagée\nDernière valeur du graphique s'il n'y a pas de données en direct.\nChangement de l'intervalle d'interrogation",
+                 "it": "Accesso con chiave condivisa\nUltimo valore del grafico se non ci sono dati in tempo reale.\nModifica dell'intervallo di polling",
+                 "es": "Inicio de sesión con clave compartida\nÚltimo valor del gráfico si no hay datos en vivo.\nCambio del intervalo de sondeo",
+                 "pl": "Logowanie za pomocą klucza wspólnego\nOstatnia wartość wykresu, jeśli nie ma danych w czasie rzeczywistym.\nZmiana interwału odpytywania",
+                 "zh-cn": "共享密钥登录\n如果没有实时数据，则图表的最后一个值。\n更改轮询间隔"
+            },
             "0.0.9": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
@@ -78,19 +90,25 @@
         ]
     },
     "encryptedNative": [
-        "password"
+        "password",
+        "shareKey"
     ],
     "protectedNative": [
-        "password"
+        "password",
+        "shareKey"
     ],
     "native": {
+        "keyLogin" :"false",
         "user" : "",
         "password" : "",
+        "shareKey" :"",
         "weather" : true,
         "totalData" : true,
         "statusData" : true,
         "plantData" : true,
-        "deviceData" : true
+        "deviceData" : true,
+        "chartLast" : true,
+        "chartLastArray" : false
     },
     "objects": [],
     "instanceObjects": [

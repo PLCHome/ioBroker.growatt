@@ -53,7 +53,7 @@
             $('.value').each(function () {
                 var $key = $(this);
                 var id = $key.attr('id');
-                if (id === 'password' && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
+                if ((id === 'password' || id === 'shareKey') && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
                     settings[id] = decrypt(secret, settings[id]);
                 }
                 if ($key.attr('type') === 'checkbox') {
@@ -68,7 +68,22 @@
                         .on('keyup', () => onChange())
                         ;
                 }
+//                if (id === 'keyLogin') {
+//                    $key.trigger("change")
+//                }
             });
+            $('#keyLogin').change(function() {
+                if ($(this).prop('checked')) {
+                    $('.user').hide();
+                    $('.password').hide();
+                    $('.shareKey').show();
+                }
+                else {
+                    $('.user').show();
+                    $('.password').show();
+                    $('.shareKey').hide();
+                }
+            }).trigger('change');
             onChange(false);
             // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
             if (M) M.updateTextFields();
@@ -94,7 +109,11 @@
                     obj[$this.attr('id')] = $this.prop('checked');
                 } else {
                     var value = $this.val();
-                    if ($this.attr('id') === 'password' && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
+                    if ($this.attr('id') === 'shareKey' && value.includes('/')) {
+                        value = value.substring(value.lastIndexOf('/')+1);
+                        $this.val(value);
+                    }
+                    if (($this.attr('id') === 'password' || $this.attr('id') === 'shareKey') && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
                         value = encrypt(secret, value);
                     }
                     obj[$this.attr('id')] = value;
@@ -120,13 +139,21 @@
 
         <!-- For example columns with settings: -->
         <div class="row">
-            <div class="col s6 input-field">
+            <div class="col s12 input-field">
+                <input type="checkbox" class="value" id="keyLogin" />
+                <label for="keyLogin" class="translate">Login with shared key</label>
+            </div>
+            <div class="col s6 input-field user">
                 <input type="text" class="value" id="user" />
                 <label for="user" class="translate">User</label>
             </div>
-            <div class="col s6 input-field">
+            <div class="col s6 input-field password">
                 <input type="password" class="value" id="password" />
                 <label for="password" class="translate">Password</label>
+            </div>
+            <div class="col s12 input-field shareKey">
+                <input type="text" class="value" id="shareKey" />
+                <label for="shareKey" class="translate">The key from shared URL</label>
             </div>
             <div class="col s6 input-field">
                 <input type="checkbox" class="value" id="plantData" />
@@ -134,7 +161,15 @@
             </div>
             <div class="col s6 input-field">
                 <input type="checkbox" class="value" id="statusData" />
-                <label for="statusData" class="translate">Read status data</label>
+                <label for="statusData" class="translate">Read status data (not INV/MAX/TLX)</label>
+            </div>
+            <div class="col s6 input-field">
+                <input type="checkbox" class="value" id="chartLast" />
+                <label for="chartLast" class="translate">Read last data of chart (only INV/MAX/TLX)</label>
+            </div>
+            <div class="col s6 input-field">
+                <input type="checkbox" class="value" id="chartLastArray" />
+                <label for="chartLastArray" class="translate">Read data of chart (requires read last data of chart)</label>
             </div>
             <div class="col s6 input-field">
                 <input type="checkbox" class="value" id="totalData" />

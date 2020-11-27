@@ -45,6 +45,11 @@ This data set contains the weather forecast.
 
 
 ## Changelog
+### 0.0.10 (26.11.2020)
+* (PLCHome) Shared key login
+* (PLCHome) Last value of the graph if there are no live data.
+* (PLCHome) Change of the polling interval
+
 ### 0.0.9 (05.10.2020)
 * (PLCHome) fix no feature 'ADAPTER_AUTO_DECRYPT_NATIVE'
 

@@ -14,6 +14,18 @@ systemDictionary = {
         "pl": "Ustawienia adaptera dla growatt",
         "zh-cn": "growatt的适配器设置"
     },
+    "Login with shared key": {
+        "en": "Login with shared key",
+        "de": "Melden Sie sich mit dem freigegebenen Schlüssel an",
+        "ru": "Войти с общим ключом",
+        "pt": "Login com chave compartilhada",
+        "nl": "Login met gedeelde sleutel",
+        "fr": "Connexion avec clé partagée",
+        "it": "Accedi con chiave condivisa",
+        "es": "Iniciar sesión con clave compartida",
+        "pl": "Zaloguj się za pomocą klucza wspólnego",
+        "zh-cn": "使用共享密钥登录"
+    },
     "User": {
         "en": "User",
         "de": "Benutzer",
@@ -37,6 +49,18 @@ systemDictionary = {
         "es": "Contraseña",
         "pl": "Hasło",
         "zh-cn": "密码"
+    },
+    "The key from shared URL": {
+        "en": "The key from shared URL",
+        "de": "Der Schlüssel von der freigegebenen URL",
+        "ru": "Ключ из общего URL",
+        "pt": "A chave do URL compartilhado",
+        "nl": "De sleutel van gedeelde URL",
+        "fr": "La clé de l'URL partagée",
+        "it": "La chiave dall'URL condiviso",
+        "es": "La clave de la URL compartida",
+        "pl": "Klucz z udostępnionego adresu URL",
+        "zh-cn": "共享URL中的密钥"
     },
     "Read weather": {
         "en": "Read weather",
@@ -74,17 +98,41 @@ systemDictionary = {
         "pl": "Przeczytaj wszystkie dane",
         "zh-cn": "读取总数据"
     },
-    "Read status data": {
-        "en": "Read status data",
-        "de": "Statusdaten lesen",
-        "ru": "Прочитать данные о состоянии",
-        "pt": "Ler dados de status",
-        "nl": "Lees statusgegevens",
-        "fr": "Lire les données d'état",
-        "it": "Leggere i dati di stato",
-        "es": "Leer datos de estado",
-        "pl": "Przeczytaj dane o stanie",
-        "zh-cn": "读取状态数据"
+    "Read status data (not INV/MAX/TLX)": {
+        "en": "Read status data (not INV/MAX/TLX)",
+        "de": "Statusdaten lesen (nicht INV/MAX/TLX)",
+        "ru": "Считывание данных состояния (не INV/MAX/TLX)",
+        "pt": "Ler dados de status (não INV/MAX/TLX)",
+        "nl": "Lees statusgegevens (niet INV/MAX/TLX)",
+        "fr": "Lire les données d'état (pas INV/MAX/TLX)",
+        "it": "Leggere i dati di stato (non INV/MAX/TLX)",
+        "es": "Leer datos de estado (no INV/MAX/TLX)",
+        "pl": "Czytaj dane o stanie (nie INV/MAX/TLX)",
+        "zh-cn": "读取状态数据（非INV/MAX/TLX）"
+    },
+    "Read last data of chart (only INV/MAX/TLX)": {
+        "en": "Read last data of chart (only INV/MAX/TLX)",
+        "de": "Letzte Daten des Diagramms lesen (nur INV/MAX/TLX)",
+        "ru": "Прочитать последние данные графика (только INV/MAX/TLX)",
+        "pt": "Leia os últimos dados do gráfico (apenas INV/MAX/TLX)",
+        "nl": "Lees de laatste gegevens van de grafiek (alleen INV/MAX/TLX)",
+        "fr": "Lire les dernières données du graphique (uniquement INV/MAX/TLX)",
+        "it": "Leggi gli ultimi dati del grafico (solo INV/MAX/TLX)",
+        "es": "Leer los últimos datos del gráfico (solo INV/MAX/TLX)",
+        "pl": "Przeczytaj ostatnie dane wykresu (tylko INV/MAX/TLX)",
+        "zh-cn": "读取图表的最后数据（仅INV/MAX/TLX）"
+    },
+   "Read data of chart (requires read last data of chart)": {
+        "en": "Read data of chart (requires read last data of chart)",
+        "de": "Daten des Diagramms lesen (erfordert das Lesen der letzten Daten des Diagramms)",
+        "ru": "Прочитать данные диаграммы (требуется прочитать последние данные диаграммы)",
+        "pt": "Ler os dados do gráfico (requer a leitura dos últimos dados do gráfico)",
+        "nl": "Lees gegevens van de grafiek (vereist de laatste gegevens van de grafiek lezen)",
+        "fr": "Lire les données du graphique (nécessite la lecture des dernières données du graphique)",
+        "it": "Leggi i dati del grafico (richiede leggere gli ultimi dati del grafico)",
+        "es": "Leer datos del gráfico (requiere leer los últimos datos del gráfico)",
+        "pl": "Odczytaj dane wykresu (wymaga odczytu ostatnich danych wykresu)",
+        "zh-cn": "读取图表数据（需要读取图表的最后数据）"
     },
     "Read plant data": {
         "en": "Read plant data",
