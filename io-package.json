@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.10",
+        "version": "0.0.11",
         "news": {
-            "0.0.10": {
+            "0.0.11": {
                  "en": "Shared key login\nLast value of the graph if there are no live data.\nChange of the polling interval",
                  "de": "Login mit gemeinsamem Schlüssel\nLetzter Wert des Diagramms, wenn keine Live-Daten vorhanden sind.\nÄnderung des Abfrageintervalls",
                  "ru": "Логин с общим ключом\nПоследнее значение графика, если нет данных в реальном времени.\nИзменение интервала опроса",
