@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.11",
+        "version": "0.0.12",
         "news": {
+            "0.0.12": {
+                "en": "wrong initialization for shared key: string instead of boolean",
+                "de": "falsche Initialisierung für gemeinsam genutzten Schlüssel: Zeichenfolge statt Boolescher Wert",
+                "ru": "неправильная инициализация для общего ключа: строка вместо логического",
+                "pt": "inicialização errada para chave compartilhada: string em vez de booleana",
+                "nl": "verkeerde initialisatie voor gedeelde sleutel: string in plaats van boolean",
+                "fr": "mauvaise initialisation pour la clé partagée: chaîne au lieu de booléen",
+                "it": "inizializzazione errata per la chiave condivisa: stringa invece di booleano",
+                "es": "inicialización incorrecta para la clave compartida: cadena en lugar de booleano",
+                "pl": "zła inicjalizacja klucza współdzielonego: ciąg znaków zamiast wartości logicznej",
+            "zh-cn": "共享密钥的错误初始化：字符串而不是布尔值"
+            },
             "0.0.11": {
                  "en": "Shared key login\nLast value of the graph if there are no live data.\nChange of the polling interval",
                  "de": "Login mit gemeinsamem Schlüssel\nLetzter Wert des Diagramms, wenn keine Live-Daten vorhanden sind.\nÄnderung des Abfrageintervalls",
@@ -98,7 +110,7 @@
         "shareKey"
     ],
     "native": {
-        "keyLogin" :"false",
+        "keyLogin" : false,
         "user" : "",
         "password" : "",
         "shareKey" :"",

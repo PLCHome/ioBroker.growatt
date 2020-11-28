@@ -54,6 +54,9 @@ This data set contains the weather forecast.
 
 
 ## Changelog
+### 0.0.12 (27.11.2020)
+* (PLCHome) wrong initialization for shared key: string instead of boolean
+
 ### 0.0.11 (27.11.2020)
 * (PLCHome) Read me
 
