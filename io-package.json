@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.12",
+        "version": "0.0.14",
         "news": {
+            "0.0.14": {
+                "en": "improvement for objects not returned from Growatt website",
+                "de": "Verbesserung für Objekte, die nicht von der Growatt-Website zurückgegeben wurden",
+                "ru": "улучшение для объектов, не возвращенных с сайта Growatt",
+                "pt": "melhoria para objetos não devolvidos do site Growatt",
+                "nl": "verbetering voor objecten die niet zijn geretourneerd van de Growatt-website",
+                "fr": "amélioration pour les objets non renvoyés par le site Growatt",
+                "it": "miglioramento per oggetti non restituiti dal sito web Growatt",
+                "es": "mejora para los objetos no devueltos del sitio web de Growatt",
+                "pl": "ulepszenie dla obiektów niezwróconych ze strony Growatt",
+                "zh-cn": "对不是从Growatt网站返回的对象的改进"
+            },
             "0.0.12": {
                 "en": "wrong initialization for shared key: string instead of boolean",
                 "de": "falsche Initialisierung für gemeinsam genutzten Schlüssel: Zeichenfolge statt Boolescher Wert",
