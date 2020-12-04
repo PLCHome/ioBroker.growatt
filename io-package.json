@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.14",
+        "version": "0.0.15",
         "news": {
+            "0.0.15": {
+                "en": "npm package version update",
+                "de": "Aktualisierung der npm-Paketversion",
+                "ru": "обновление версии пакета npm",
+                "pt": "atualização da versão do pacote npm",
+                "nl": "update van de npm-pakketversie",
+                "fr": "mise à jour de la version du package npm",
+                "it": "Aggiornamento della versione del pacchetto npm",
+                "es": "actualización de la versión del paquete npm",
+                "pl": "Aktualizacja wersji pakietu npm",
+                "zh-cn": "npm软件包版本更新"
+            },
             "0.0.14": {
                 "en": "improvement for objects not returned from Growatt website",
                 "de": "Verbesserung für Objekte, die nicht von der Growatt-Website zurückgegeben wurden",

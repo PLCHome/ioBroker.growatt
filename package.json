@@ -1,6 +1,6 @@
 {
   "name": "iobroker.growatt",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "ioBroker Growatt Adapter to communiacte with ShineAPI",
   "author": {
     "name": "PLCHome",
@@ -27,26 +27,26 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
-    "growatt": "0.0.4"
+    "growatt": "^0.0.5"
   },
   "devDependencies": {
-    "@iobroker/testing": "^2.2.0",
-    "@types/chai": "^4.2.12",
+    "@iobroker/testing": "^2.3.0",
+    "@types/chai": "^4.2.14",
     "@types/chai-as-promised": "^7.1.3",
-    "@types/gulp": "^4.0.6",
-    "@types/mocha": "^8.0.1",
-    "@types/node": "^14.0.27",
+    "@types/gulp": "^4.0.7",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^14.14.10",
     "@types/proxyquire": "^1.3.28",
-    "@types/sinon": "^9.0.4",
-    "@types/sinon-chai": "^3.2.4",
-    "axios": "^0.19.2",
+    "@types/sinon": "^9.0.9",
+    "@types/sinon-chai": "^3.2.5",
+    "axios": "^0.21.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^7.6.0",
+    "eslint": "^7.14.0",
     "gulp": "^4.0.2",
-    "mocha": "^8.1.0",
+    "mocha": "^8.2.1",
     "proxyquire": "^2.1.3",
-    "sinon": "^9.0.2",
+    "sinon": "^9.2.1",
     "sinon-chai": "^3.5.0"
   },
   "main": "main.js",
