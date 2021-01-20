@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.15",
+        "version": "0.0.16",
         "news": {
+            "0.0.16": {
+                "en": "Add last history for all plants. Special thanks to magix for the key, so i can test the inverter history function.",
+                "de": "Fügen Sie den letzten Verlauf für alle Pflanzen hinzu, insbesondere dank magix für den Schlüssel, damit ich die Verlaufsfunktion des Wechselrichters testen kann.",
+                "ru": "Добавьте последнюю историю для всех заводов, особенно благодаря magix за ключ, чтобы я мог проверить функцию истории инвертора.",
+                "pt": "Adicione o último histórico para todas as plantas, um agradecimento especial ao magix pela chave, para que eu possa testar a função de histórico do inversor.",
+                "nl": "Voeg de laatste geschiedenis toe voor alle planten, met speciale dank aan magix voor de sleutel, zodat ik de geschiedenisfunctie van de omvormer kan testen.",
+                "fr": "Ajoutez le dernier historique pour toutes les usines, un merci spécial à magix pour la clé, afin que je puisse tester la fonction d'historique de l'onduleur.",
+                "it": "Aggiungi l'ultima cronologia per tutti gli impianti, un ringraziamento speciale a magix per la chiave, così posso testare la funzione cronologia inverter.",
+                "es": "Agregue el último historial para todas las plantas, un agradecimiento especial a magix por la clave, para que pueda probar la función de historial del inversor.",
+                "pl": "Dodaj ostatnią historię dla wszystkich instalacji, specjalne dzięki magixowi za klucz, abym mógł przetestować funkcję historii falownika.",
+                "zh-cn": "添加所有工厂的最新历史记录，特别要感谢magix的密钥，因此我可以测试变频器的历史记录功能。"
+            },
             "0.0.15": {
                 "en": "npm package version update",
                 "de": "Aktualisierung der npm-Paketversion",
@@ -140,6 +152,7 @@
         "shareKey" :"",
         "weather" : true,
         "totalData" : true,
+        "historyLast" : true,
         "statusData" : true,
         "plantData" : true,
         "deviceData" : true,

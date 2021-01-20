@@ -110,29 +110,41 @@ systemDictionary = {
         "pl": "Czytaj dane o stanie (nie INV/MAX/TLX)",
         "zh-cn": "读取状态数据（非INV/MAX/TLX）"
     },
-    "Read last data of chart (only INV/MAX/TLX)": {
-        "en": "Read last data of chart (only INV/MAX/TLX)",
-        "de": "Letzte Daten des Diagramms lesen (nur INV/MAX/TLX)",
-        "ru": "Прочитать последние данные графика (только INV/MAX/TLX)",
-        "pt": "Leia os últimos dados do gráfico (apenas INV/MAX/TLX)",
-        "nl": "Lees de laatste gegevens van de grafiek (alleen INV/MAX/TLX)",
-        "fr": "Lire les dernières données du graphique (uniquement INV/MAX/TLX)",
-        "it": "Leggi gli ultimi dati del grafico (solo INV/MAX/TLX)",
-        "es": "Leer los últimos datos del gráfico (solo INV/MAX/TLX)",
-        "pl": "Przeczytaj ostatnie dane wykresu (tylko INV/MAX/TLX)",
-        "zh-cn": "读取图表的最后数据（仅INV/MAX/TLX）"
+    "Read last history data": {
+        "en": "Read last history data",
+        "de": "Lesen Sie die letzten Verlaufsdaten",
+        "ru": "Прочитать последние данные истории",
+        "pt": "Leia os últimos dados do histórico",
+        "nl": "Lees de laatste geschiedenisgegevens",
+        "fr": "Lire les dernières données d'historique",
+        "it": "Leggi gli ultimi dati della cronologia",
+        "es": "Leer los últimos datos del historial",
+        "pl": "Przeczytaj ostatnie dane historyczne",
+        "zh-cn": "读取最近的历史数据"
     },
-   "Read data of chart (requires read last data of chart)": {
-        "en": "Read data of chart (requires read last data of chart)",
-        "de": "Daten des Diagramms lesen (erfordert das Lesen der letzten Daten des Diagramms)",
-        "ru": "Прочитать данные диаграммы (требуется прочитать последние данные диаграммы)",
-        "pt": "Ler os dados do gráfico (requer a leitura dos últimos dados do gráfico)",
-        "nl": "Lees gegevens van de grafiek (vereist de laatste gegevens van de grafiek lezen)",
-        "fr": "Lire les données du graphique (nécessite la lecture des dernières données du graphique)",
-        "it": "Leggi i dati del grafico (richiede leggere gli ultimi dati del grafico)",
-        "es": "Leer datos del gráfico (requiere leer los últimos datos del gráfico)",
-        "pl": "Odczytaj dane wykresu (wymaga odczytu ostatnich danych wykresu)",
-        "zh-cn": "读取图表数据（需要读取图表的最后数据）"
+    "Read last data of chart (only INV/MAX/TLX) [deprecated]": {
+        "en": "Read last data of chart (only INV/MAX/TLX) [deprecated]",
+        "de": "Letzte Daten des Diagramms lesen (nur INV / MAX / TLX) [veraltet]",
+        "ru": "Чтение последних данных диаграммы (только INV / MAX / TLX) [устарело]",
+        "pt": "Ler os últimos dados do gráfico (apenas INV / MAX / TLX) [obsoleto]",
+        "nl": "Laatste gegevens van diagram lezen (alleen INV / MAX / TLX) [verouderd]",
+        "fr": "Lire les dernières données du graphique (uniquement INV / MAX / TLX) [obsolète]",
+        "it": "Leggi gli ultimi dati del grafico (solo INV / MAX / TLX) [obsoleto]",
+        "es": "Leer los últimos datos del gráfico (solo INV / MAX / TLX) [obsoleto]",
+        "pl": "Przeczytaj ostatnie dane wykresu (tylko INV / MAX / TLX) [wycofane]",
+        "zh-cn": "读取图表的最后数据（仅INV / MAX / TLX）[不建议使用]"
+    },
+    "Read data of chart (requires read last data of chart) [deprecated]": {
+        "en": "Read data of chart (requires read last data of chart) [deprecated]",
+        "de": "Daten des Diagramms lesen (erfordert das Lesen der letzten Daten des Diagramms) [veraltet]",
+        "ru": "Чтение данных диаграммы (требуется чтение последних данных диаграммы) [устарело]",
+        "pt": "Ler os dados do gráfico (requer a leitura dos últimos dados do gráfico) [obsoleto]",
+        "nl": "Gegevens van diagram lezen (vereist laatste gegevens van diagram lezen) [verouderd]",
+        "fr": "Lire les données du graphique (nécessite la lecture des dernières données du graphique) [obsolète]",
+        "it": "Leggi i dati del grafico (richiede la lettura degli ultimi dati del grafico) [obsoleto]",
+        "es": "Leer datos del gráfico (requiere leer los últimos datos del gráfico) [obsoleto]",
+        "pl": "Odczytaj dane wykresu (wymaga odczytu ostatnich danych wykresu) [przestarzałe]",
+        "zh-cn": "读取图表数据（需要读取图表的最后数据）[不建议使用]"
     },
     "Read plant data": {
         "en": "Read plant data",

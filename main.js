@@ -173,7 +173,8 @@ class Growatt extends utils.Adapter {
                     chartLast : this.config.chartLast,
                     chartLastArray : this.config.chartLastArray,
                     plantData : this.config.plantData,
-                    deviceData : this.config.deviceData
+                    deviceData : this.config.deviceData,
+                    historyLast : this.config.historyLast
                 }).catch(e => {this.log.error('Get all plant data:'+e)});
                 this.parseData(allPlantData,'');
                 api.logout().catch(e => {this.log.error('Logout:'+e)});

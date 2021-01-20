@@ -14,11 +14,17 @@
 ioBroker Growatt Adapter to communiacte with Growatt Shine Server.
 I'm not affiliated.
 Usually, the data is sent from the data logger to the cloud every 5 minutes.
+You can change it, see below.
 The software queries the server every 30 seconds so that the offset is not too great.
 
 Not all plant types are implemented.
 
 Currently only data can be read, writing parameters or changing parameters is not possible.
+
+## Speedup data interval
+
+[Here you can find instructions on how to change the interval](docs/speedupDataInterval.me)
+[Hier findest du eine Anleitung zum Umstellen des Intervalls](docs/datenintervallBeschleunigen.me)
 
 ## Admin Page
 
@@ -31,14 +37,23 @@ On the Growatt website under energy, plant management, operating tools you can s
 ### Read plant data
 This data record contains the stored master data
 
+### Read last history data
+Reads the last data record from the history of the data logger.
+This function supports minute intervals for the data logger.
+
 ### Read status data
 These data are not available for all plants (not INV/MAX/TLX). This dataset contains live data.
+This function supports minute intervals for the data logger.
 
 ### Read last data of chart
+**Deprecated: Will be removed soon**
 These data are only available for the plants without read status data (INV/MAX/TLX). The last valid data for the day is searched for.
+Minute intervals are not supported.
 
 ### Read data of chart
+**Deprecated: Will be removed soon**
 These data are only available for the plants without read status data and requires read last data of chart (INV/MAX/TLX). The data is written and stored as a JSON string.
+Minute intervals are not supported.
 
 ### Read total data
 This data record contains aggregation data.
@@ -50,9 +65,13 @@ This data record contains some data from the device. Some data are also availabl
 This data set contains the weather forecast.
 
 
-ende
+-*-
 
 ## Changelog
+### 0.0.16 (20.01.2021)
+* (PLCHome) npm package version update
+* (PLCHome) add last history for all plants. Special thanks to magix for the key, so i can test the inverter history function.
+
 ### 0.0.15 (04.12.2020)
 * (PLCHome) npm package version update
 
@@ -91,12 +110,12 @@ ende
 * (PLCHome) initial release.
 
 
-
+-*-
 
 ## License
 MIT License
 
-Copyright (c) 2020 PLCHome <https://github.com/PLCHome>
+Copyright (c) 2021 PLCHome <https://github.com/PLCHome>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
