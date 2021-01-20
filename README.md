@@ -23,8 +23,8 @@ Currently only data can be read, writing parameters or changing parameters is no
 
 ## Speedup data interval
 
-[Here you can find instructions on how to change the interval](docs/speedupDataInterval.me)
-[Hier findest du eine Anleitung zum Umstellen des Intervalls](docs/datenintervallBeschleunigen.me)
+[Here you can find instructions on how to change the interval](https://github.com/PLCHome/ioBroker.growatt/blob/master/docs/speedupDataInterval.md)
+[Hier findest du eine Anleitung zum Umstellen des Intervalls](https://github.com/PLCHome/ioBroker.growatt/blob/master/docs/docs/datenintervallBeschleunigen.md)
 
 ## Admin Page
 
