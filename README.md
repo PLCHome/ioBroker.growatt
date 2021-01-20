@@ -21,9 +21,9 @@ Not all plant types are implemented.
 
 Currently only data can be read, writing parameters or changing parameters is not possible.
 
-## Speedup data interval
+# Speedup data interval
 
-# You can set the logger interval from 5 minutes to 1 minute
+## You can set the logger interval from 5 minutes to 1 minute
 
 Remove the rubber plug of the KEY button from ShineWiFi-S, and short press the button inside. The blue LED
 will light up. Use your phone or computer to connect to the wireless network emitted by the
@@ -48,9 +48,9 @@ ShineWiFi module.
 
 **There is no change to the charts on growatt side. There you can only see a change in the data from the datalogger.**
 
-## German - Speedup data interval
+# German - Speedup data interval
 
-# Du kannst das Protokollierungsintervall von 5 Minuten auf 1 Minute einstellen
+## Du kannst das Protokollierungsintervall von 5 Minuten auf 1 Minute einstellen
 
 Den Gummi vor dem KEY Button des ShineWiFi-S entfernen und den Button kurz drücken.
 Der ShineWiFi-S spielt nun kurz Hotspot (SSID = Seriennummer des ShineWiFi-S). Beim Netz mit einem Laptop oder dem Handy anmelden.
