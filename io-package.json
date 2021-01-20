@@ -156,7 +156,7 @@
         "statusData" : true,
         "plantData" : true,
         "deviceData" : true,
-        "chartLast" : true,
+        "chartLast" : false,
         "chartLastArray" : false
     },
     "objects": [],
