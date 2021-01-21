@@ -71,7 +71,7 @@ Auf System Restart gehen und Button herzhaft, aber vorsichtig Klicken.
 **Es gibt keine Änderung an den Diagrammen auf der Growatt-Seite, die bleiben bei 5min. Dort sehen Sie nur eine Änderung der Daten im Datenlogger.**
 
 
-## Admin Page
+# Adapter admin page
 
 ### User and Password
 Please enter the name and password that you also use in the Shine app or in the web portal.
@@ -113,6 +113,9 @@ This data set contains the weather forecast.
 -*-
 
 ## Changelog
+### 0.0.17 (21.01.2021)
+* (PLCHome) fixes a date issue on inverter history data.
+
 ### 0.0.16 (20.01.2021)
 * (PLCHome) npm package version update
 * (PLCHome) add last history for all plants. Special thanks to magix for the key, so i can test the inverter history function.
