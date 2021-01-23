@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.17",
+        "version": "0.0.18",
         "news": {
-            "0.0.17": {
+            "0.0.18": {
                 "en": "fixes a date issue on inverter history data",
                 "de": "behebt ein Datumsproblem bei Wechselrichterverlaufsdaten",
                 "ru": "устраняет проблему с датой в данных истории инвертора",
