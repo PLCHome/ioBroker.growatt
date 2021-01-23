@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.16",
+        "version": "0.0.17",
         "news": {
             "0.0.17": {
                 "en": "fixes a date issue on inverter history data",
