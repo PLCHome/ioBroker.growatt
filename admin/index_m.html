@@ -18,7 +18,7 @@
     <script type="text/javascript" src="words.js"></script>
 
     <script type="text/javascript">
-        var secret;
+        let secret;
         
         if (!encrypt || typeof encrypt !== 'function') {
             function encrypt(key, value) {
@@ -47,9 +47,68 @@
             }
         }
         
+        function storeObject(id, obj, objList){
+            let ebene = id.split('.');
+            ebene.shift();
+            ebene.shift();
+            if (ebene[0] == "info" || ebene.length<2) {
+                return;
+            }
+            let newId = ebene.join('.')
+            //let n = ebene[ebene.length-1]
+            //let parent = ebene.slice(0,ebene.length-1).join('.');
+            objList.push({'id' : newId, 'name': obj.common.name, 'type': obj.common.type, 'created': (new Date(obj.ts)).toLocaleString(), 'action': 'normal'});
+        }
         
+        function showObjList(onChange,settings,objList){
+            update = Object.assign({}, settings.objUpdate)
+            objList.forEach(function (o){
+                if (update[o.id.toLowerCase]) {
+                    o.action = update[o.id.toLowerCase].action;
+                }
+                delete(update[o.id.toLowerCase]);
+            });
+            Object.keys(update).forEach((id) => {
+                if (update[id].action == 'delete') {
+                    objList.push({'id': update[id].id, 'name': "", 'type': "", 'created': "", 'action': update[id].action});
+                }
+            });
+            objList.sort(function (dev1, dev2) {
+                let x = dev1.id.split('.'),
+                    y = dev2.id.split('.');
+                while ((x.length > 0 && y.length > 0 && x.length == y.length)||(x.length > 1 && y.length > 1 && x.length != y.length)) {
+                    let a = x.shift().toUpperCase();
+                        b = y.shift().toUpperCase();
+                    if (a != b) {
+                        return a > b ? 1 : -1
+                    }
+                }
+                return y.length - x.length;
+            });
+            values2table('objects', objList, onChange, function(){
+                $("[data-name=id]").attr('disabled','disabled');
+                $("[data-name=name]").attr('readonly','readonly');
+                $("[data-name=type]").attr('readonly','readonly');
+                $("[data-name=created]").attr('readonly','readonly');
+                return;
+            });
+        }
+        
+        function emitObjects(onChange, settings){
+            socket.emit('getObjectView', 'system', 'state', { startkey: 'growatt.' + instance + '.', endkey: 'growatt.' + instance + '.\u9999', include_docs: true }, function (err, _objects) {
+                let objList = []
+                if (_objects && _objects.rows && _objects.rows.length) {
+                    for (let j = 0; j < _objects.rows.length; j++) {
+                        storeObject(_objects.rows[j].id, _objects.rows[j].value, objList)
+                    }
+                }
+                showObjList(onChange,settings,objList);
+            });
+        }
+       
         function loadHelper(settings, onChange) {
             if (!settings) return;
+            
             $('.value').each(function () {
                 var $key = $(this);
                 var id = $key.attr('id');
@@ -68,9 +127,6 @@
                         .on('keyup', () => onChange())
                         ;
                 }
-//                if (id === 'keyLogin') {
-//                    $key.trigger("change")
-//                }
             });
             $('#keyLogin').change(function() {
                 if ($(this).prop('checked')) {
@@ -85,6 +141,14 @@
                 }
             }).trigger('change');
             onChange(false);
+            
+            settings.objUpdate = settings.objUpdate || {};
+            emitObjects(onChange,settings);
+            $('#tab-manage-objects').find('.btn-objects-reload').on('click', function () {
+                var obj = {};
+                obj.objUpdate = getObjUpdate();
+                emitObjects(onChange,obj);
+            });
             // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
             if (M) M.updateTextFields();
         }
@@ -99,10 +163,23 @@
             onChange(false);
         }
 
+        function getObjUpdate() {
+            let objectListAll = table2values('objects')
+            let objUpdate = {}
+            objectListAll.forEach(function (o) {
+                if (o.action != 'normal') {
+                    objUpdate[o.id.toLowerCase()] = {'id':o.id, 'action':o.action}
+                }
+            })
+            return objUpdate;
+        }
+
         // This will be called by the admin adapter when the user presses the save button
         function save(callback) {
 
             var obj = {};
+            obj.objUpdate = getObjUpdate();
+            
             $('.value').each(function () {
                 var $this = $(this);
                 if ($this.attr('type') === 'checkbox') {
@@ -134,59 +211,92 @@
                 <img src="growatt.png" class="logo">
             </div>
         </div>
-
         <!-- Put your content here -->
-
-        <!-- For example columns with settings: -->
         <div class="row">
-            <div class="col s12 input-field">
-                <input type="checkbox" class="value" id="keyLogin" />
-                <label for="keyLogin" class="translate">Login with shared key</label>
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s2">
+                        <a href="#tab-main" class="translate active" >Main Settings</a>
+                    </li>
+                    <li class="tab col s2">
+                        <a href="#tab-manage-objects" class="translate" >Manage Objects</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col s6 input-field user">
-                <input type="text" class="value" id="user" />
-                <label for="user" class="translate">User</label>
+            
+            <div id="tab-main" class="col s12 page">
+                <!-- For example columns with settings: -->
+                <div class="row">
+                    <div class="col s12 input-field">
+                        <input type="checkbox" class="value" id="keyLogin" />
+                        <label for="keyLogin" class="translate">Login with shared key</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 input-field user">
+                        <input type="text" class="value" id="user" />
+                        <label for="user" class="translate">User</label>
+                    </div>
+                    <div class="col s6 input-field password">
+                        <input type="password" class="value" id="password" />
+                        <label for="password" class="translate">Password</label>
+                    </div>
+                    <div class="col s12 input-field shareKey">
+                        <input type="text" class="value" id="shareKey" />
+                        <label for="shareKey" class="translate">The key from shared URL</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="plantData" />
+                        <label for="plantData" class="translate">Read plant data</label>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="historyLast" />
+                        <label for="historyLast" class="translate">Read last history data</label>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="statusData" />
+                        <label for="statusData" class="translate">Read status data (not INV/MAX/TLX)</label>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="totalData" />
+                        <label for="totalData" class="translate">Read total data</label>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="deviceData" />
+                        <label for="deviceData" class="translate">Read device data</label>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="checkbox" class="value" id="weather" />
+                        <label for="weather" class="translate">Read weather</label>
+                    </div>
+                </div>
             </div>
-            <div class="col s6 input-field password">
-                <input type="password" class="value" id="password" />
-                <label for="password" class="translate">Password</label>
+            <div id="tab-manage-objects" class="col s12 page" style="height: auto; width: auto;">
+                <div class="col s12">
+                    <a class="btn-floating btn-small translate btn-objects-reload" title="reload" data-lang-title="reload">
+                        <i class="material-icons">refresh</i>
+                    </a>
+                </div>
+                <div class="col s12" id="objects">
+                    <div class="table-values-div">
+                        <table class="table-values">
+                            <thead>
+                            <tr>
+                                <th data-name="_index"   style="width: 2em"  ></th>
+                                <th data-name="action"   class="translate" style="width: 4em; white-space: nowrap" data-options="normal;delete;noupdate" data-type="select" >Action</th>
+                                <th data-name="id"       style="width: 35em; white-space: nowrap" >ID</th>
+                                <th data-name="name"     style="width: 10em; white-space: nowrap" >Name</th>
+                                <th data-name="type"     style="width: 6em; white-space: nowrap" >Type</th>
+                                <th data-name="created"  class="translate" style="width: 8em; white-space: nowrap" >Created</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="col s12 input-field shareKey">
-                <input type="text" class="value" id="shareKey" />
-                <label for="shareKey" class="translate">The key from shared URL</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="plantData" />
-                <label for="plantData" class="translate">Read plant data</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="historyLast" />
-                <label for="historyLast" class="translate">Read last history data</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="statusData" />
-                <label for="statusData" class="translate">Read status data (not INV/MAX/TLX)</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="chartLast" />
-                <label for="chartLast" class="translate">Read last data of chart (only INV/MAX/TLX) [deprecated]</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="chartLastArray" />
-                <label for="chartLastArray" class="translate">Read data of chart (requires read last data of chart) [deprecated]</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="totalData" />
-                <label for="totalData" class="translate">Read total data</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="deviceData" />
-                <label for="deviceData" class="translate">Read device data</label>
-            </div>
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="weather" />
-                <label for="weather" class="translate">Read weather</label>
-            </div>
+
         </div>
 
     </div>

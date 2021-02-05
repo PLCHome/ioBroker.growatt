@@ -34,6 +34,37 @@ class Growatt extends utils.Adapter {
      */
     async onReady() {
         this.getForeignObject('system.config', (err, obj) => {
+            this.config.objUpdate = this.config.objUpdate || {}
+            this.getStates(this.name+'.'+this.instance+".*", (err, states) => {
+                for(var id in states) {
+                    let ebene = id.toString().split('.');
+                    ebene.shift();
+                    ebene.shift();
+                    if (ebene[0] != "info" && ebene.length>1) {
+                        let ownID = ebene.join('.')
+                        let ownIDsearch = ownID.toLowerCase()
+                        if (this.config.objUpdate[ownIDsearch] && this.config.objUpdate[ownIDsearch].action=='delete'){
+                            this.delObject(ownID);
+                            this.log.info('deleted: '+ownID)
+                        } else {
+                            if ( (!this.config.weather && ebene.length>1 && ebene[1].toLowerCase() == 'weather') ||
+                                 (!this.config.totalData && ebene.length>3 && ebene[3].toLowerCase() == 'totaldata') ||
+                                 (!this.config.statusData && ebene.length>3 && ebene[3].toLowerCase() == 'statusdata') ||
+                                 (!this.config.plantData && ebene.length>1 && ebene[1].toLowerCase() == 'plantdata') ||
+                                 (!this.config.deviceData && ebene.length>3 && ebene[3].toLowerCase() == 'devicedata') ||
+                                 (!this.config.historyLast && ebene.length>3 && ebene[3].toLowerCase() == 'historylast') ||
+                                 (!this.config.chartLast && ebene.length>3 && ebene[3].toLowerCase() == 'chart') ){
+                                this.delObject(ownID);
+                                this.log.info('deleted: '+ownID)
+                            } else if (this.objNames[ownIDsearch]) {
+                                this.log.warn(this.objNames[ownIDsearch]+' exists twice: '+ownID)
+                            } else {
+                                this.objNames[ownIDsearch] = ownID
+                            }
+                        }
+                    }
+                }
+            });
             if (!this.supportsFeature || !this.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
                 if (obj && obj.native && obj.native.secret) {
                     this.config.password = this.decrypt(obj.native.secret, this.config.password);
@@ -87,11 +118,15 @@ class Growatt extends utils.Adapter {
             let keys = Object.keys(plantData)
             keys.forEach(async key => {
                 let ele = path+key;
+                let eleSearch = ele.toLowerCase();
                 this.log.silly('ParseData for '+ele);
                 let data = plantData[key];
                 if (typeof data === 'object'){
                     this.parseData(data,ele+'.');
                 } else {
+                    if (this.config.objUpdate[eleSearch] && this.config.objUpdate[eleSearch].action!='normal'){
+                        return
+                    }
                     let objType = 'string';
                     let objRole = 'value';
                     if (key.toLowerCase().includes('name'.toLowerCase())) {
@@ -128,7 +163,7 @@ class Growatt extends utils.Adapter {
                             objType = 'boolean';
                         }
                     }
-                    if (!this.objNames[ele]) {
+                    if (!this.objNames[eleSearch]) {
                         this.log.debug('Create object not exists '+ele+' type:'+objType+ ' role:'+objRole);
                         await this.setObjectNotExistsAsync(ele, {
                             type: 'state',
@@ -141,10 +176,11 @@ class Growatt extends utils.Adapter {
                             },
                             native: {},
                         }).catch(e => {this.log.error('setObjectNotExists:'+e)});
-                        this.objNames[ele] = true;
+                        this.log.info('added: '+ele);
+                        this.objNames[eleSearch] = ele;
                     }
-                    this.log.debug('Set value '+ele+':'+data);
-                    this.setStateAsync(ele, { val: data, ack: true });
+                    this.log.debug('Set value '+this.objNames[eleSearch]+':'+data);
+                    this.setStateAsync(this.objNames[eleSearch], { val: data, ack: true });
                 }
             })
         }
@@ -170,8 +206,6 @@ class Growatt extends utils.Adapter {
                     weather : this.config.weather,
                     totalData : this.config.totalData,
                     statusData : this.config.statusData,
-                    chartLast : this.config.chartLast,
-                    chartLastArray : this.config.chartLastArray,
                     plantData : this.config.plantData,
                     deviceData : this.config.deviceData,
                     historyLast : this.config.historyLast

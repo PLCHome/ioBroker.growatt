@@ -157,5 +157,113 @@ systemDictionary = {
         "es": "Leer datos de la planta",
         "pl": "Przeczytaj dane zakładu",
         "zh-cn": "读取工厂数据"
+    },
+    "normal": {
+        "en": "normal",
+        "de": "normal",
+        "ru": "нормальный",
+        "pt": "normal",
+        "nl": "normaal",
+        "fr": "Ordinaire",
+        "it": "normale",
+        "es": "normal",
+        "pl": "normalna",
+        "zh-cn": "正常"
+    },
+    "delete": {
+        "en": "delete",
+        "de": "löschen",
+        "ru": "Удалить",
+        "pt": "excluir",
+        "nl": "verwijderen",
+        "fr": "effacer",
+        "it": "Elimina",
+        "es": "Eliminar",
+        "pl": "usunąć",
+        "zh-cn": "删除"
+    },
+    "noupdate": {
+        "en": "no update",
+        "de": "kein Update",
+        "ru": "нет обновления",
+        "pt": "sem atualização",
+        "nl": "geen update",
+        "fr": "Pas de mise à jour",
+        "it": "nessun aggiornamento",
+        "es": "ninguna actualización",
+        "pl": "brak aktualizacji",
+        "zh-cn": "没有更新"
+    },
+    "Main Settings": {
+        "en": "Main Settings",
+        "de": "Haupteinstellungen",
+        "ru": "Основные параметры",
+        "pt": "Configurações principais",
+        "nl": "Belangrijkste instellingen",
+        "fr": "Réglages principaux",
+        "it": "Impostazioni principali",
+        "es": "Ajustes principales",
+        "pl": "Ustawienia główne",
+        "zh-cn": "主要设定"
+    },    
+    "Manage Objects": {
+        "en": "Manage Objects",
+        "de": "Objekte verwalten",
+        "ru": "Управлять объектами",
+        "pt": "Gerenciar objetos",
+        "nl": "Beheer objecten",
+        "fr": "Gérer les objets",
+        "it": "Gestisci oggetti",
+        "es": "Administrar objetos",
+        "pl": "Zarządzaj obiektami",
+        "zh-cn": "管理物件"
+    },
+    "Created": {
+        "en": "Created",
+        "de": "Erstellt",
+        "ru": "Создано",
+        "pt": "Criado",
+        "nl": "Gemaakt",
+        "fr": "Créé",
+        "it": "Creato",
+        "es": "Creado",
+        "pl": "Utworzony",
+        "zh-cn": "已建立"
+    },
+    "Action": {
+        "en": "Action",
+        "de": "Aktion",
+        "ru": "Действие",
+        "pt": "Açao",
+        "nl": "Actie",
+        "fr": "action",
+        "it": "Azione",
+        "es": "Acción",
+        "pl": "Akcja",
+        "zh-cn": "行动"
+    },
+    "Name": {
+        "en": "Name",
+        "de": "Name",
+        "ru": "имя",
+        "pt": "Nome",
+        "nl": "Naam",
+        "fr": "Nom",
+        "it": "Nome",
+        "es": "Nombre",
+        "pl": "Nazwa",
+        "zh-cn": "名称"
+    },
+    "Type": {
+        "en": "Type",
+        "de": "Typ",
+        "ru": "Тип",
+        "pt": "Tipo",
+        "nl": "Type",
+        "fr": "Type",
+        "it": "genere",
+        "es": "Tipo",
+        "pl": "Rodzaj",
+        "zh-cn": "类型"
     }
 };

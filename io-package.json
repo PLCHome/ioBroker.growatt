@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.18",
+        "version": "0.0.19",
         "news": {
+            "0.0.19": {
+                "en": "You can choose objects to be ignored or deleted.",
+                "de": "Sie können Objekte auswählen, die ignoriert oder gelöscht werden sollen.",
+                "ru": "Вы можете выбрать объекты, которые следует игнорировать или удалять.",
+                "pt": "Você pode escolher objetos a serem ignorados ou excluídos.",
+                "nl": "U kunt objecten kiezen die u wilt negeren of verwijderen.",
+                "fr": "Vous pouvez choisir les objets à ignorer ou à supprimer.",
+                "it": "Puoi scegliere gli oggetti da ignorare o eliminare.",
+                "es": "Puede elegir los objetos que desee ignorar o eliminar.",
+                "pl": "Możesz wybrać obiekty, które mają być ignorowane lub usuwane.",
+                "zh-cn": "您可以选择要忽略或删除的对象。"
+            },
             "0.0.18": {
                 "en": "fixes a date issue on inverter history data",
                 "de": "behebt ein Datumsproblem bei Wechselrichterverlaufsdaten",
@@ -142,6 +154,7 @@
         "compact": true,
         "connectionType": "cloud",
         "dataSource": "poll",
+        "localLink": "https://server.growatt.com/",
         "materialize": true,
         "dependencies": [
             {
@@ -168,8 +181,7 @@
         "statusData" : true,
         "plantData" : true,
         "deviceData" : true,
-        "chartLast" : false,
-        "chartLastArray" : false
+        "objUpdate" : {}
     },
     "objects": [],
     "instanceObjects": [
