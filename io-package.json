@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.19",
+        "version": "0.0.20",
         "news": {
+            "0.0.20": {
+                "en": "Create a date from the time or calendar structure for last history data for all devices",
+                "de": "Erstellen Sie ein Datum aus der Zeit- oder Kalenderstruktur für die Daten des letzten Verlaufs für alle Geräte",
+                "ru": "Создайте дату из структуры времени или календаря для последних данных истории для всех устройств",
+                "pt": "Crie uma data a partir da hora ou estrutura do calendário para os últimos dados do histórico para todos os dispositivos",
+                "nl": "Maak een datum op basis van de tijd- of kalenderstructuur voor de laatste historische gegevens voor alle apparaten",
+                "fr": "Créer une date à partir de la structure de l'heure ou du calendrier pour les dernières données d'historique de tous les appareils",
+                "it": "Crea una data dall'ora o dalla struttura del calendario per i dati dell'ultima cronologia per tutti i dispositivi",
+                "es": "Cree una fecha a partir de la estructura horaria o del calendario para los últimos datos del historial de todos los dispositivos",
+                "pl": "Utwórz datę na podstawie struktury czasu lub kalendarza dla ostatnich danych historycznych dla wszystkich urządzeń",
+                "zh-cn": "根据时间或日历结构为所有设备的最后历史记录数据创建日期"
+            },
             "0.0.19": {
                 "en": "You can choose objects to be ignored or deleted.",
                 "de": "Sie können Objekte auswählen, die ignoriert oder gelöscht werden sollen.",

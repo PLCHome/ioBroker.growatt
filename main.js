@@ -58,6 +58,12 @@ class Growatt extends utils.Adapter {
                                 this.log.info('deleted: '+ownID)
                             } else if (this.objNames[ownIDsearch]) {
                                 this.log.warn(this.objNames[ownIDsearch]+' exists twice: '+ownID)
+                            } else if (ebene.length>5 && ebene[3].toLowerCase() == 'historylast' && 
+                                       (ebene[4] == 'calendar' || ebene[4] == 'time') && 
+                                       (ebene[5] == 'year' || ebene[5] == 'month' || ebene[5] == 'dayOfMonth' || 
+                                        ebene[5] == 'hourOfDay' || ebene[5] == 'minute' || ebene[5] == 'second') ) {
+                                this.delObject(ownID);
+                                this.log.info('deleted: '+ownID)
                             } else {
                                 this.objNames[ownIDsearch] = ownID
                             }
@@ -136,7 +142,8 @@ class Growatt extends utils.Adapter {
                     } else {
                         data = data.toString();
                         // Date: yyyy-mm-dd hh:mi:ss
-                        if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d$')) {
+                        if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d$')||
+                            data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d\\d\\dZ$')) {
                             data = new Date(data);
                             objType = 'number';
                             objRole = 'value.time';
