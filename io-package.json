@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "0.0.20",
+        "version": "1.0.0",
         "news": {
+            "1.0.0": {
+                "en": "ready to publish",
+                "de": "bereit zu veröffentlichen",
+                "ru": "готов опубликовать",
+                "pt": "pronto para publicar",
+                "nl": "klaar om te publiceren",
+                "fr": "prêt à publier",
+                "it": "pronto per la pubblicazione",
+                "es": "listo para publicar",
+                "pl": "gotowy do publikacji",
+                "zh-cn": "准备发布"
+            },
             "0.0.20": {
                 "en": "Create a date from the time or calendar structure for last history data for all devices",
                 "de": "Erstellen Sie ein Datum aus der Zeit- oder Kalenderstruktur für die Daten des letzten Verlaufs für alle Geräte",
