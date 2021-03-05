@@ -118,76 +118,92 @@ class Growatt extends utils.Adapter {
      * Parses the data from the website into objects. Is called recrusively.
      * @param {object} plantData
      * @param {path} path to object
+     * @param {key} the key in the object
+     */
+    async storeData(plantData, path, key) {
+        let ele = path+key;
+        let eleSearch = ele.toLowerCase();
+        this.log.silly('ParseData for '+ele);
+        let data = plantData[key];
+        if (typeof data === 'object'){
+            this.parseData(data,ele+'.');
+        } else {
+            if (!(typeof this.config.objUpdate[eleSearch] === 'undefined') && this.config.objUpdate[eleSearch].action!='normal'){
+                return
+            }
+            let objType = 'string';
+            let objRole = 'value';
+            if (key.toLowerCase().includes('name'.toLowerCase())) {
+                data = data.toString();
+            } if (typeof data === 'number') {
+                objType = 'number';
+            } else {
+                data = data.toString();
+                // Date: yyyy-mm-dd hh:mi:ss
+                if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d$')||
+                    data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d\\d\\dZ$')) {
+                    data = new Date(data);
+                    objType = 'number';
+                    objRole = 'value.time';
+                // Date: yyyy-mm-dd hh:mi
+                } else if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d$')) {
+                    data = new Date(data+':00');
+                    objType = 'number';
+                    objRole = 'value.time';
+                // Date: yyyy-mm-dd
+                } else if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d$')) {
+                    data = new Date(data);
+                    objType = 'number';
+                    objRole = 'date';
+                // number: -123 or +123.45
+                } else if (data.match('^(\\+|\\-)?\\d+(\\.\\d*)?$')) {
+                    data = parseFloat(data)
+                    objType = 'number';
+                // json: {...} or [...]
+                } else if (data.match('^({.*}|\\[.*\\])$')) {
+                    objRole = 'json';
+                // boolean: true or false
+                } else if (data.match('^(true)|(false)$')) {
+                    data = (data==='true');
+                    objType = 'boolean';
+                }
+            }
+            if (typeof this.objNames[eleSearch] === 'undefined') {
+                this.log.debug('Create object not exists '+ele+' type:'+objType+ ' role:'+objRole);
+                await this.setObjectNotExistsAsync(ele, {
+                    type: 'state',
+                    common: {
+                        name: key,
+                        type: objType,
+                        role: objRole,
+                        read: true,
+                        write: false,
+                    },
+                    native: {},
+                }).catch(e => {this.log.error('setObjectNotExists:'+e)});
+                this.log.info('added: '+ele);
+                this.objNames[eleSearch] = ele;
+            }
+            this.log.debug('Set value '+this.objNames[eleSearch]+':'+data);
+            this.setStateAsync(this.objNames[eleSearch], { val: data, ack: true });
+        }
+    }
+
+
+    /**
+     * Parses the data from the website into objects. Is called recrusively.
+     * @param {object} plantData
+     * @param {path} path to object
      */
     async parseData(plantData, path) {
         if (plantData) {
             let keys = Object.keys(plantData)
-            keys.forEach(async key => {
-                let ele = path+key;
-                let eleSearch = ele.toLowerCase();
-                this.log.silly('ParseData for '+ele);
-                let data = plantData[key];
-                if (typeof data === 'object'){
-                    this.parseData(data,ele+'.');
-                } else {
-                    if (this.config.objUpdate[eleSearch] && this.config.objUpdate[eleSearch].action!='normal'){
-                        return
-                    }
-                    let objType = 'string';
-                    let objRole = 'value';
-                    if (key.toLowerCase().includes('name'.toLowerCase())) {
-                        data = data.toString();
-                    } if (typeof data === 'number') {
-                        objType = 'number';
-                    } else {
-                        data = data.toString();
-                        // Date: yyyy-mm-dd hh:mi:ss
-                        if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d$')||
-                            data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d\\d\\dZ$')) {
-                            data = new Date(data);
-                            objType = 'number';
-                            objRole = 'value.time';
-                        // Date: yyyy-mm-dd hh:mi
-                        } else if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d$')) {
-                            data = new Date(data+':00');
-                            objType = 'number';
-                            objRole = 'value.time';
-                        // Date: yyyy-mm-dd
-                        } else if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d$')) {
-                            data = new Date(data);
-                            objType = 'number';
-                            objRole = 'date';
-                        // number: -123 or +123.45
-                        } else if (data.match('^(\\+|\\-)?\\d+(\\.\\d*)?$')) {
-                            data = parseFloat(data)
-                            objType = 'number';
-                        // json: {...} or [...]
-                        } else if (data.match('^({.*}|\\[.*\\])$')) {
-                            objRole = 'json';
-                        // boolean: true or false
-                        } else if (data.match('^(true)|(false)$')) {
-                            data = (data==='true');
-                            objType = 'boolean';
-                        }
-                    }
-                    if (!this.objNames[eleSearch]) {
-                        this.log.debug('Create object not exists '+ele+' type:'+objType+ ' role:'+objRole);
-                        await this.setObjectNotExistsAsync(ele, {
-                            type: 'state',
-                            common: {
-                                name: key,
-                                type: objType,
-                                role: objRole,
-                                read: true,
-                                write: false,
-                            },
-                            native: {},
-                        }).catch(e => {this.log.error('setObjectNotExists:'+e)});
-                        this.log.info('added: '+ele);
-                        this.objNames[eleSearch] = ele;
-                    }
-                    this.log.debug('Set value '+this.objNames[eleSearch]+':'+data);
-                    this.setStateAsync(this.objNames[eleSearch], { val: data, ack: true });
+            //Duplicate keys are transmitted, we try to filter them here.
+            let processed = {}
+            keys.forEach(key => {
+                if (typeof processed[key.toLowerCase()] === 'undefined') { 
+                    processed[key.toLowerCase()] = true
+                    this.storeData(plantData, path, key)
                 }
             })
         }

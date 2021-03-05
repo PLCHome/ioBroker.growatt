@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "news": {
+            "1.0.1": {
+                "en": "Duplicate keys are transmitted, I try to filter them out",
+                "de": "Es werden doppelte Schlüssel übertragen, ich versuche sie herauszufiltern",
+                "ru": "Передаются повторяющиеся ключи, пытаюсь их отфильтровать",
+                "pt": "Chaves duplicadas são transmitidas, tento filtrá-las",
+                "nl": "Er worden dubbele sleutels verzonden, ik probeer ze eruit te filteren",
+                "fr": "Les clés en double sont transmises, j'essaye de les filtrer",
+                "it": "Vengono trasmesse chiavi duplicate, provo a filtrarle",
+                "es": "Se transmiten claves duplicadas, trato de filtrarlas",
+                "pl": "Przesyłane są zduplikowane klucze, staram się je odfiltrować",
+                "zh-cn": "重复的密钥被传输，我尝试将其过滤掉"
+            },
             "1.0.0": {
                 "en": "ready to publish",
                 "de": "bereit zu veröffentlichen",
