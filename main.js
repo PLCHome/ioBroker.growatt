@@ -142,17 +142,17 @@ class Growatt extends utils.Adapter {
                 // Date: yyyy-mm-dd hh:mi:ss
                 if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d$')||
                     data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d\\d\\dZ$')) {
-                    data = new Date(data);
+                    data = (new Date(data)).getTime();
                     objType = 'number';
                     objRole = 'value.time';
                 // Date: yyyy-mm-dd hh:mi
                 } else if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d$')) {
-                    data = new Date(data+':00');
+                    data = (new Date(data+':00')).getTime();
                     objType = 'number';
                     objRole = 'value.time';
                 // Date: yyyy-mm-dd
                 } else if (data.match('^\\d\\d\\d\\d-\\d\\d-\\d\\d$')) {
-                    data = new Date(data);
+                    data = (new Date(data)).getTime();
                     objType = 'number';
                     objRole = 'date';
                 // number: -123 or +123.45
@@ -215,6 +215,7 @@ class Growatt extends utils.Adapter {
      * @param {ioBroker.State | null | undefined} state
      */
     async growattData() {
+        let timeout = 150000
         try {
             let growatt = new api()
             if (this.config.keyLogin) {
@@ -238,7 +239,7 @@ class Growatt extends utils.Adapter {
                 growatt.logout().catch(e => {this.log.error('Logout:'+e)});
                 if (this.callRun) {
                     this.setStateAsync('info.connection', { val: true, ack: true});
-                    this.callTimeout = setTimeout(() => {this.growattData()}, 30000);
+                    timeout = 30000
                     return
                 }
             } else {
@@ -250,7 +251,7 @@ class Growatt extends utils.Adapter {
            this.setStateAsync('info.connection', { val: false, ack: true });
         } finally {
             if (this.callRun) {
-                this.callTimeout = setTimeout(() => {this.growattData()}, 300000);
+                this.callTimeout = setTimeout(() => {this.growattData()}, timeout);
             }
         }
     }
