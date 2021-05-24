@@ -245,7 +245,6 @@ class Growatt extends utils.Adapter {
                 this.log.info('not connected');
                 this.setStateAsync('info.connection', { val: false, ack: true });
             }
-            delete growatt
         } catch (e) {
            this.log.error('Get all plant data exception: '+e);
            this.setStateAsync('info.connection', { val: false, ack: true });
