@@ -125,6 +125,9 @@ Auf System Restart gehen und Button herzhaft, aber vorsichtig Klicken.
 
 ## Changelog
 
+### 1.1.0 (24.05.2021)
+* (PLCHome) Improvement of the connection via Axios Session
+
 ### 1.0.1 (05.03.2021)
 * (PLCHome) Duplicate keys are transmitted, I try to filter them out.
 

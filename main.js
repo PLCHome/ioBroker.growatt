@@ -216,16 +216,17 @@ class Growatt extends utils.Adapter {
      */
     async growattData() {
         try {
+            let growatt = new api()
             if (this.config.keyLogin) {
                 this.log.debug('Growatt share plant login');
-                await api.sharePlantLogin(this.config.shareKey).catch(e => {this.log.error('Login to share plant:'+((typeof e === 'object')?JSON.stringify(e):e))});
+                await growatt.sharePlantLogin(this.config.shareKey).catch(e => {this.log.error('Login to share plant:'+((typeof e === 'object')?JSON.stringify(e):e))});
             } else {
                 this.log.debug('Growatt login');
-                await api.login(this.config.user,this.config.password).catch(e => {this.log.error('Login:'+((typeof e === 'object')?JSON.stringify(e):e))});
+                await growatt.login(this.config.user,this.config.password).catch(e => {this.log.error('Login:'+((typeof e === 'object')?JSON.stringify(e):e))});
             }
-            this.log.debug('Growatt connected '+api.isConnected());
-            if (api.isConnected()) {
-                let allPlantData = await api.getAllPlantData({
+            this.log.debug('Growatt connected '+growatt.isConnected());
+            if (growatt.isConnected()) {
+                let allPlantData = await growatt.getAllPlantData({
                     weather : this.config.weather,
                     totalData : this.config.totalData,
                     statusData : this.config.statusData,
@@ -234,7 +235,7 @@ class Growatt extends utils.Adapter {
                     historyLast : this.config.historyLast
                 }).catch(e => {this.log.error('Get all plant data:'+e)});
                 this.parseData(allPlantData,'');
-                api.logout().catch(e => {this.log.error('Logout:'+e)});
+                growatt.logout().catch(e => {this.log.error('Logout:'+e)});
                 if (this.callRun) {
                     this.setStateAsync('info.connection', { val: true, ack: true});
                     this.callTimeout = setTimeout(() => {this.growattData()}, 30000);
@@ -244,12 +245,14 @@ class Growatt extends utils.Adapter {
                 this.log.info('not connected');
                 this.setStateAsync('info.connection', { val: false, ack: true });
             }
+            delete growatt
         } catch (e) {
            this.log.error('Get all plant data exception: '+e);
            this.setStateAsync('info.connection', { val: false, ack: true });
-        }
-        if (this.callRun) {
-            this.callTimeout = setTimeout(() => {this.growattData()}, 300000);
+        } finally {
+            if (this.callRun) {
+                this.callTimeout = setTimeout(() => {this.growattData()}, 300000);
+            }
         }
     }
 

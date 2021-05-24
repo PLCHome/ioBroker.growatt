@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "Improvement of the connection via Axios Session",
+                "de": "Verbesserung der Verbindung über Axios Session",
+                "ru": "Улучшение связи через Axios Session",
+                "pt": "Melhoria da conexão via Axios Session",
+                "nl": "Verbetering van de verbinding via Axios Session",
+                "fr": "Amélioration de la connexion via Axios Session",
+                "it": "Miglioramento della connessione tramite Axios Session",
+                "es": "Mejora de la conexión a través de Axios Session",
+                "pl": "Poprawa połączenia poprzez Axios Session",
+                "zh-cn": "通过Axios会话改善连接"
+            },
             "1.0.1": {
                 "en": "Duplicate keys are transmitted, I try to filter them out",
                 "de": "Es werden doppelte Schlüssel übertragen, ich versuche sie herauszufiltern",
