@@ -198,7 +198,7 @@ Auf System Restart gehen und Button herzhaft, aber vorsichtig Klicken.
 ## License
 MIT License
 
-Copyright (c) 2021 PLCHome <https://github.com/PLCHome>
+Copyright (c) 2021 PLCHome <https://github.com/PLCHome> <ioBroker@****.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
