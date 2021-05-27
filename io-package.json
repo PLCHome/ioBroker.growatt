@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "growatt",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "news": {
+            "1.1.1": {
+                "en": "The web request timeout was increased due to login issues",
+                "de": "Das Zeitlimit für Webanfragen wurde aufgrund von Anmeldeproblemen erhöht",
+                "ru": "Тайм-аут веб-запроса был увеличен из-за проблем со входом",
+                "pt": "O tempo limite da solicitação da web foi aumentado devido a problemas de login",
+                "nl": "De time-out voor het webverzoek is verhoogd vanwege inlogproblemen",
+                "fr": "Le délai d'expiration de la demande Web a été augmenté en raison de problèmes de connexion",
+                "it": "Il timeout della richiesta web è stato aumentato a causa di problemi di accesso",
+                "es": "El tiempo de espera de la solicitud web se incrementó debido a problemas de inicio de sesión",
+                "pl": "Limit czasu żądania internetowego został wydłużony z powodu problemów z logowaniem",
+                "zh-cn": "由于登录问题，Web请求超时增加了"
+            },
             "1.1.0": {
                 "en": "Improvement of the connection via Axios Session",
                 "de": "Verbesserung der Verbindung über Axios Session",
