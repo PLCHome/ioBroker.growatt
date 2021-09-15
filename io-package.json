@@ -186,7 +186,7 @@
             "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
         },
         "authors": [
-            "PLCHome <ioBroker@traeger-welt.de>"
+            "PLCHome"
         ],
         "keywords": [
             "growatt",
