@@ -12,6 +12,13 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
+function getTime(){
+    return (new Date()).getTime()
+}
+function getTimeDiff(start){
+    return (getTime() - start)
+}
+
 class Growatt extends utils.Adapter {
 
 
@@ -24,6 +31,7 @@ class Growatt extends utils.Adapter {
             name: 'growatt',
         });
         this.callTimeout = null;
+        this.processTimeout = null;
         this.objNames = {};
         this.on('ready', this.onReady.bind(this));
         this.on('unload', this.onUnload.bind(this));
@@ -105,7 +113,9 @@ class Growatt extends utils.Adapter {
     onUnload(callback) {
         try {
             this.callRun = false;
+            clearTimeout(this.processTimeout);
             clearTimeout(this.callTimeout);
+            this.growattLogout();
             this.setStateAsync('info.connection', { val: false, ack: true});
 
             callback();
@@ -169,7 +179,7 @@ class Growatt extends utils.Adapter {
                 }
             }
             if (typeof this.objNames[eleSearch] === 'undefined') {
-                this.log.debug('Create object not exists '+ele+' type:'+objType+ ' role:'+objRole);
+                this.log.silly('Create object not exists '+ele+' type:'+objType+ ' role:'+objRole);
                 await this.setObjectNotExistsAsync(ele, {
                     type: 'state',
                     common: {
@@ -184,7 +194,7 @@ class Growatt extends utils.Adapter {
                 this.log.info('added: '+ele);
                 this.objNames[eleSearch] = ele;
             }
-            this.log.debug('Set value '+this.objNames[eleSearch]+':'+data);
+            this.log.silly('Set value '+this.objNames[eleSearch]+':'+data);
             this.setStateAsync(this.objNames[eleSearch], { val: data, ack: true });
         }
     }
@@ -212,48 +222,109 @@ class Growatt extends utils.Adapter {
     /**
      * Is Called to get Data
      */
-    async growattData() {
-        let timeout = 150000
-        try {
-            let growatt = new api({timeout:5000})
-            if (this.config.keyLogin) {
-                this.log.debug('Growatt share plant login');
-                await growatt.sharePlantLogin(this.config.shareKey).catch(e => {this.log.error('Login to share plant:'+((typeof e === 'object')?JSON.stringify(e):e))});
-            } else {
-                this.log.debug('Growatt login');
-                await growatt.login(this.config.user,this.config.password).catch(e => {this.log.error('Login:'+((typeof e === 'object')?JSON.stringify(e):e))});
-            }
-            this.log.debug('Growatt connected '+growatt.isConnected());
+    async growattLogout() {
+        this.log.debug('Enter growattLogout');
+        let allTimeDiff = getTime();
+        delete(this.connectTime)
+        let growatt = this.growatt
+        delete(this.growatt)
+        if (typeof growatt  !== 'undefined') {
             if (growatt.isConnected()) {
-                let allPlantData = await growatt.getAllPlantData({
+                await growatt.logout().catch(e => {});
+            }
+        }
+        this.log.debug('Leave growattLogout :'+(getTimeDiff(allTimeDiff))+'ms');
+    }
+
+    /**
+     * Is Called to get Data
+     */
+    async growattData() {
+
+        this.log.debug('Enter growattData, Param: sessionHold:'+this.config.sessionHold);
+        let allTimeDiff = getTime();
+        let debugTimeDiff = getTime();
+        let timeout = this.config.errorCycleTime*1000
+        clearTimeout(this.processTimeout)
+        if (this.callRun) {
+            this.processTimeout = setTimeout(() => 
+                {
+                    this.growattLogout();
+                    this.log.warn('Process timeout reached')
+                    if (this.callRun) {
+                        clearTimeout(this.callTimeout)
+                        this.callTimeout = setTimeout(() => {this.growattData()}, timeout);
+                    }
+                }, this.config.processTimeout*1000);
+        }
+        try {
+            if (typeof this.growatt  === 'undefined') {
+                this.log.debug('Growatt new API');
+                this.growatt = new api({timeout:this.config.webTimeout*1000})
+            }
+            this.log.debug('Growatt isConnected() : '+this.growatt.isConnected());
+            if (! this.growatt.isConnected()) {
+                if (this.config.keyLogin) {
+                    this.log.debug('Growatt share plant login');
+                    await this.growatt.sharePlantLogin(this.config.shareKey).catch(e => {this.log.warn('Login to share plant:'+((typeof e === 'object')?JSON.stringify(e):e))});
+                } else {
+                    this.log.debug('Growatt login with user and password');
+                    await this.growatt.login(this.config.user,this.config.password).catch(e => {this.log.warn('Login:'+((typeof e === 'object')?JSON.stringify(e):e))});
+                }
+                this.log.debug('Growatt isConnected() : '+this.growatt.isConnected());
+                if (this.growatt.isConnected() && this.config.sessionHold) {
+                   this.connectTime = getTime()
+                }
+                this.log.debug('Growatt time for login : '+(getTimeDiff(debugTimeDiff))+'ms');
+                debugTimeDiff = getTime()
+            }
+            if (this.growatt.isConnected()) {
+                let allPlantData = await this.growatt.getAllPlantData({
                     weather : this.config.weather,
                     totalData : this.config.totalData,
                     statusData : this.config.statusData,
                     plantData : this.config.plantData,
                     deviceData : this.config.deviceData,
                     historyLast : this.config.historyLast
-                }).catch(e => {this.log.error('Get all plant data:'+e)});
+                });
+                this.log.debug('Growatt time for allPlantData : '+(getTimeDiff(debugTimeDiff))+'ms');
+                debugTimeDiff = getTime()
                 this.parseData(allPlantData,'');
-                growatt.logout().catch(e => {});
+                this.log.debug('Growatt time for parseData : '+(getTimeDiff(debugTimeDiff))+'ms');
+                debugTimeDiff = getTime()
                 if (this.callRun) {
                     this.setStateAsync('info.connection', { val: true, ack: true});
-                    timeout = 30000
-                    return
+                    timeout = (this.config.cycleTime *1000) - getTimeDiff(allTimeDiff)
+                    if (timeout < 100) {
+                        timeout = 100
+                    }
                 }
+                return
             } else {
                 this.log.info('not connected');
                 this.setStateAsync('info.connection', { val: false, ack: true });
             }
         } catch (e) {
-            this.log.error('Get all plant data exception: '+e);
+            this.log.error('Growatt exception: '+e);
             this.setStateAsync('info.connection', { val: false, ack: true });
+            this.growattLogout();
         } finally {
+            if (!this.config.sessionHold) {
+                this.growattLogout();
+            } else {
+                if ((typeof this.connectTime !== 'undefined') && (this.config.sessionTime > 0) && (getTimeDiff(this.connectTime) > (this.config.sessionTime*60000))) {
+                    this.log.debug('Connection time of the session reached');
+                    this.growattLogout();
+                }
+            }
+            clearTimeout(this.processTimeout)
+            clearTimeout(this.callTimeout)
             if (this.callRun) {
                 this.callTimeout = setTimeout(() => {this.growattData()}, timeout);
             }
+            this.log.debug('Leave growattData :'+(getTimeDiff(allTimeDiff))+'ms');
         }
     }
-
 }
 
 // @ts-ignore parent is a valid property on module

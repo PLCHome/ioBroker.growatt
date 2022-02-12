@@ -15,7 +15,6 @@ ioBroker Growatt Adapter to communiacte with Growatt Shine Server.
 I'm not affiliated.
 Usually, the data is sent from the data logger to the cloud every 5 minutes.
 You can change it, see below.
-The software queries the server every 30 seconds so that the offset is not too great.
 
 Not all plant types are implemented.
 
@@ -53,6 +52,29 @@ This data record contains some data from the device. Some data are also availabl
 ### Read weather
 This data set contains the weather forecast.
 
+### Timeout in seconds
+The default timeout for HTTP requests. The default value 60 seconds, as with web browsers
+
+### Process timeout in seconds
+
+This timeout monitors the collection of data from the Growatt server. If the server does not process all of the data within this time, an error is reported, the session is ended and a new cycle timer is started. The default value is 600 seconds.
+
+### Keep web session
+
+The adapter only logs in once and not with every data request from the Growatt server. By default it is on.
+
+### Session time in minutes
+
+Here you can set when the adapter logs out of the server and logs in again. A 0 means never log out. Default value is 0=infinity.
+
+### Cycle time in seconds
+
+The interval at which the data is requested from the server. The time required for the data query is then deducted from the next one. If the query lasts longer than the waiting time, the adapter only sleeps 100ms. The default value is 30 seconds.
+
+### Error cycle time in seconds
+
+If an error occurs when querying the values at the Growatt server, this time is used instead of the cycle time. The default value is 120 seconds
+
 ## Manage Objects
 Here you can define what should happen to each value (object) that is picked up by the inverter.
 There are a lot of values ​​that do not belong to your inverter. These can be removed here.
@@ -69,8 +91,27 @@ After the update, only the ID and the action are displayed because the object no
 The object remains, the values ​​from the inverter are discarded.
 
 ----------------------------------------------------------------------------------------------------------------------
+# Speedup data interval new method
 
-# Speedup data interval
+Open the ShinePhone app
+Click on attachment below
+Top right +, then list data loggers
+Click on existing data logger
+Configure data logger
+Wireless hotspot mode
+Put the stick in AP mode
+Connect to Wifi hotspot, PW 123456789 ? <- check again
+Continue
+Advanced
+time setting
+interval to 1
+Enter password growattYYYYMMDD (e.g.growatt20220209)
+Unlock
+Click and apply changes
+Exit hotspot mode
+
+----------------------------------------------------------------------------------------------------------------------
+# Speedup data interval old method
 
 ## You can set the logger interval from 5 minutes to 1 minute
 
@@ -99,7 +140,7 @@ ShineWiFi module.
 
 ----------------------------------------------------------------------------------------------------------------------
 
-# German - Speedup data interval
+# German - Speedup data interval alle Methode
 
 ## Du kannst das Protokollierungsintervall von 5 Minuten auf 1 Minute einstellen
 
@@ -124,6 +165,15 @@ Auf System Restart gehen und Button herzhaft, aber vorsichtig Klicken.
 -*-
 
 ## Changelog
+
+### 1.1.2 (12.02.2022)
+* (PLCHome) Timeouts made maintainable and adjusted. Request timout is now 60 second like chrome
+* (PLCHome) Server request improved and additionally secured against dying
+* (PLCHome) Calculate sleep to next request to keep cycle. Minimum sleep is 100ms
+* (PLCHome) Error output: if the key has expired, requests are forwarded with an error code, which is now in the log
+* (PLCHome) Improved error handling
+* (PLCHome) Improved debugging
+* (PLCHome) Update the includes
 
 ### 1.1.1 (27.05.2021)
 * (PLCHome) The web request timeout was increased due to login issues

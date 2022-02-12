@@ -265,5 +265,77 @@ systemDictionary = {
         "es": "Tipo",
         "pl": "Rodzaj",
         "zh-cn": "类型"
+    },
+    "Process timeout in seconds": {
+      "en": "Process timeout in seconds",
+      "de": "Prozess-Timeout in Sekunden",
+      "ru": "Время ожидания процесса в секундах",
+      "pt": "Tempo limite do processo em segundos",
+      "nl": "Verwerkingstime-out in seconden",
+      "fr": "Délai d'attente du processus en secondes",
+      "it": "Timeout del processo in secondi",
+      "es": "Tiempo de espera del proceso en segundos",
+      "pl": "Limit czasu procesu w sekundach",
+      "zh-cn": "处理超时（以秒为单位）"
+    },
+    "Timeout in seconds": {
+      "en": "Timeout in seconds",
+      "de": "Zeitüberschreitung in Sekunden",
+      "ru": "Время ожидания в секундах",
+      "pt": "Tempo limite em segundos",
+      "nl": "Time-out in seconden",
+      "fr": "Délai d'attente en secondes",
+      "it": "Timeout in secondi",
+      "es": "Tiempo de espera en segundos",
+      "pl": "Limit czasu w sekundach",
+      "zh-cn": "以秒为单位的超时"
+    },
+    "Keep web session": {
+      "en": "Keep web session",
+      "de": "Websitzung beibehalten",
+      "ru": "Сохранить веб-сессию",
+      "pt": "Manter sessão da web",
+      "nl": "Websessie behouden",
+      "fr": "Conserver la session Web",
+      "it": "Mantieni la sessione web",
+      "es": "Mantener sesión web",
+      "pl": "Zachowaj sesję internetową",
+      "zh-cn": "保持网络会话"
+    },
+    "Session time in minutes": {
+      "en": "Session time in minutes",
+      "de": "Sitzungszeit in Minuten",
+      "ru": "Время сеанса в минутах",
+      "pt": "Tempo de sessão em minutos",
+      "nl": "Sessietijd in minuten",
+      "fr": "Durée de la session en minutes",
+      "it": "Durata della sessione in minuti",
+      "es": "Tiempo de sesión en minutos",
+      "pl": "Czas sesji w minutach",
+      "zh-cn": "会话时间（分钟）"
+    },
+    "Cycle time in seconds": {
+      "en": "Cycle time in seconds",
+      "de": "Zykluszeit in Sekunden",
+      "ru": "Время цикла в секундах",
+      "pt": "Tempo de ciclo em segundos",
+      "nl": "Cyclustijd in seconden",
+      "fr": "Temps de cycle en secondes",
+      "it": "Tempo di ciclo in secondi",
+      "es": "Tiempo de ciclo en segundos",
+      "pl": "Czas cyklu w sekundach",
+      "zh-cn": "以秒为单位的周期时间"
+    },
+    "Error cycle time in seconds": {
+      "en": "Error cycle time in seconds",
+      "de": "Fehlerzykluszeit in Sekunden",
+      "ru": "Время цикла ошибки в секундах",
+      "pt": "Tempo de ciclo de erro em segundos",
+      "nl": "Foutcyclustijd in seconden",
+      "fr": "Temps de cycle d'erreur en secondes",
+      "it": "Tempo di ciclo dell'errore in secondi",
+      "es": "Tiempo de ciclo de error en segundos",
+      "pl": "Czas cyklu błędu w sekundach",
+      "zh-cn": "错误循环时间（以秒为单位）"
     }
 };

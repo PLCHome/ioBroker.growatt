@@ -1,270 +1,289 @@
 {
-    "common": {
-        "name": "growatt",
-        "version": "1.1.1",
-        "news": {
-            "1.1.1": {
-                "en": "The web request timeout was increased due to login issues",
-                "de": "Das Zeitlimit für Webanfragen wurde aufgrund von Anmeldeproblemen erhöht",
-                "ru": "Тайм-аут веб-запроса был увеличен из-за проблем со входом",
-                "pt": "O tempo limite da solicitação da web foi aumentado devido a problemas de login",
-                "nl": "De time-out voor het webverzoek is verhoogd vanwege inlogproblemen",
-                "fr": "Le délai d'expiration de la demande Web a été augmenté en raison de problèmes de connexion",
-                "it": "Il timeout della richiesta web è stato aumentato a causa di problemi di accesso",
-                "es": "El tiempo de espera de la solicitud web se incrementó debido a problemas de inicio de sesión",
-                "pl": "Limit czasu żądania internetowego został wydłużony z powodu problemów z logowaniem",
-                "zh-cn": "由于登录问题，Web请求超时增加了"
-            },
-            "1.1.0": {
-                "en": "Improvement of the connection via Axios Session",
-                "de": "Verbesserung der Verbindung über Axios Session",
-                "ru": "Улучшение связи через Axios Session",
-                "pt": "Melhoria da conexão via Axios Session",
-                "nl": "Verbetering van de verbinding via Axios Session",
-                "fr": "Amélioration de la connexion via Axios Session",
-                "it": "Miglioramento della connessione tramite Axios Session",
-                "es": "Mejora de la conexión a través de Axios Session",
-                "pl": "Poprawa połączenia poprzez Axios Session",
-                "zh-cn": "通过Axios会话改善连接"
-            },
-            "1.0.1": {
-                "en": "Duplicate keys are transmitted, I try to filter them out",
-                "de": "Es werden doppelte Schlüssel übertragen, ich versuche sie herauszufiltern",
-                "ru": "Передаются повторяющиеся ключи, пытаюсь их отфильтровать",
-                "pt": "Chaves duplicadas são transmitidas, tento filtrá-las",
-                "nl": "Er worden dubbele sleutels verzonden, ik probeer ze eruit te filteren",
-                "fr": "Les clés en double sont transmises, j'essaye de les filtrer",
-                "it": "Vengono trasmesse chiavi duplicate, provo a filtrarle",
-                "es": "Se transmiten claves duplicadas, trato de filtrarlas",
-                "pl": "Przesyłane są zduplikowane klucze, staram się je odfiltrować",
-                "zh-cn": "重复的密钥被传输，我尝试将其过滤掉"
-            },
-            "1.0.0": {
-                "en": "ready to publish",
-                "de": "bereit zu veröffentlichen",
-                "ru": "готов опубликовать",
-                "pt": "pronto para publicar",
-                "nl": "klaar om te publiceren",
-                "fr": "prêt à publier",
-                "it": "pronto per la pubblicazione",
-                "es": "listo para publicar",
-                "pl": "gotowy do publikacji",
-                "zh-cn": "准备发布"
-            },
-            "0.0.20": {
-                "en": "Create a date from the time or calendar structure for last history data for all devices",
-                "de": "Erstellen Sie ein Datum aus der Zeit- oder Kalenderstruktur für die Daten des letzten Verlaufs für alle Geräte",
-                "ru": "Создайте дату из структуры времени или календаря для последних данных истории для всех устройств",
-                "pt": "Crie uma data a partir da hora ou estrutura do calendário para os últimos dados do histórico para todos os dispositivos",
-                "nl": "Maak een datum op basis van de tijd- of kalenderstructuur voor de laatste historische gegevens voor alle apparaten",
-                "fr": "Créer une date à partir de la structure de l'heure ou du calendrier pour les dernières données d'historique de tous les appareils",
-                "it": "Crea una data dall'ora o dalla struttura del calendario per i dati dell'ultima cronologia per tutti i dispositivi",
-                "es": "Cree una fecha a partir de la estructura horaria o del calendario para los últimos datos del historial de todos los dispositivos",
-                "pl": "Utwórz datę na podstawie struktury czasu lub kalendarza dla ostatnich danych historycznych dla wszystkich urządzeń",
-                "zh-cn": "根据时间或日历结构为所有设备的最后历史记录数据创建日期"
-            },
-            "0.0.19": {
-                "en": "You can choose objects to be ignored or deleted.",
-                "de": "Sie können Objekte auswählen, die ignoriert oder gelöscht werden sollen.",
-                "ru": "Вы можете выбрать объекты, которые следует игнорировать или удалять.",
-                "pt": "Você pode escolher objetos a serem ignorados ou excluídos.",
-                "nl": "U kunt objecten kiezen die u wilt negeren of verwijderen.",
-                "fr": "Vous pouvez choisir les objets à ignorer ou à supprimer.",
-                "it": "Puoi scegliere gli oggetti da ignorare o eliminare.",
-                "es": "Puede elegir los objetos que desee ignorar o eliminar.",
-                "pl": "Możesz wybrać obiekty, które mają być ignorowane lub usuwane.",
-                "zh-cn": "您可以选择要忽略或删除的对象。"
-            },
-            "0.0.18": {
-                "en": "fixes a date issue on inverter history data",
-                "de": "behebt ein Datumsproblem bei Wechselrichterverlaufsdaten",
-                "ru": "устраняет проблему с датой в данных истории инвертора",
-                "pt": "corrige um problema de data nos dados do histórico do inversor",
-                "nl": "lost een datumprobleem op met de historische gegevens van de omvormer",
-                "fr": "corrige un problème de date sur les données d'historique de l'onduleur",
-                "it": "risolve un problema di data sui dati della cronologia dell'inverter",
-                "es": "corrige un problema de fecha en los datos del historial del inversor",
-                "pl": "rozwiązuje problem z datą w danych historii falownika",
-                "zh-cn": "修复了逆变器历史记录数据的日期问题"
-            },
-            "0.0.16": {
-                "en": "Add last history for all plants. Special thanks to magix for the key, so i can test the inverter history function.",
-                "de": "Fügen Sie den letzten Verlauf für alle Pflanzen hinzu, insbesondere dank magix für den Schlüssel, damit ich die Verlaufsfunktion des Wechselrichters testen kann.",
-                "ru": "Добавьте последнюю историю для всех заводов, особенно благодаря magix за ключ, чтобы я мог проверить функцию истории инвертора.",
-                "pt": "Adicione o último histórico para todas as plantas, um agradecimento especial ao magix pela chave, para que eu possa testar a função de histórico do inversor.",
-                "nl": "Voeg de laatste geschiedenis toe voor alle planten, met speciale dank aan magix voor de sleutel, zodat ik de geschiedenisfunctie van de omvormer kan testen.",
-                "fr": "Ajoutez le dernier historique pour toutes les usines, un merci spécial à magix pour la clé, afin que je puisse tester la fonction d'historique de l'onduleur.",
-                "it": "Aggiungi l'ultima cronologia per tutti gli impianti, un ringraziamento speciale a magix per la chiave, così posso testare la funzione cronologia inverter.",
-                "es": "Agregue el último historial para todas las plantas, un agradecimiento especial a magix por la clave, para que pueda probar la función de historial del inversor.",
-                "pl": "Dodaj ostatnią historię dla wszystkich instalacji, specjalne dzięki magixowi za klucz, abym mógł przetestować funkcję historii falownika.",
-                "zh-cn": "添加所有工厂的最新历史记录，特别要感谢magix的密钥，因此我可以测试变频器的历史记录功能。"
-            },
-            "0.0.15": {
-                "en": "npm package version update",
-                "de": "Aktualisierung der npm-Paketversion",
-                "ru": "обновление версии пакета npm",
-                "pt": "atualização da versão do pacote npm",
-                "nl": "update van de npm-pakketversie",
-                "fr": "mise à jour de la version du package npm",
-                "it": "Aggiornamento della versione del pacchetto npm",
-                "es": "actualización de la versión del paquete npm",
-                "pl": "Aktualizacja wersji pakietu npm",
-                "zh-cn": "npm软件包版本更新"
-            },
-            "0.0.14": {
-                "en": "improvement for objects not returned from Growatt website",
-                "de": "Verbesserung für Objekte, die nicht von der Growatt-Website zurückgegeben wurden",
-                "ru": "улучшение для объектов, не возвращенных с сайта Growatt",
-                "pt": "melhoria para objetos não devolvidos do site Growatt",
-                "nl": "verbetering voor objecten die niet zijn geretourneerd van de Growatt-website",
-                "fr": "amélioration pour les objets non renvoyés par le site Growatt",
-                "it": "miglioramento per oggetti non restituiti dal sito web Growatt",
-                "es": "mejora para los objetos no devueltos del sitio web de Growatt",
-                "pl": "ulepszenie dla obiektów niezwróconych ze strony Growatt",
-                "zh-cn": "对不是从Growatt网站返回的对象的改进"
-            },
-            "0.0.12": {
-                "en": "wrong initialization for shared key: string instead of boolean",
-                "de": "falsche Initialisierung für gemeinsam genutzten Schlüssel: Zeichenfolge statt Boolescher Wert",
-                "ru": "неправильная инициализация для общего ключа: строка вместо логического",
-                "pt": "inicialização errada para chave compartilhada: string em vez de booleana",
-                "nl": "verkeerde initialisatie voor gedeelde sleutel: string in plaats van boolean",
-                "fr": "mauvaise initialisation pour la clé partagée: chaîne au lieu de booléen",
-                "it": "inizializzazione errata per la chiave condivisa: stringa invece di booleano",
-                "es": "inicialización incorrecta para la clave compartida: cadena en lugar de booleano",
-                "pl": "zła inicjalizacja klucza współdzielonego: ciąg znaków zamiast wartości logicznej",
-            "zh-cn": "共享密钥的错误初始化：字符串而不是布尔值"
-            },
-            "0.0.11": {
-                 "en": "Shared key login\nLast value of the graph if there are no live data.\nChange of the polling interval",
-                 "de": "Login mit gemeinsamem Schlüssel\nLetzter Wert des Diagramms, wenn keine Live-Daten vorhanden sind.\nÄnderung des Abfrageintervalls",
-                 "ru": "Логин с общим ключом\nПоследнее значение графика, если нет данных в реальном времени.\nИзменение интервала опроса",
-                 "pt": "Login de chave compartilhada\nÚltimo valor do gráfico se não houver dados ativos.\nMudança do intervalo de votação",
-                 "nl": "Inloggen met gedeelde sleutel\nLaatste waarde van de grafiek als er geen live gegevens zijn.\nWijziging van het polling-interval",
-                 "fr": "Connexion par clé partagée\nDernière valeur du graphique s'il n'y a pas de données en direct.\nChangement de l'intervalle d'interrogation",
-                 "it": "Accesso con chiave condivisa\nUltimo valore del grafico se non ci sono dati in tempo reale.\nModifica dell'intervallo di polling",
-                 "es": "Inicio de sesión con clave compartida\nÚltimo valor del gráfico si no hay datos en vivo.\nCambio del intervalo de sondeo",
-                 "pl": "Logowanie za pomocą klucza wspólnego\nOstatnia wartość wykresu, jeśli nie ma danych w czasie rzeczywistym.\nZmiana interwału odpytywania",
-                 "zh-cn": "共享密钥登录\n如果没有实时数据，则图表的最后一个值。\n更改轮询间隔"
-            },
-            "0.0.9": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
-            }
-        },
-        "title": "Growatt Shine API",
-        "titleLang": {
-            "en": "Growatt Shine API",
-            "de": "Growatt Shine API",
-            "ru": "Growatt Shine API",
-            "pt": "API Growatt Shine",
-            "nl": "Growatt Shine API",
-            "fr": "API Growatt Shine",
-            "it": "Growatt Shine API",
-            "es": "API Growatt Shine",
-            "pl": "Growatt Shine API",
-            "zh-cn": "Growatt Shine API"
-        },
-        "desc": {
-            "en": "ioBroker Growatt Adapter to communiacte with ShineAPI",
-            "de": "ioBroker Growatt Adapter zur Kommunikation mit ShineAPI",
-            "ru": "Адаптер ioBroker Growatt для связи с ShineAPI",
-            "pt": "Adaptador ioBroker Growatt para comunicação com ShineAPI",
-            "nl": "ioBroker Growatt-adapter voor communicatie met ShineAPI",
-            "fr": "ioBroker Growatt Adaptateur pour communiquer avec ShineAPI",
-            "it": "Adattatore per Growatt ioBroker da comunicare con ShineAPI",
-            "es": "Adaptador ioBroker Growatt para comunicarse con ShineAPI",
-            "pl": "ioBroker Growatt Adapter do komunikacji z ShineAPI",
-            "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
-        },
-        "authors": [
-            "PLCHome"
-        ],
-        "keywords": [
-            "growatt",
-            "shine",
-            "shinephone",
-            "shineapi",
-            "ioBroker",
-            "smart home",
-            "solarenergy",
-            "home automation",
-            "solar power",
-            "solar power plant",
-            "solaranlage"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "growatt.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/PLCHome/ioBroker.growatt/master/admin/growatt.png",
-        "readme": "https://github.com/PLCHome/ioBroker.growatt/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "energy",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "localLink": "https://server.growatt.com/",
-        "materialize": true,
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ]
+  "common": {
+    "name": "growatt",
+    "version": "1.1.2",
+    "news": {
+      "1.1.2": {
+        "en": "Login revised and improved",
+        "de": "Login überarbeitet und verbessert",
+        "ru": "Логин переработан и улучшен",
+        "pt": "Login revisado e aprimorado",
+        "nl": "Inloggen herzien en verbeterd",
+        "fr": "Connexion révisée et améliorée",
+        "it": "Accesso rivisto e migliorato",
+        "es": "Inicio de sesión revisado y mejorado",
+        "pl": "Poprawione i ulepszone logowanie",
+        "zh-cn": "登录修改和改进"
+      },
+      "1.1.1": {
+        "en": "The web request timeout was increased due to login issues",
+        "de": "Das Zeitlimit für Webanfragen wurde aufgrund von Anmeldeproblemen erhöht",
+        "ru": "Тайм-аут веб-запроса был увеличен из-за проблем со входом",
+        "pt": "O tempo limite da solicitação da web foi aumentado devido a problemas de login",
+        "nl": "De time-out voor het webverzoek is verhoogd vanwege inlogproblemen",
+        "fr": "Le délai d'expiration de la demande Web a été augmenté en raison de problèmes de connexion",
+        "it": "Il timeout della richiesta web è stato aumentato a causa di problemi di accesso",
+        "es": "El tiempo de espera de la solicitud web se incrementó debido a problemas de inicio de sesión",
+        "pl": "Limit czasu żądania internetowego został wydłużony z powodu problemów z logowaniem",
+        "zh-cn": "由于登录问题，Web请求超时增加了"
+      },
+      "1.1.0": {
+        "en": "Improvement of the connection via Axios Session",
+        "de": "Verbesserung der Verbindung über Axios Session",
+        "ru": "Улучшение связи через Axios Session",
+        "pt": "Melhoria da conexão via Axios Session",
+        "nl": "Verbetering van de verbinding via Axios Session",
+        "fr": "Amélioration de la connexion via Axios Session",
+        "it": "Miglioramento della connessione tramite Axios Session",
+        "es": "Mejora de la conexión a través de Axios Session",
+        "pl": "Poprawa połączenia poprzez Axios Session",
+        "zh-cn": "通过Axios会话改善连接"
+      },
+      "1.0.1": {
+        "en": "Duplicate keys are transmitted, I try to filter them out",
+        "de": "Es werden doppelte Schlüssel übertragen, ich versuche sie herauszufiltern",
+        "ru": "Передаются повторяющиеся ключи, пытаюсь их отфильтровать",
+        "pt": "Chaves duplicadas são transmitidas, tento filtrá-las",
+        "nl": "Er worden dubbele sleutels verzonden, ik probeer ze eruit te filteren",
+        "fr": "Les clés en double sont transmises, j'essaye de les filtrer",
+        "it": "Vengono trasmesse chiavi duplicate, provo a filtrarle",
+        "es": "Se transmiten claves duplicadas, trato de filtrarlas",
+        "pl": "Przesyłane są zduplikowane klucze, staram się je odfiltrować",
+        "zh-cn": "重复的密钥被传输，我尝试将其过滤掉"
+      },
+      "1.0.0": {
+        "en": "ready to publish",
+        "de": "bereit zu veröffentlichen",
+        "ru": "готов опубликовать",
+        "pt": "pronto para publicar",
+        "nl": "klaar om te publiceren",
+        "fr": "prêt à publier",
+        "it": "pronto per la pubblicazione",
+        "es": "listo para publicar",
+        "pl": "gotowy do publikacji",
+        "zh-cn": "准备发布"
+      },
+      "0.0.20": {
+        "en": "Create a date from the time or calendar structure for last history data for all devices",
+        "de": "Erstellen Sie ein Datum aus der Zeit- oder Kalenderstruktur für die Daten des letzten Verlaufs für alle Geräte",
+        "ru": "Создайте дату из структуры времени или календаря для последних данных истории для всех устройств",
+        "pt": "Crie uma data a partir da hora ou estrutura do calendário para os últimos dados do histórico para todos os dispositivos",
+        "nl": "Maak een datum op basis van de tijd- of kalenderstructuur voor de laatste historische gegevens voor alle apparaten",
+        "fr": "Créer une date à partir de la structure de l'heure ou du calendrier pour les dernières données d'historique de tous les appareils",
+        "it": "Crea una data dall'ora o dalla struttura del calendario per i dati dell'ultima cronologia per tutti i dispositivi",
+        "es": "Cree una fecha a partir de la estructura horaria o del calendario para los últimos datos del historial de todos los dispositivos",
+        "pl": "Utwórz datę na podstawie struktury czasu lub kalendarza dla ostatnich danych historycznych dla wszystkich urządzeń",
+        "zh-cn": "根据时间或日历结构为所有设备的最后历史记录数据创建日期"
+      },
+      "0.0.19": {
+        "en": "You can choose objects to be ignored or deleted.",
+        "de": "Sie können Objekte auswählen, die ignoriert oder gelöscht werden sollen.",
+        "ru": "Вы можете выбрать объекты, которые следует игнорировать или удалять.",
+        "pt": "Você pode escolher objetos a serem ignorados ou excluídos.",
+        "nl": "U kunt objecten kiezen die u wilt negeren of verwijderen.",
+        "fr": "Vous pouvez choisir les objets à ignorer ou à supprimer.",
+        "it": "Puoi scegliere gli oggetti da ignorare o eliminare.",
+        "es": "Puede elegir los objetos que desee ignorar o eliminar.",
+        "pl": "Możesz wybrać obiekty, które mają być ignorowane lub usuwane.",
+        "zh-cn": "您可以选择要忽略或删除的对象。"
+      },
+      "0.0.18": {
+        "en": "fixes a date issue on inverter history data",
+        "de": "behebt ein Datumsproblem bei Wechselrichterverlaufsdaten",
+        "ru": "устраняет проблему с датой в данных истории инвертора",
+        "pt": "corrige um problema de data nos dados do histórico do inversor",
+        "nl": "lost een datumprobleem op met de historische gegevens van de omvormer",
+        "fr": "corrige un problème de date sur les données d'historique de l'onduleur",
+        "it": "risolve un problema di data sui dati della cronologia dell'inverter",
+        "es": "corrige un problema de fecha en los datos del historial del inversor",
+        "pl": "rozwiązuje problem z datą w danych historii falownika",
+        "zh-cn": "修复了逆变器历史记录数据的日期问题"
+      },
+      "0.0.16": {
+        "en": "Add last history for all plants. Special thanks to magix for the key, so i can test the inverter history function.",
+        "de": "Fügen Sie den letzten Verlauf für alle Pflanzen hinzu, insbesondere dank magix für den Schlüssel, damit ich die Verlaufsfunktion des Wechselrichters testen kann.",
+        "ru": "Добавьте последнюю историю для всех заводов, особенно благодаря magix за ключ, чтобы я мог проверить функцию истории инвертора.",
+        "pt": "Adicione o último histórico para todas as plantas, um agradecimento especial ao magix pela chave, para que eu possa testar a função de histórico do inversor.",
+        "nl": "Voeg de laatste geschiedenis toe voor alle planten, met speciale dank aan magix voor de sleutel, zodat ik de geschiedenisfunctie van de omvormer kan testen.",
+        "fr": "Ajoutez le dernier historique pour toutes les usines, un merci spécial à magix pour la clé, afin que je puisse tester la fonction d'historique de l'onduleur.",
+        "it": "Aggiungi l'ultima cronologia per tutti gli impianti, un ringraziamento speciale a magix per la chiave, così posso testare la funzione cronologia inverter.",
+        "es": "Agregue el último historial para todas las plantas, un agradecimiento especial a magix por la clave, para que pueda probar la función de historial del inversor.",
+        "pl": "Dodaj ostatnią historię dla wszystkich instalacji, specjalne dzięki magixowi za klucz, abym mógł przetestować funkcję historii falownika.",
+        "zh-cn": "添加所有工厂的最新历史记录，特别要感谢magix的密钥，因此我可以测试变频器的历史记录功能。"
+      },
+      "0.0.15": {
+        "en": "npm package version update",
+        "de": "Aktualisierung der npm-Paketversion",
+        "ru": "обновление версии пакета npm",
+        "pt": "atualização da versão do pacote npm",
+        "nl": "update van de npm-pakketversie",
+        "fr": "mise à jour de la version du package npm",
+        "it": "Aggiornamento della versione del pacchetto npm",
+        "es": "actualización de la versión del paquete npm",
+        "pl": "Aktualizacja wersji pakietu npm",
+        "zh-cn": "npm软件包版本更新"
+      },
+      "0.0.14": {
+        "en": "improvement for objects not returned from Growatt website",
+        "de": "Verbesserung für Objekte, die nicht von der Growatt-Website zurückgegeben wurden",
+        "ru": "улучшение для объектов, не возвращенных с сайта Growatt",
+        "pt": "melhoria para objetos não devolvidos do site Growatt",
+        "nl": "verbetering voor objecten die niet zijn geretourneerd van de Growatt-website",
+        "fr": "amélioration pour les objets non renvoyés par le site Growatt",
+        "it": "miglioramento per oggetti non restituiti dal sito web Growatt",
+        "es": "mejora para los objetos no devueltos del sitio web de Growatt",
+        "pl": "ulepszenie dla obiektów niezwróconych ze strony Growatt",
+        "zh-cn": "对不是从Growatt网站返回的对象的改进"
+      },
+      "0.0.12": {
+        "en": "wrong initialization for shared key: string instead of boolean",
+        "de": "falsche Initialisierung für gemeinsam genutzten Schlüssel: Zeichenfolge statt Boolescher Wert",
+        "ru": "неправильная инициализация для общего ключа: строка вместо логического",
+        "pt": "inicialização errada para chave compartilhada: string em vez de booleana",
+        "nl": "verkeerde initialisatie voor gedeelde sleutel: string in plaats van boolean",
+        "fr": "mauvaise initialisation pour la clé partagée: chaîne au lieu de booléen",
+        "it": "inizializzazione errata per la chiave condivisa: stringa invece di booleano",
+        "es": "inicialización incorrecta para la clave compartida: cadena en lugar de booleano",
+        "pl": "zła inicjalizacja klucza współdzielonego: ciąg znaków zamiast wartości logicznej",
+        "zh-cn": "共享密钥的错误初始化：字符串而不是布尔值"
+      },
+      "0.0.11": {
+        "en": "Shared key login\nLast value of the graph if there are no live data.\nChange of the polling interval",
+        "de": "Login mit gemeinsamem Schlüssel\nLetzter Wert des Diagramms, wenn keine Live-Daten vorhanden sind.\nÄnderung des Abfrageintervalls",
+        "ru": "Логин с общим ключом\nПоследнее значение графика, если нет данных в реальном времени.\nИзменение интервала опроса",
+        "pt": "Login de chave compartilhada\nÚltimo valor do gráfico se não houver dados ativos.\nMudança do intervalo de votação",
+        "nl": "Inloggen met gedeelde sleutel\nLaatste waarde van de grafiek als er geen live gegevens zijn.\nWijziging van het polling-interval",
+        "fr": "Connexion par clé partagée\nDernière valeur du graphique s'il n'y a pas de données en direct.\nChangement de l'intervalle d'interrogation",
+        "it": "Accesso con chiave condivisa\nUltimo valore del grafico se non ci sono dati in tempo reale.\nModifica dell'intervallo di polling",
+        "es": "Inicio de sesión con clave compartida\nÚltimo valor del gráfico si no hay datos en vivo.\nCambio del intervalo de sondeo",
+        "pl": "Logowanie za pomocą klucza wspólnego\nOstatnia wartość wykresu, jeśli nie ma danych w czasie rzeczywistym.\nZmiana interwału odpytywania",
+        "zh-cn": "共享密钥登录\n如果没有实时数据，则图表的最后一个值。\n更改轮询间隔"
+      },
+      "0.0.9": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "zh-cn": "首次出版"
+      }
     },
-    "encryptedNative": [
-        "password",
-        "shareKey"
-    ],
-    "protectedNative": [
-        "password",
-        "shareKey"
-    ],
-    "native": {
-        "keyLogin" : false,
-        "user" : "",
-        "password" : "",
-        "shareKey" :"",
-        "weather" : true,
-        "totalData" : true,
-        "historyLast" : true,
-        "statusData" : true,
-        "plantData" : true,
-        "deviceData" : true,
-        "objUpdate" : {}
+    "title": "Growatt Shine API",
+    "titleLang": {
+      "en": "Growatt Shine API",
+      "de": "Growatt Shine API",
+      "ru": "Growatt Shine API",
+      "pt": "API Growatt Shine",
+      "nl": "Growatt Shine API",
+      "fr": "API Growatt Shine",
+      "it": "Growatt Shine API",
+      "es": "API Growatt Shine",
+      "pl": "Growatt Shine API",
+      "zh-cn": "Growatt Shine API"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "If connected to Growatt Server",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
-    ]
+    "desc": {
+      "en": "ioBroker Growatt Adapter to communiacte with ShineAPI",
+      "de": "ioBroker Growatt Adapter zur Kommunikation mit ShineAPI",
+      "ru": "Адаптер ioBroker Growatt для связи с ShineAPI",
+      "pt": "Adaptador ioBroker Growatt para comunicação com ShineAPI",
+      "nl": "ioBroker Growatt-adapter voor communicatie met ShineAPI",
+      "fr": "ioBroker Growatt Adaptateur pour communiquer avec ShineAPI",
+      "it": "Adattatore per Growatt ioBroker da comunicare con ShineAPI",
+      "es": "Adaptador ioBroker Growatt para comunicarse con ShineAPI",
+      "pl": "ioBroker Growatt Adapter do komunikacji z ShineAPI",
+      "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
+    },
+    "authors": [
+      "PLCHome"
+    ],
+    "keywords": [
+      "growatt",
+      "shine",
+      "shinephone",
+      "shineapi",
+      "ioBroker",
+      "smart home",
+      "solarenergy",
+      "home automation",
+      "solar power",
+      "solar power plant",
+      "solaranlage"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "growatt.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/PLCHome/ioBroker.growatt/master/admin/growatt.png",
+    "readme": "https://github.com/PLCHome/ioBroker.growatt/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "energy",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "localLink": "https://server.growatt.com/",
+    "materialize": true,
+    "dependencies": [
+      {
+        "js-controller": ">=3.0.0"
+      }
+    ],
+    "installedFrom": "e:\\node_intern\\iobroker.growatt"
+  },
+  "encryptedNative": [
+    "password",
+    "shareKey"
+  ],
+  "protectedNative": [
+    "password",
+    "shareKey"
+  ],
+  "native": {
+    "keyLogin": false,
+    "user": "",
+    "password": "",
+    "shareKey": "",
+    "weather": true,
+    "totalData": true,
+    "historyLast": true,
+    "statusData": true,
+    "plantData": true,
+    "deviceData": true,
+    "objUpdate": {},
+    "webTimeout": 60,
+    "processTimeout": 600,
+    "sessionHold": true,
+    "sessionTime": 0,
+    "cycleTime": 30,
+    "errorCycleTime": 120
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "If connected to Growatt Server",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
