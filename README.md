@@ -93,22 +93,22 @@ The object remains, the values ​​from the inverter are discarded.
 ----------------------------------------------------------------------------------------------------------------------
 # Speedup data interval new method
 
-Open the ShinePhone app
-Click on attachment below
-Top right +, then list data loggers
-Click on existing data logger
-Configure data logger
-Wireless hotspot mode
-Put the stick in AP mode
-Connect to Wifi hotspot, PW 123456789 ? <- check again
-Continue
-Advanced
-time setting
-interval to 1
-Enter password growattYYYYMMDD (e.g.growatt20220209)
-Unlock
-Click and apply changes
-Exit hotspot mode
+* Open the ShinePhone app
+* Click on attachment below
+* Top right +, then list data loggers
+* Click on existing data logger
+* Configure data logger
+* Wireless hotspot mode
+* Put the stick in AP mode
+* Connect to Wifi hotspot, PW 123456789 ? <- check again
+* Continue
+* Advanced
+* Time setting
+* Interval to 1
+* Enter password growattYYYYMMDD (e.g.growatt20220209)
+* Unlock
+* Click and apply changes
+* Exit hotspot mode
 
 ----------------------------------------------------------------------------------------------------------------------
 # Speedup data interval old method
@@ -165,6 +165,9 @@ Auf System Restart gehen und Button herzhaft, aber vorsichtig Klicken.
 -*-
 
 ## Changelog
+
+### 1.1.3 (12.02.2022)
+* (PLCHome) Read me
 
 ### 1.1.2 (12.02.2022)
 * (PLCHome) Timeouts made maintainable and adjusted. Request timout is now 60 second like chrome
