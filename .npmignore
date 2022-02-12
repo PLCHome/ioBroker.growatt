@@ -3,5 +3,4 @@ test/
 .travis.yml
 package-lock.json
 test.json
-test.js
 update.cmd
