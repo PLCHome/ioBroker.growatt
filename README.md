@@ -142,7 +142,7 @@ ShineWiFi module.
 
 ## Changelog
 
-### 1.1.5 (12.02.2022)
+### 1.1.6 (12.02.2022)
 * (PLCHome) Read me
 
 ### 1.1.2 (12.02.2022)
@@ -228,9 +228,9 @@ ShineWiFi module.
 -*-
 
 ## License
-MIT License
+The MIT License (MIT)
 
-Copyright (c) 2022 PLCHome <https://github.com/PLCHome>
+Copyright (c) 2020 - 2022 PLCHome
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
