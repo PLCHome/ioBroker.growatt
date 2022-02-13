@@ -141,6 +141,8 @@ ShineWiFi module.
 -*-
 
 ## Changelog
+### 1.1.7 (13.02.2022)
+* (PLCHome) "Sentry" was added
 
 ### 1.1.6 (12.02.2022)
 * (PLCHome) Read me

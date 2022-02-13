@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "news": {
+      "1.1.7": {
+        "en": "\"Sentry\" was added",
+        "de": "\"Wachposten\" wurde hinzugefügt",
+        "ru": "\"Сторожевой\" добавлен",
+        "pt": "\"Sentinela\" foi adicionado",
+        "nl": "\"Schildwacht\" is toegevoegd",
+        "fr": "\"Sentinelle\" a été ajouté",
+        "it": "\"Sentry\" è stato aggiunto",
+        "es": "Se agregó \"Sentry\"",
+        "pl": "Dodano „Wartownik”",
+        "zh-cn": "添加了“哨兵”"
+      },
       "1.1.6": {
         "en": "Login revised and improved",
         "de": "Login überarbeitet und verbessert",
@@ -228,6 +240,11 @@
     "dataSource": "poll",
     "localLink": "https://server.growatt.com/",
     "materialize": true,
+    "plugins": {
+      "sentry": {
+          "dsn": "https://580e0de8b3414b6caba783785eb4e240@o1143033.ingest.sentry.io/6202057"
+      }
+    },
     "dependencies": [
       {
         "js-controller": ">=3.0.0"

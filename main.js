@@ -308,6 +308,12 @@ class Growatt extends utils.Adapter {
             this.log.error('Growatt exception: '+e);
             this.setStateAsync('info.connection', { val: false, ack: true });
             this.growattLogout();
+            if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
+                const sentryInstance = this.getPluginInstance('sentry');
+                if (sentryInstance) {
+                    sentryInstance.getSentryObject().captureException(e);
+                }
+            }
         } finally {
             if (!this.config.sessionHold) {
                 this.growattLogout();
