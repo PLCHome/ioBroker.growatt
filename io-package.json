@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "news": {
+      "1.1.8": {
+        "en": "Improvement triggered by \"Sentry\" issues",
+        "de": "Verbesserung ausgelöst durch „Sentry“-Probleme",
+        "ru": "Улучшение, вызванное проблемами \"Sentry\"",
+        "pt": "Melhoria desencadeada por problemas \"Sentry\"",
+        "nl": "Verbetering veroorzaakt door \"Sentry\"-problemen",
+        "fr": "Amélioration déclenchée par des problèmes \"Sentry\"",
+        "it": "Miglioramento innescato da problemi di \"Sentinella\".",
+        "es": "Mejora provocada por problemas de \"Centinela\"",
+        "pl": "Ulepszenie wywołane problemami „Sentry”",
+        "zh-cn": "“哨兵”问题引发的改进"
+      },
       "1.1.7": {
         "en": "\"Sentry\" was added",
         "de": "\"Wachposten\" wurde hinzugefügt",

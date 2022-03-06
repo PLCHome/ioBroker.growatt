@@ -142,7 +142,7 @@ ShineWiFi module.
 -*-
 
 ## Changelog
-### 1.1.8 (13.02.2022)
+### 1.1.8 (16.03.2022)
 * (PLCHome) Improvement triggered by "Sentry" issues
 
 ### 1.1.7 (13.02.2022)
