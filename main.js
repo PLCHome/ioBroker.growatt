@@ -88,6 +88,21 @@ class Growatt extends utils.Adapter {
                     this.config.shareKey = this.decrypt('Zgfr56gFe87jJOM', this.config.shareKey);
                 }
             }
+            
+            
+            if ((typeof this.config.webTimeout === 'undefined') || this.config.webTimeout == "")
+              this.config.webTimeout = 60;
+            if ((typeof this.config.processTimeout === 'undefined') || this.config.processTimeout == "")
+              this.config.processTimeout = 600;
+            if ((typeof this.config.sessionHold === 'undefined') || this.config.sessionHold == "")
+              this.config.sessionHold = true;
+            if ((typeof this.config.sessionTime === 'undefined') || this.config.sessionTime == "")
+              this.config.sessionTime = 0;
+            if ((typeof this.config.cycleTime === 'undefined') || this.config.cycleTime == "")
+              this.config.cycleTime = 30;
+            if ((typeof this.config.errorCycleTime === 'undefined') || this.config.errorCycleTime == "")
+              this.config.errorCycleTime = 120;
+            
             this.callRun = true;
             this.growattData();
         });
@@ -246,7 +261,7 @@ class Growatt extends utils.Adapter {
         let debugTimeDiff = getTime();
         let timeout = this.config.errorCycleTime*1000
         clearTimeout(this.processTimeout)
-        if (this.callRun) {
+        if (this.callRun && this.processTimeout) {
             this.processTimeout = setTimeout(() => 
                 {
                     this.growattLogout();
