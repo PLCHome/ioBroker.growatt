@@ -223,7 +223,7 @@ class Growatt extends utils.Adapter {
      * Is Called to get Data
      */
     async growattLogout() {
-        this.log.debug('Enter growattLogout');
+        if (this.log && this.log.debug) this.log.debug('Enter growattLogout');
         let allTimeDiff = getTime();
         delete(this.connectTime)
         let growatt = this.growatt
@@ -233,7 +233,7 @@ class Growatt extends utils.Adapter {
                 await growatt.logout().catch(e => {});
             }
         }
-        this.log.debug('Leave growattLogout :'+(getTimeDiff(allTimeDiff))+'ms');
+        if (this.log && this.log.debug) ('Leave growattLogout :'+(getTimeDiff(allTimeDiff))+'ms');
     }
 
     /**
