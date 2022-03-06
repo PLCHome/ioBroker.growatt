@@ -237,12 +237,12 @@ class Growatt extends utils.Adapter {
     /**
      * Is Called to get Data
      */
-    async growattLogout() {
+    async growattLogout(ndel) {
         if (this.log && this.log.debug) this.log.debug('Enter growattLogout');
         let allTimeDiff = getTime();
         delete(this.connectTime)
         let growatt = this.growatt
-        delete(this.growatt)
+        if (!ndel) delete(this.growatt)
         if (typeof growatt  !== 'undefined') {
             if (growatt.isConnected()) {
                 await growatt.logout().catch(e => {});
@@ -252,17 +252,18 @@ class Growatt extends utils.Adapter {
     }
 
     lifeSignCallback() {
+        this.log.debug('Enter lifeSignCallback '+(this.config.processTimeout*1000)+'ms');
         clearTimeout(this.processTimeout)
-        if (this.callRun && this.processTimeout) {
-            this.processTimeout = setTimeout(() => 
+        if (this.callRun && this.config.processTimeout && this.config.processTimeout > 0) {
+            this.processTimeout = setTimeout((()=>
                 {
-                    this.growattLogout();
+                    this.growattLogout(true);
                     this.log.warn('Process timeout reached')
                     if (this.callRun) {
                         clearTimeout(this.callTimeout)
-                        this.callTimeout = setTimeout(() => {this.growattData()}, timeout);
+                        this.callTimeout = setTimeout((()=>{this.growattData()}).bind(this), this.config.errorCycleTime*1000);
                     }
-                }, this.config.processTimeout*1000);
+                }).bind(this), this.config.processTimeout*1000);
         }
     }
     
@@ -279,7 +280,7 @@ class Growatt extends utils.Adapter {
         try {
             if (typeof this.growatt  === 'undefined') {
                 this.log.debug('Growatt new API');
-                this.growatt = new api({timeout:this.config.webTimeout*1000,'lifeSignCallback': this.lifeSignCallback})
+                this.growatt = new api({timeout:this.config.webTimeout*1000,lifeSignCallback: this.lifeSignCallback.bind(this)})
             }
             this.log.debug('Growatt isConnected() : '+this.growatt.isConnected());
             if (! this.growatt.isConnected()) {
@@ -324,7 +325,7 @@ class Growatt extends utils.Adapter {
                 this.setStateAsync('info.connection', { val: false, ack: true });
             }
         } catch (e) {
-            if (e.toLowerCase().includes("errornologin")) {
+            if (e.toString().toLowerCase().includes("errornologin")) {
                 this.log.warn('Growatt Login: '+e);
             } else {
                 this.log.error('Growatt exception: '+e);
@@ -334,7 +335,7 @@ class Growatt extends utils.Adapter {
             if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
                 const sentryInstance = this.getPluginInstance('sentry');
                 if (sentryInstance) {
-                    if (e.toLowerCase().includes("errornologin")) {
+                    if (e.toString().toLowerCase().includes("errornologin")) {
                         sentryInstance.getSentryObject().captureException(e);
                     } else  {
                         sentryInstance.getSentryObject().captureException(e);
@@ -353,7 +354,7 @@ class Growatt extends utils.Adapter {
             clearTimeout(this.processTimeout)
             clearTimeout(this.callTimeout)
             if (this.callRun) {
-                this.callTimeout = setTimeout(() => {this.growattData()}, timeout);
+                this.callTimeout = setTimeout((() => {this.growattData()}).bind(this), timeout);
             }
             this.log.debug('Leave growattData :'+(getTimeDiff(allTimeDiff))+'ms');
         }
