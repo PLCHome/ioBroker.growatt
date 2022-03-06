@@ -184,17 +184,17 @@
 
         function improveValues(obj){
             if ((typeof obj.webTimeout === 'undefined') || obj.webTimeout=="")
-              obj.webTimeout = "60";
+                obj.webTimeout = "60";
             if ((typeof obj.processTimeout === 'undefined') || obj.processTimeout=="")
-              obj.processTimeout = "600";
+                obj.processTimeout = "600";
             if ((typeof obj.sessionHold === 'undefined') || obj.sessionHold=="")
-              obj.sessionHold = true;
+                obj.sessionHold = true;
             if ((typeof obj.sessionTime === 'undefined') || obj.sessionTime=="")
-              obj.sessionTime = "0";
+                obj.sessionTime = "0";
             if ((typeof obj.cycleTime === 'undefined') || obj.cycleTime=="")
-              obj.cycleTime = "30";
+                obj.cycleTime = "30";
             if ((typeof obj.errorCycleTime === 'undefined') || obj.errorCycleTime=="")
-              obj.errorCycleTime = "120";
+                obj.errorCycleTime = "120";
         }
 
         // This will be called by the admin adapter when the user presses the save button

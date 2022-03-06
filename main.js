@@ -91,17 +91,17 @@ class Growatt extends utils.Adapter {
             
             
             if ((typeof this.config.webTimeout === 'undefined') || this.config.webTimeout == "")
-              this.config.webTimeout = 60;
+                this.config.webTimeout = 60;
             if ((typeof this.config.processTimeout === 'undefined') || this.config.processTimeout == "")
-              this.config.processTimeout = 600;
+                this.config.processTimeout = 600;
             if ((typeof this.config.sessionHold === 'undefined') || this.config.sessionHold == "")
-              this.config.sessionHold = true;
+                this.config.sessionHold = true;
             if ((typeof this.config.sessionTime === 'undefined') || this.config.sessionTime == "")
-              this.config.sessionTime = 0;
+                this.config.sessionTime = 0;
             if ((typeof this.config.cycleTime === 'undefined') || this.config.cycleTime == "")
-              this.config.cycleTime = 30;
+                this.config.cycleTime = 30;
             if ((typeof this.config.errorCycleTime === 'undefined') || this.config.errorCycleTime == "")
-              this.config.errorCycleTime = 120;
+                this.config.errorCycleTime = 120;
             
             this.callRun = true;
             this.growattData();
@@ -251,15 +251,7 @@ class Growatt extends utils.Adapter {
         if (this.log && this.log.debug) ('Leave growattLogout :'+(getTimeDiff(allTimeDiff))+'ms');
     }
 
-    /**
-     * Is Called to get Data
-     */
-    async growattData() {
-
-        this.log.debug('Enter growattData, Param: sessionHold:'+this.config.sessionHold);
-        let allTimeDiff = getTime();
-        let debugTimeDiff = getTime();
-        let timeout = this.config.errorCycleTime*1000
+    lifeSignCallback() {
         clearTimeout(this.processTimeout)
         if (this.callRun && this.processTimeout) {
             this.processTimeout = setTimeout(() => 
@@ -272,10 +264,22 @@ class Growatt extends utils.Adapter {
                     }
                 }, this.config.processTimeout*1000);
         }
+    }
+    
+    /**
+     * Is Called to get Data
+     */
+    async growattData() {
+
+        this.log.debug('Enter growattData, Param: sessionHold:'+this.config.sessionHold);
+        let allTimeDiff = getTime();
+        let debugTimeDiff = getTime();
+        let timeout = this.config.errorCycleTime*1000
+        this.lifeSignCallback();
         try {
             if (typeof this.growatt  === 'undefined') {
                 this.log.debug('Growatt new API');
-                this.growatt = new api({timeout:this.config.webTimeout*1000})
+                this.growatt = new api({timeout:this.config.webTimeout*1000,'lifeSignCallback': this.lifeSignCallback})
             }
             this.log.debug('Growatt isConnected() : '+this.growatt.isConnected());
             if (! this.growatt.isConnected()) {
@@ -320,13 +324,21 @@ class Growatt extends utils.Adapter {
                 this.setStateAsync('info.connection', { val: false, ack: true });
             }
         } catch (e) {
-            this.log.error('Growatt exception: '+e);
+            if (e.toLowerCase().includes("errornologin")) {
+                this.log.warn('Growatt Login: '+e);
+            } else {
+                this.log.error('Growatt exception: '+e);
+            }
             this.setStateAsync('info.connection', { val: false, ack: true });
             this.growattLogout();
             if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
                 const sentryInstance = this.getPluginInstance('sentry');
                 if (sentryInstance) {
-                    sentryInstance.getSentryObject().captureException(e);
+                    if (e.toLowerCase().includes("errornologin")) {
+                        sentryInstance.getSentryObject().captureException(e);
+                    } else  {
+                        sentryInstance.getSentryObject().captureException(e);
+                    }
                 }
             }
         } finally {
