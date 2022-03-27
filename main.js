@@ -1,5 +1,6 @@
 'use strict';
 
+// TEST
 /*
  * Created with @iobroker/create-adapter v1.26.0
  */
