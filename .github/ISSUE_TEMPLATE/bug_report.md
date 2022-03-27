@@ -6,11 +6,6 @@ labels: ''
 assignees: ''
 ---
 
-inverter typ: ''
-inverter modell: ''
-
----
-
 **Describe your inverter**
 
 Typ, modell, ...
