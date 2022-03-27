@@ -1,10 +1,8 @@
 <html>
-
-<head>
-
+  <head>
     <!-- Load ioBroker scripts and styles-->
     <link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
-    <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css" />
 
     <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
@@ -18,336 +16,350 @@
     <script type="text/javascript" src="words.js"></script>
 
     <script type="text/javascript">
-        let secret;
-        
-        if (!encrypt || typeof encrypt !== 'function') {
-            function encrypt(key, value) {
-                if (value === undefined) {
-                    value = key;
-                    key = secret;
-                }
-                var result = '';
-                for (var i = 0; i < value.length; ++i) {
-                    result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
-                }
-                return result;
+      let secret;
+
+      if (!encrypt || typeof encrypt !== 'function') {
+        function encrypt(key, value) {
+          if (value === undefined) {
+            value = key;
+            key = secret;
+          }
+          var result = '';
+          for (var i = 0; i < value.length; ++i) {
+            result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
+          }
+          return result;
+        }
+      }
+      if (!decrypt || typeof decrypt !== 'function') {
+        function decrypt(key, value) {
+          if (value === undefined) {
+            value = key;
+            key = secret;
+          }
+          var result = '';
+          for (var i = 0; i < value.length; ++i) {
+            result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
+          }
+          return result;
+        }
+      }
+
+      function storeObject(id, obj, objList) {
+        let ebene = id.split('.');
+        ebene.shift();
+        ebene.shift();
+        if (ebene[0] == 'info' || ebene.length < 2) {
+          return;
+        }
+        let newId = ebene.join('.');
+        //let n = ebene[ebene.length-1]
+        //let parent = ebene.slice(0,ebene.length-1).join('.');
+        objList.push({ id: newId, name: obj.common.name, type: obj.common.type, created: new Date(obj.ts).toLocaleString(), action: 'normal' });
+      }
+
+      function showObjList(onChange, settings, objList) {
+        update = Object.assign({}, settings.objUpdate);
+        objList.forEach(function (o) {
+          if (update[o.id.toLowerCase]) {
+            o.action = update[o.id.toLowerCase].action;
+          }
+          delete update[o.id.toLowerCase];
+        });
+        Object.keys(update).forEach(id => {
+          if (update[id].action == 'delete') {
+            objList.push({ id: update[id].id, name: '', type: '', created: '', action: update[id].action });
+          }
+        });
+        objList.sort(function (dev1, dev2) {
+          let x = dev1.id.split('.'),
+            y = dev2.id.split('.');
+          while ((x.length > 0 && y.length > 0 && x.length == y.length) || (x.length > 1 && y.length > 1 && x.length != y.length)) {
+            let a = x.shift().toUpperCase();
+            b = y.shift().toUpperCase();
+            if (a != b) {
+              return a > b ? 1 : -1;
             }
-        }
-        if (!decrypt || typeof decrypt !== 'function') {
-            function decrypt(key, value) {
-                if (value === undefined) {
-                    value = key;
-                    key = secret;
-                }
-                var result = '';
-                for (var i = 0; i < value.length; ++i) {
-                    result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
-                }
-                return result;
+          }
+          return y.length - x.length;
+        });
+        values2table('objects', objList, onChange, function () {
+          $('[data-name=id]').attr('disabled', 'disabled');
+          $('[data-name=name]').attr('readonly', 'readonly');
+          $('[data-name=type]').attr('readonly', 'readonly');
+          $('[data-name=created]').attr('readonly', 'readonly');
+          return;
+        });
+      }
+
+      function emitObjects(onChange, settings) {
+        socket.emit(
+          'getObjectView',
+          'system',
+          'state',
+          { startkey: 'growatt.' + instance + '.', endkey: 'growatt.' + instance + '.\u9999', include_docs: true },
+          function (err, _objects) {
+            let objList = [];
+            if (_objects && _objects.rows && _objects.rows.length) {
+              for (let j = 0; j < _objects.rows.length; j++) {
+                storeObject(_objects.rows[j].id, _objects.rows[j].value, objList);
+              }
             }
-        }
-        
-        function storeObject(id, obj, objList){
-            let ebene = id.split('.');
-            ebene.shift();
-            ebene.shift();
-            if (ebene[0] == "info" || ebene.length<2) {
-                return;
+            showObjList(onChange, settings, objList);
+          }
+        );
+      }
+
+      function loadHelper(settings, onChange) {
+        if (!settings) return;
+        improveValues(settings);
+        $('.value').each(function () {
+          var $key = $(this);
+          var id = $key.attr('id');
+          if (
+            (id === 'password' || id === 'shareKey') &&
+            (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))
+          ) {
+            settings[id] = decrypt(secret, settings[id]);
+          }
+          if ($key.attr('type') === 'checkbox') {
+            // do not call onChange direct, because onChange could expect some arguments
+            $key.prop('checked', settings[id]).on('change', () => onChange());
+          } else {
+            // do not call onChange direct, because onChange could expect some arguments
+            $key
+              .val(settings[id])
+              .on('change', () => onChange())
+              .on('keyup', () => onChange());
+          }
+        });
+        $('#keyLogin')
+          .change(function () {
+            if ($(this).prop('checked')) {
+              $('.user').hide();
+              $('.password').hide();
+              $('.shareKey').show();
+            } else {
+              $('.user').show();
+              $('.password').show();
+              $('.shareKey').hide();
             }
-            let newId = ebene.join('.')
-            //let n = ebene[ebene.length-1]
-            //let parent = ebene.slice(0,ebene.length-1).join('.');
-            objList.push({'id' : newId, 'name': obj.common.name, 'type': obj.common.type, 'created': (new Date(obj.ts)).toLocaleString(), 'action': 'normal'});
-        }
-        
-        function showObjList(onChange,settings,objList){
-            update = Object.assign({}, settings.objUpdate)
-            objList.forEach(function (o){
-                if (update[o.id.toLowerCase]) {
-                    o.action = update[o.id.toLowerCase].action;
-                }
-                delete(update[o.id.toLowerCase]);
-            });
-            Object.keys(update).forEach((id) => {
-                if (update[id].action == 'delete') {
-                    objList.push({'id': update[id].id, 'name': "", 'type': "", 'created': "", 'action': update[id].action});
-                }
-            });
-            objList.sort(function (dev1, dev2) {
-                let x = dev1.id.split('.'),
-                    y = dev2.id.split('.');
-                while ((x.length > 0 && y.length > 0 && x.length == y.length)||(x.length > 1 && y.length > 1 && x.length != y.length)) {
-                    let a = x.shift().toUpperCase();
-                        b = y.shift().toUpperCase();
-                    if (a != b) {
-                        return a > b ? 1 : -1
-                    }
-                }
-                return y.length - x.length;
-            });
-            values2table('objects', objList, onChange, function(){
-                $("[data-name=id]").attr('disabled','disabled');
-                $("[data-name=name]").attr('readonly','readonly');
-                $("[data-name=type]").attr('readonly','readonly');
-                $("[data-name=created]").attr('readonly','readonly');
-                return;
-            });
-        }
-        
-        function emitObjects(onChange, settings){
-            socket.emit('getObjectView', 'system', 'state', { startkey: 'growatt.' + instance + '.', endkey: 'growatt.' + instance + '.\u9999', include_docs: true }, function (err, _objects) {
-                let objList = []
-                if (_objects && _objects.rows && _objects.rows.length) {
-                    for (let j = 0; j < _objects.rows.length; j++) {
-                        storeObject(_objects.rows[j].id, _objects.rows[j].value, objList)
-                    }
-                }
-                showObjList(onChange,settings,objList);
-            });
-        }
-       
-        function loadHelper(settings, onChange) {
-            if (!settings) return;
-            improveValues(settings);
-            $('.value').each(function () {
-                var $key = $(this);
-                var id = $key.attr('id');
-                if ((id === 'password' || id === 'shareKey') && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
-                    settings[id] = decrypt(secret, settings[id]);
-                }
-                if ($key.attr('type') === 'checkbox') {
-                    // do not call onChange direct, because onChange could expect some arguments
-                    $key.prop('checked', settings[id])
-                        .on('change', () => onChange())
-                        ;
-                } else {
-                    // do not call onChange direct, because onChange could expect some arguments
-                    $key.val(settings[id])
-                        .on('change', () => onChange())
-                        .on('keyup', () => onChange())
-                        ;
-                }
-            });
-            $('#keyLogin').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.user').hide();
-                    $('.password').hide();
-                    $('.shareKey').show();
-                }
-                else {
-                    $('.user').show();
-                    $('.password').show();
-                    $('.shareKey').hide();
-                }
-            }).trigger('change');
-            $('#sessionHold').change(function() {
-                if ($(this).prop('checked')) {
-                    $('.sessionTime').show();
-                }
-                else {
-                    $('.sessionTime').hide();
-                }
-            }).trigger('change');
-            onChange(false);
-            
-            settings.objUpdate = settings.objUpdate || {};
-            emitObjects(onChange,settings);
-            $('#tab-manage-objects').find('.btn-objects-reload').on('click', function () {
-                var obj = {};
-                obj.objUpdate = getObjUpdate();
-                emitObjects(onChange,obj);
-            });
-            // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
-            if (M) M.updateTextFields();
-        }
-        
-        
-        // This will be called by the admin adapter when the settings page loads
-        function load(settings, onChange) {
-            socket.emit('getObject', 'system.config', function (err, obj) {
-                secret = (obj.native ? obj.native.secret : '') || 'Zgfr56gFe87jJOM';
-                loadHelper(settings, onChange);
-            });
-            onChange(false);
-        }
+          })
+          .trigger('change');
+        $('#sessionHold')
+          .change(function () {
+            if ($(this).prop('checked')) {
+              $('.sessionTime').show();
+            } else {
+              $('.sessionTime').hide();
+            }
+          })
+          .trigger('change');
+        onChange(false);
 
-        function getObjUpdate() {
-            let objectListAll = table2values('objects')
-            let objUpdate = {}
-            objectListAll.forEach(function (o) {
-                if (o.action != 'normal') {
-                    objUpdate[o.id.toLowerCase()] = {'id':o.id, 'action':o.action}
-                }
-            })
-            return objUpdate;
-        }
-
-        function improveValues(obj){
-            if ((typeof obj.webTimeout === 'undefined') || obj.webTimeout=="")
-                obj.webTimeout = "60";
-            if ((typeof obj.processTimeout === 'undefined') || obj.processTimeout=="")
-                obj.processTimeout = "600";
-            if ((typeof obj.sessionHold === 'undefined') || obj.sessionHold=="")
-                obj.sessionHold = true;
-            if ((typeof obj.sessionTime === 'undefined') || obj.sessionTime=="")
-                obj.sessionTime = "0";
-            if ((typeof obj.cycleTime === 'undefined') || obj.cycleTime=="")
-                obj.cycleTime = "30";
-            if ((typeof obj.errorCycleTime === 'undefined') || obj.errorCycleTime=="")
-                obj.errorCycleTime = "120";
-        }
-
-        // This will be called by the admin adapter when the user presses the save button
-        function save(callback) {
-
+        settings.objUpdate = settings.objUpdate || {};
+        emitObjects(onChange, settings);
+        $('#tab-manage-objects')
+          .find('.btn-objects-reload')
+          .on('click', function () {
             var obj = {};
             obj.objUpdate = getObjUpdate();
-            
-            $('.value').each(function () {
-                var $this = $(this);
-                if ($this.attr('type') === 'checkbox') {
-                    obj[$this.attr('id')] = $this.prop('checked');
-                } else {
-                    var value = $this.val();
-                    if ($this.attr('id') === 'shareKey' && value.includes('/')) {
-                        value = value.substring(value.lastIndexOf('/')+1);
-                        $this.val(value);
-                    }
-                    if (($this.attr('id') === 'password' || $this.attr('id') === 'shareKey') && (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))) {
-                        value = encrypt(secret, value);
-                    }
-                    obj[$this.attr('id')] = value;
-                }
-            });
-            improveValues(obj);
-            callback(obj);
-        }
-    </script>
-</head>
+            emitObjects(onChange, obj);
+          });
+        // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
+        if (M) M.updateTextFields();
+      }
 
-<body>
+      // This will be called by the admin adapter when the settings page loads
+      function load(settings, onChange) {
+        socket.emit('getObject', 'system.config', function (err, obj) {
+          secret = (obj.native ? obj.native.secret : '') || 'Zgfr56gFe87jJOM';
+          loadHelper(settings, onChange);
+        });
+        onChange(false);
+      }
+
+      function getObjUpdate() {
+        let objectListAll = table2values('objects');
+        let objUpdate = {};
+        objectListAll.forEach(function (o) {
+          if (o.action != 'normal') {
+            objUpdate[o.id.toLowerCase()] = { id: o.id, action: o.action };
+          }
+        });
+        return objUpdate;
+      }
+
+      function improveValues(obj) {
+        if (typeof obj.webTimeout === 'undefined' || obj.webTimeout == '') obj.webTimeout = '60';
+        if (typeof obj.processTimeout === 'undefined' || obj.processTimeout == '') obj.processTimeout = '600';
+        if (typeof obj.sessionHold === 'undefined' || obj.sessionHold == '') obj.sessionHold = true;
+        if (typeof obj.sessionTime === 'undefined' || obj.sessionTime == '') obj.sessionTime = '0';
+        if (typeof obj.cycleTime === 'undefined' || obj.cycleTime == '') obj.cycleTime = '30';
+        if (typeof obj.errorCycleTime === 'undefined' || obj.errorCycleTime == '') obj.errorCycleTime = '120';
+      }
+
+      // This will be called by the admin adapter when the user presses the save button
+      function save(callback) {
+        var obj = {};
+        obj.objUpdate = getObjUpdate();
+
+        $('.value').each(function () {
+          var $this = $(this);
+          if ($this.attr('type') === 'checkbox') {
+            obj[$this.attr('id')] = $this.prop('checked');
+          } else {
+            var value = $this.val();
+            if ($this.attr('id') === 'shareKey' && value.includes('/')) {
+              value = value.substring(value.lastIndexOf('/') + 1);
+              $this.val(value);
+            }
+            if (
+              ($this.attr('id') === 'password' || $this.attr('id') === 'shareKey') &&
+              (typeof supportsFeature !== 'function' || !supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE'))
+            ) {
+              value = encrypt(secret, value);
+            }
+            obj[$this.attr('id')] = value;
+          }
+        });
+        improveValues(obj);
+        callback(obj);
+      }
+    </script>
+  </head>
+
+  <body>
     <div class="m adapter-container">
-        <div class="row">
-            <div class="col s12 m4 l2">
-                <img src="growatt.png" class="logo">
-            </div>
+      <div class="row">
+        <div class="col s12 m4 l2">
+          <img src="growatt.png" class="logo" />
         </div>
-        <!-- Put your content here -->
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s2">
-                        <a href="#tab-main" class="translate active" >Main Settings</a>
-                    </li>
-                    <li class="tab col s2">
-                        <a href="#tab-manage-objects" class="translate" >Manage Objects</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <div id="tab-main" class="col s12 page">
-                <!-- For example columns with settings: -->
-                <div class="row">
-                    <div class="col s12 input-field">
-                        <input type="checkbox" class="value" id="keyLogin" />
-                        <label for="keyLogin" class="translate">Login with shared key</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6 input-field user">
-                        <input type="text" class="value" id="user" />
-                        <label for="user" class="translate">User</label>
-                    </div>
-                    <div class="col s6 input-field password">
-                        <input type="password" class="value" id="password" />
-                        <label for="password" class="translate">Password</label>
-                    </div>
-                    <div class="col s12 input-field shareKey">
-                        <input type="text" class="value" id="shareKey" />
-                        <label for="shareKey" class="translate">The key from shared URL</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="plantData" />
-                        <label for="plantData" class="translate">Read plant data</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="historyLast" />
-                        <label for="historyLast" class="translate">Read last history data</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="statusData" />
-                        <label for="statusData" class="translate">Read status data (not INV/MAX/TLX)</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="totalData" />
-                        <label for="totalData" class="translate">Read total data</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="deviceData" />
-                        <label for="deviceData" class="translate">Read device data</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="weather" />
-                        <label for="weather" class="translate">Read weather</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6 input-field">
-                        <input class="value number" type="number" id="webTimeout" size="3" maxlength="3" />
-                        <label class="translate" for="webTimeout">Timeout in seconds</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input class="value number" type="number" id="processTimeout" size="3" maxlength="3" />
-                        <label class="translate" for="processTimeout">Process timeout in seconds</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6 input-field">
-                        <input type="checkbox" class="value" id="sessionHold" />
-                        <label for="sessionHold" class="translate">Keep web session</label>
-                    </div>
-                    <div class="col s6 input-field sessionTime">
-                        <input class="value number" type="number" id="sessionTime" size="3" maxlength="3" />
-                        <label class="translate" for="sessionTime">Session time in minutes</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6 input-field">
-                        <input class="value number" type="number" id="cycleTime" size="3" maxlength="3" />
-                        <label class="translate" for="cycleTime">Cycle time in seconds</label>
-                    </div>
-                    <div class="col s6 input-field">
-                        <input class="value number" type="number" id="errorCycleTime" size="3" maxlength="3" />
-                        <label class="translate" for="errorCycleTime">Error cycle time in seconds</label>
-                    </div>
-                </div>
-            </div>
-            <div id="tab-manage-objects" class="col s12 page" style="height: auto; width: auto;">
-                <div class="col s12">
-                    <a class="btn-floating btn-small translate btn-objects-reload" title="reload" data-lang-title="reload">
-                        <i class="material-icons">refresh</i>
-                    </a>
-                </div>
-                <div class="col s12" id="objects">
-                    <div class="table-values-div">
-                        <table class="table-values">
-                            <thead>
-                            <tr>
-                                <th data-name="_index"   style="width: 2em"  ></th>
-                                <th data-name="action"   class="translate" style="width: 4em; white-space: nowrap" data-options="normal;delete;noupdate" data-type="select" >Action</th>
-                                <th data-name="id"       style="width: 35em; white-space: nowrap" >ID</th>
-                                <th data-name="name"     style="width: 10em; white-space: nowrap" >Name</th>
-                                <th data-name="type"     style="width: 6em; white-space: nowrap" >Type</th>
-                                <th data-name="created"  class="translate" style="width: 8em; white-space: nowrap" >Created</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <!-- Put your content here -->
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s2">
+              <a href="#tab-main" class="translate active">Main Settings</a>
+            </li>
+            <li class="tab col s2">
+              <a href="#tab-manage-objects" class="translate">Manage Objects</a>
+            </li>
+          </ul>
         </div>
+
+        <div id="tab-main" class="col s12 page">
+          <!-- For example columns with settings: -->
+          <div class="row">
+            <div class="col s12 input-field">
+              <input type="checkbox" class="value" id="keyLogin" />
+              <label for="keyLogin" class="translate">Login with shared key</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 input-field user">
+              <input type="text" class="value" id="user" />
+              <label for="user" class="translate">User</label>
+            </div>
+            <div class="col s6 input-field password">
+              <input type="password" class="value" id="password" />
+              <label for="password" class="translate">Password</label>
+            </div>
+            <div class="col s12 input-field shareKey">
+              <input type="text" class="value" id="shareKey" />
+              <label for="shareKey" class="translate">The key from shared URL</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="plantData" />
+              <label for="plantData" class="translate">Read plant data</label>
+            </div>
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="historyLast" />
+              <label for="historyLast" class="translate">Read last history data</label>
+            </div>
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="statusData" />
+              <label for="statusData" class="translate">Read status data (not INV/MAX/TLX)</label>
+            </div>
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="totalData" />
+              <label for="totalData" class="translate">Read total data</label>
+            </div>
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="deviceData" />
+              <label for="deviceData" class="translate">Read device data</label>
+            </div>
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="weather" />
+              <label for="weather" class="translate">Read weather</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 input-field">
+              <input class="value number" type="number" id="webTimeout" size="3" maxlength="3" />
+              <label class="translate" for="webTimeout">Timeout in seconds</label>
+            </div>
+            <div class="col s6 input-field">
+              <input class="value number" type="number" id="processTimeout" size="3" maxlength="3" />
+              <label class="translate" for="processTimeout">Process timeout in seconds</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="sessionHold" />
+              <label for="sessionHold" class="translate">Keep web session</label>
+            </div>
+            <div class="col s6 input-field sessionTime">
+              <input class="value number" type="number" id="sessionTime" size="3" maxlength="3" />
+              <label class="translate" for="sessionTime">Session time in minutes</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 input-field">
+              <input class="value number" type="number" id="cycleTime" size="3" maxlength="3" />
+              <label class="translate" for="cycleTime">Cycle time in seconds</label>
+            </div>
+            <div class="col s6 input-field">
+              <input class="value number" type="number" id="errorCycleTime" size="3" maxlength="3" />
+              <label class="translate" for="errorCycleTime">Error cycle time in seconds</label>
+            </div>
+          </div>
+        </div>
+        <div id="tab-manage-objects" class="col s12 page" style="height: auto; width: auto">
+          <div class="col s12">
+            <a class="btn-floating btn-small translate btn-objects-reload" title="reload" data-lang-title="reload">
+              <i class="material-icons">refresh</i>
+            </a>
+          </div>
+          <div class="col s12" id="objects">
+            <div class="table-values-div">
+              <table class="table-values">
+                <thead>
+                  <tr>
+                    <th data-name="_index" style="width: 2em"></th>
+                    <th
+                      data-name="action"
+                      class="translate"
+                      style="width: 4em; white-space: nowrap"
+                      data-options="normal;delete;noupdate"
+                      data-type="select"
+                    >
+                      Action
+                    </th>
+                    <th data-name="id" style="width: 35em; white-space: nowrap">ID</th>
+                    <th data-name="name" style="width: 10em; white-space: nowrap">Name</th>
+                    <th data-name="type" style="width: 6em; white-space: nowrap">Type</th>
+                    <th data-name="created" class="translate" style="width: 8em; white-space: nowrap">Created</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

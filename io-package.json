@@ -221,9 +221,7 @@
       "pl": "ioBroker Growatt Adapter do komunikacji z ShineAPI",
       "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
     },
-    "authors": [
-      "PLCHome"
-    ],
+    "authors": ["PLCHome"],
     "keywords": [
       "growatt",
       "shine",
@@ -254,7 +252,7 @@
     "materialize": true,
     "plugins": {
       "sentry": {
-          "dsn": "https://580e0de8b3414b6caba783785eb4e240@o1143033.ingest.sentry.io/6202057"
+        "dsn": "https://580e0de8b3414b6caba783785eb4e240@o1143033.ingest.sentry.io/6202057"
       }
     },
     "dependencies": [
@@ -263,14 +261,8 @@
       }
     ]
   },
-  "encryptedNative": [
-    "password",
-    "shareKey"
-  ],
-  "protectedNative": [
-    "password",
-    "shareKey"
-  ],
+  "encryptedNative": ["password", "shareKey"],
+  "protectedNative": ["password", "shareKey"],
   "native": {
     "keyLogin": false,
     "user": "",
