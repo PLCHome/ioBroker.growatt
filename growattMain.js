@@ -341,7 +341,8 @@ class Growatt extends utils.Adapter {
         const sentryInstance = this.getPluginInstance('sentry');
         if (sentryInstance) {
           if (e.toString().toLowerCase().includes('errornologin')) {
-            sentryInstance.getSentryObject().captureException(e);
+            // do not send to sentry
+            // sentryInstance.getSentryObject().captureException(e);
           } else {
             sentryInstance.getSentryObject().captureException(e);
           }

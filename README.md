@@ -1,6 +1,6 @@
 ![Logo](admin/glogo.png)
 
-# ioBroker.growatt
+## ioBroker.growatt
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.growatt.svg)](https://www.npmjs.com/package/iobroker.growatt)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.growatt.svg)](https://www.npmjs.com/package/iobroker.growatt)
@@ -10,7 +10,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.growatt.png?downloads=true)](https://nodei.co/npm/iobroker.growatt/)
 
-## growatt adapter for ioBroker
+### growatt adapter for ioBroker
 
 ioBroker Growatt Adapter to communiacte with Growatt Shine Server.
 I'm not affiliated.
@@ -23,91 +23,91 @@ Currently only data can be read, writing parameters or changing parameters is no
 
 ---
 
-# Adapter admin page
+## Adapter admin page
 
-## Main Settings
+### Main Settings
 
-### User and Password
+#### User and Password
 
 Please enter the name and password that you also use in the Shine app or in the web portal.
 
-### Login with shared key
+#### Login with shared key
 
 On the Growatt website under energy, plant management, operating tools you can send yourself a key by e-mail.
 
-### Read plant data
+#### Read plant data
 
 This data record contains the stored master data
 
-### Read last history data
+#### Read last history data
 
 Reads the last data record from the history of the data logger.
 This function supports minute intervals for the data logger.
 
-### Read status data
+#### Read status data
 
 These data are not available for all plants (not INV/MAX/TLX). This dataset contains live data.
 This function supports minute intervals for the data logger.
 
-### Read total data
+#### Read total data
 
 This data record contains aggregation data.
 
-### Read device data
+#### Read device data
 
 This data record contains some data from the device. Some data are also available in the other categories.
 
-### Read weather
+#### Read weather
 
 This data set contains the weather forecast.
 
-### Timeout in seconds
+#### Timeout in seconds
 
 The default timeout for HTTP requests. The default value 60 seconds, as with web browsers
 
-### Process timeout in seconds
+#### Process timeout in seconds
 
 This timeout monitors the collection of data from the Growatt server. If the server does not process all of the data within this time, an error is reported, the session is ended and a new cycle timer is started. The default value is 600 seconds.
 If the value is 0, this check function is not executed.
 
-### Keep web session
+#### Keep web session
 
 The adapter only logs in once and not with every data request from the Growatt server. By default it is on.
 
-### Session time in minutes
+#### Session time in minutes
 
 Here you can set when the adapter logs out of the server and logs in again. A 0 means never log out. Default value is 0=infinity.
 
-### Cycle time in seconds
+#### Cycle time in seconds
 
 The interval at which the data is requested from the server. The time required for the data query is then deducted from the next one. If the query lasts longer than the waiting time, the adapter only sleeps 100ms. The default value is 30 seconds.
 
-### Error cycle time in seconds
+#### Error cycle time in seconds
 
 If an error occurs when querying the values at the Growatt server, this time is used instead of the cycle time. The default value is 120 seconds
 
-## Manage Objects
+### Manage Objects
 
 Here you can define what should happen to each value (object) that is picked up by the inverter.
 There are a lot of values ​​that do not belong to your inverter. These can be removed here.
 Since there is no event with which the object list can be reloaded when saving. The update button must be used when save is pressed.
 
-### Normal
+#### Normal
 
 The object remains, the value is updated.
 
-### Delete
+#### Delete
 
 The object is deleted and the value loaded by the inverter is discarded.
 After the update, only the ID and the action are displayed because the object no longer exists. If you select normally, the object will be created again after saving.
 
-### No update
+#### No update
 
 The object remains, the values ​​from the inverter are discarded.
 
 ---
 
-# Speedup data interval new method
+## Speedup data interval new method
 
 - Open the ShinePhone app
 - Click on attachment below
@@ -128,28 +128,28 @@ The object remains, the values ​​from the inverter are discarded.
 
 ---
 
-# Speedup data interval old method
+## Speedup data interval old method
 
-## You can set the logger interval from 5 minutes to 1 minute
+### You can set the logger interval from 5 minutes to 1 minute
 
 Remove the rubber plug of the KEY button from ShineWiFi-S, and short press the button inside. The blue LED
 will light up. Use your phone or computer to connect to the wireless network emitted by the
 ShineWiFi-S module. The network name/SSID is the serial number of the ShineWiFi-S
 module.
 
-## Login Page
+### Login Page
 
 After the connection is successfully established, open the web browser on your phone or
 computer and type 192.168.10.100 in the address bar. The username is admin, the
 default password is 12345678.
 ![Login Page](docs/login.png)
 
-## Advanced Settings
+### Advanced Settings
 
 Change the data interval time to 1 minute
 ![Advanced Settings](docs/advancedsettings.png)
 
-## System Restart
+### System Restart
 
 Restart your ShineWiFi-S module on this page, click “Restart Immediate” to
 enable the new settings you just made and logout from the internal webserver of your
@@ -161,6 +161,15 @@ ShineWiFi module.
 -\*-
 
 ## Changelog
+
+### 1.1.9 (27.03.2022)
+
+- (PLCHome) Make the source a little prettier
+- (PLCHome) Make the readme prettier
+- (PLCHome) Added Test and Release
+- (PLCHome) Improvement: used i in inner and outer loop
+- (PLCHome) Improvement triggered by "Sentry" issues: undefined object
+- (PLCHome) Improvement: no disconnect to "Sentry"
 
 ### 1.1.8 (16.03.2022)
 

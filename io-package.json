@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "news": {
+      "1.1.9": {
+        "en": "Fixed undefined object exception.",
+        "de": "Undefinierte Objektausnahme behoben.",
+        "ru": "Исправлено исключение неопределенного объекта.",
+        "pt": "Corrigida exceção de objeto indefinido.",
+        "nl": "Vaste ongedefinieerde objectuitzondering.",
+        "fr": "Correction d'une exception d'objet indéfini.",
+        "it": "Risolto problema con l'eccezione dell'oggetto non definito.",
+        "es": "Se corrigió la excepción de objeto indefinido.",
+        "pl": "Naprawiono wyjątek niezdefiniowanego obiektu.",
+        "zh-cn": "修复了未定义的对象异常。"
+      },
       "1.1.8": {
         "en": "Improvement triggered by \"Sentry\" issues",
         "de": "Verbesserung ausgelöst durch „Sentry“-Probleme",
@@ -237,7 +249,7 @@
     ],
     "license": "MIT",
     "platform": "Javascript/Node.js",
-    "main": "main.js",
+    "main": "growattMain.js",
     "icon": "growatt.png",
     "enabled": true,
     "extIcon": "https://raw.githubusercontent.com/PLCHome/ioBroker.growatt/master/admin/growatt.png",
