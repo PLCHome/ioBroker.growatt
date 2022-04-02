@@ -168,6 +168,7 @@ ShineWiFi module.
 ### 1.1.11 (02.04.2022)
 
 - (PLCHome) fixed readme
+- (PLCHome) fixed version
 
 ### 1.1.10 (02.04.2022)
 

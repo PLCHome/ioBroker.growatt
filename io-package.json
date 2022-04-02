@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.9",
+    "version": "1.1.11",
     "news": {
+      "1.1.11": {
+        "en": "For the firsttime uppressed the warning: /error.do?errorMess=errorNoLogin",
+        "de": "Zum ersten Mal die Warnung unterdrückt: /error.do?errorMess=errorNoLogin",
+        "ru": "В первый раз подавил предупреждение: /error.do?errorMess=errorNoLogin",
+        "pt": "Pela primeira vez, reprimiu o aviso: /error.do?errorMess=errorNoLogin",
+        "nl": "Voor het eerst de waarschuwing omhoog gedrukt: /error.do?errorMess=errorNoLogin",
+        "fr": "Pour la première fois, l'avertissement a été supprimé : /error.do?errorMess=errorNoLogin",
+        "it": "Per la prima volta è stato premuto l'avviso: /error.do?errorMess=errorNoLogin",
+        "es": "Por primera vez subió la advertencia: /error.do?errorMess=errorNoLogin",
+        "pl": "Po raz pierwszy pominięto ostrzeżenie: /error.do?errorMess=errorNoLogin",
+        "zh-cn": "第一次压制警告：/error.do?errorMess=errorNoLogin"
+      },
       "1.1.9": {
         "en": "Fixed undefined object exception.",
         "de": "Undefinierte Objektausnahme behoben.",
