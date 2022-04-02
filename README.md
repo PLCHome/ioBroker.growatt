@@ -162,6 +162,10 @@ ShineWiFi module.
 
 ## Changelog
 
+### 1.1.10 (02.04.2022)
+
+- (PLCHome) suppressed the warning for the Firsttime: /error.do?errorMess=errorNoLogin
+
 ### 1.1.9 (27.03.2022)
 
 - (PLCHome) Make the source a little prettier

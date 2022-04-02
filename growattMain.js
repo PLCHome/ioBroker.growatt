@@ -313,6 +313,7 @@ class Growatt extends utils.Adapter {
           deviceData: this.config.deviceData,
           historyLast: this.config.historyLast,
         });
+        delete this.relogin;
         this.log.debug(`Growatt time for allPlantData : ${getTimeDiff(debugTimeDiff)}ms`);
         debugTimeDiff = getTime();
         this.parseData(allPlantData, '');
@@ -331,7 +332,16 @@ class Growatt extends utils.Adapter {
       this.setStateAsync('info.connection', { val: false, ack: true });
     } catch (e) {
       if (e.toString().toLowerCase().includes('errornologin')) {
-        this.log.warn(`Growatt Login: ${e}`);
+        if (!this.config.sessionHold || this.relogin) {
+          this.log.warn(`Growatt login: ${e}`);
+          if (this.config.keyLogin) {
+            this.log.info('If this message appears continuously, your key has expired. Please generate a new one.');
+          }
+        } else {
+          this.log.info(`Growatt relogin on session failed: ${e}`);
+          this.relogin = true;
+          timeout = 1;
+        }
       } else {
         this.log.error(`Growatt exception: ${e}`);
       }
@@ -340,10 +350,7 @@ class Growatt extends utils.Adapter {
       if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
         const sentryInstance = this.getPluginInstance('sentry');
         if (sentryInstance) {
-          if (e.toString().toLowerCase().includes('errornologin')) {
-            // do not send to sentry
-            // sentryInstance.getSentryObject().captureException(e);
-          } else {
+          if (!e.toString().toLowerCase().includes('errornologin')) {
             sentryInstance.getSentryObject().captureException(e);
           }
         }
