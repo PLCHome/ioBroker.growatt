@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.11",
+    "version": "1.1.12",
     "news": {
+      "1.1.12": {
+        "en": "api maintance",
+        "de": "API-Wartung",
+        "ru": "обслуживание API",
+        "pt": "manutenção de API",
+        "nl": "api-onderhoud",
+        "fr": "maintenance de l'API",
+        "it": "manutenzione API",
+        "es": "mantenimiento api",
+        "pl": "konserwacja API",
+        "zh-cn": "api维护"
+      },
       "1.1.11": {
         "en": "For the firsttime uppressed the warning: /error.do?errorMess=errorNoLogin",
         "de": "Zum ersten Mal die Warnung unterdrückt: /error.do?errorMess=errorNoLogin",
