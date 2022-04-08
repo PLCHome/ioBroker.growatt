@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "news": {
+      "1.1.13": {
+        "en": "total data and history data missing for type inv",
+        "de": "Gesamtdaten und Historiendaten fehlen bei Typ inv",
+        "ru": "общие данные и данные истории отсутствуют для типа inv",
+        "pt": "dados totais e dados do histórico ausentes para o tipo inv",
+        "nl": "totale gegevens en geschiedenisgegevens ontbreken voor type inv",
+        "fr": "données totales et données d'historique manquantes pour le type inv",
+        "it": "dati totali e dati storici mancanti per tipo inv",
+        "es": "faltan datos totales y datos históricos para el tipo inv",
+        "pl": "brak danych całkowitych i danych historycznych dla typu inv",
+        "zh-cn": "类型 inv 的总数据和历史数据缺失"
+      },
       "1.1.12": {
         "en": "api maintance",
         "de": "API-Wartung",
