@@ -1,6 +1,6 @@
 {
   "name": "iobroker.growatt",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "description": "ioBroker Growatt Adapter to communiacte with ShineAPI",
   "author": {
     "name": "PLCHome"
@@ -26,13 +26,13 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.0",
-    "growatt": "^0.2.9"
+    "growatt": "^0.2.10"
   },
   "devDependencies": {
-    "@iobroker/testing": "^2.5.6",
-    "axios": "^0.26.1",
+    "@iobroker/testing": "^2.6.0",
+    "axios": "^0.27.1",
     "chai": "^4.3.6",
-    "eslint": "^8.12.0",
+    "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",

@@ -349,10 +349,8 @@ class Growatt extends utils.Adapter {
       this.growattLogout();
       if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
         const sentryInstance = this.getPluginInstance('sentry');
-        if (sentryInstance) {
-          if (!e.toString().toLowerCase().includes('errornologin')) {
-            sentryInstance.getSentryObject().captureException(e);
-          }
+        if (sentryInstance && sentryInstance.getSentryObject() && !e.toString().toLowerCase().includes('errornologin')) {
+          sentryInstance.getSentryObject().captureException(e);
         }
       }
     } finally {

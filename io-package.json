@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.13",
+    "version": "1.1.14",
     "news": {
+      "1.1.14": {
+        "en": "Restart loop when exception",
+        "de": "Schleife neu starten, wenn Ausnahme",
+        "ru": "Перезапустить цикл при исключении",
+        "pt": "Reinicie o loop quando for exceção",
+        "nl": "Herstart lus bij uitzondering",
+        "fr": "Redémarrer la boucle en cas d'exception",
+        "it": "Riavvia il ciclo in caso di eccezione",
+        "es": "Reiniciar bucle cuando se produce una excepción",
+        "pl": "Uruchom ponownie pętlę, gdy wyjątek",
+        "zh-cn": "异常时重启循环"
+      },
       "1.1.13": {
         "en": "total data and history data missing for type inv",
         "de": "Gesamtdaten und Historiendaten fehlen bei Typ inv",
