@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.14",
+    "version": "1.1.15",
     "news": {
+      "1.1.15": {
+        "en": "Apple devices cannot open the adapter's config page with Safari, all values ​​are empty ",
+        "de": "Apple-Geräte können die Konfigurationsseite des Adapters nicht mit Safari öffnen, alle Werte sind leer",
+        "ru": "Устройства Apple не могут открыть страницу конфигурации адаптера с помощью Safari, все значения пусты",
+        "pt": "Dispositivos Apple não podem abrir a página de configuração do adaptador com Safari, todos os valores estão vazios",
+        "nl": "Apple-apparaten kunnen de configuratiepagina van de adapter niet openen met Safari, alle waarden zijn leeg",
+        "fr": "Les appareils Apple ne peuvent pas ouvrir la page de configuration de l'adaptateur avec Safari, toutes les valeurs sont vides",
+        "it": "I dispositivi Apple non possono aprire la pagina di configurazione dell'adattatore con Safari, tutti i valori sono vuoti",
+        "es": "Los dispositivos Apple no pueden abrir la página de configuración del adaptador con Safari, todos los valores están vacíos",
+        "pl": "Urządzenia Apple nie mogą otworzyć strony konfiguracji adaptera w Safari, wszystkie wartości są puste",
+        "zh-cn": "苹果设备无法用Safari打开适配器的配置页面，所有值都是空的"
+      },
       "1.1.14": {
         "en": "Restart loop when exception",
         "de": "Schleife neu starten, wenn Ausnahme",
