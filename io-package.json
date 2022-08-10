@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.15",
+    "version": "1.1.16",
     "news": {
+      "1.1.16": {
+        "en": "https unauthorized calls not rejected ",
+        "de": "https unautorisierte anrufe nicht abgelehnt",
+        "ru": "https несанкционированные звонки не отклонены",
+        "pt": "chamadas não autorizadas https não rejeitadas",
+        "nl": "htp's onbevoegde telefoontjes niet afgewezen",
+        "fr": "appels non autorisés",
+        "it": "https chiamate non autorizzate non respinte",
+        "es": "llamadas no autorizadas no rechazadas",
+        "pl": "nieautoryzowane wezwania nie odrzucono",
+        "zh-cn": "未经授权的呼吁"
+      },
       "1.1.15": {
         "en": "Apple devices cannot open the adapter's config page with Safari, all values ​​are empty ",
         "de": "Apple-Geräte können die Konfigurationsseite des Adapters nicht mit Safari öffnen, alle Werte sind leer",
@@ -62,102 +74,6 @@
         "es": "Por primera vez subió la advertencia: /error.do?errorMess=errorNoLogin",
         "pl": "Po raz pierwszy pominięto ostrzeżenie: /error.do?errorMess=errorNoLogin",
         "zh-cn": "第一次压制警告：/error.do?errorMess=errorNoLogin"
-      },
-      "1.1.9": {
-        "en": "Fixed undefined object exception.",
-        "de": "Undefinierte Objektausnahme behoben.",
-        "ru": "Исправлено исключение неопределенного объекта.",
-        "pt": "Corrigida exceção de objeto indefinido.",
-        "nl": "Vaste ongedefinieerde objectuitzondering.",
-        "fr": "Correction d'une exception d'objet indéfini.",
-        "it": "Risolto problema con l'eccezione dell'oggetto non definito.",
-        "es": "Se corrigió la excepción de objeto indefinido.",
-        "pl": "Naprawiono wyjątek niezdefiniowanego obiektu.",
-        "zh-cn": "修复了未定义的对象异常。"
-      },
-      "1.1.8": {
-        "en": "Improvement triggered by \"Sentry\" issues",
-        "de": "Verbesserung ausgelöst durch „Sentry“-Probleme",
-        "ru": "Улучшение, вызванное проблемами \"Sentry\"",
-        "pt": "Melhoria desencadeada por problemas \"Sentry\"",
-        "nl": "Verbetering veroorzaakt door \"Sentry\"-problemen",
-        "fr": "Amélioration déclenchée par des problèmes \"Sentry\"",
-        "it": "Miglioramento innescato da problemi di \"Sentinella\".",
-        "es": "Mejora provocada por problemas de \"Centinela\"",
-        "pl": "Ulepszenie wywołane problemami „Sentry”",
-        "zh-cn": "“哨兵”问题引发的改进"
-      },
-      "1.1.7": {
-        "en": "\"Sentry\" was added",
-        "de": "\"Wachposten\" wurde hinzugefügt",
-        "ru": "\"Сторожевой\" добавлен",
-        "pt": "\"Sentinela\" foi adicionado",
-        "nl": "\"Schildwacht\" is toegevoegd",
-        "fr": "\"Sentinelle\" a été ajouté",
-        "it": "\"Sentry\" è stato aggiunto",
-        "es": "Se agregó \"Sentry\"",
-        "pl": "Dodano „Wartownik”",
-        "zh-cn": "添加了“哨兵”"
-      },
-      "1.1.6": {
-        "en": "Login revised and improved",
-        "de": "Login überarbeitet und verbessert",
-        "ru": "Логин переработан и улучшен",
-        "pt": "Login revisado e aprimorado",
-        "nl": "Inloggen herzien en verbeterd",
-        "fr": "Connexion révisée et améliorée",
-        "it": "Accesso rivisto e migliorato",
-        "es": "Inicio de sesión revisado y mejorado",
-        "pl": "Poprawione i ulepszone logowanie",
-        "zh-cn": "登录修改和改进"
-      },
-      "1.1.1": {
-        "en": "The web request timeout was increased due to login issues",
-        "de": "Das Zeitlimit für Webanfragen wurde aufgrund von Anmeldeproblemen erhöht",
-        "ru": "Тайм-аут веб-запроса был увеличен из-за проблем со входом",
-        "pt": "O tempo limite da solicitação da web foi aumentado devido a problemas de login",
-        "nl": "De time-out voor het webverzoek is verhoogd vanwege inlogproblemen",
-        "fr": "Le délai d'expiration de la demande Web a été augmenté en raison de problèmes de connexion",
-        "it": "Il timeout della richiesta web è stato aumentato a causa di problemi di accesso",
-        "es": "El tiempo de espera de la solicitud web se incrementó debido a problemas de inicio de sesión",
-        "pl": "Limit czasu żądania internetowego został wydłużony z powodu problemów z logowaniem",
-        "zh-cn": "由于登录问题，Web请求超时增加了"
-      },
-      "1.1.0": {
-        "en": "Improvement of the connection via Axios Session",
-        "de": "Verbesserung der Verbindung über Axios Session",
-        "ru": "Улучшение связи через Axios Session",
-        "pt": "Melhoria da conexão via Axios Session",
-        "nl": "Verbetering van de verbinding via Axios Session",
-        "fr": "Amélioration de la connexion via Axios Session",
-        "it": "Miglioramento della connessione tramite Axios Session",
-        "es": "Mejora de la conexión a través de Axios Session",
-        "pl": "Poprawa połączenia poprzez Axios Session",
-        "zh-cn": "通过Axios会话改善连接"
-      },
-      "1.0.1": {
-        "en": "Duplicate keys are transmitted, I try to filter them out",
-        "de": "Es werden doppelte Schlüssel übertragen, ich versuche sie herauszufiltern",
-        "ru": "Передаются повторяющиеся ключи, пытаюсь их отфильтровать",
-        "pt": "Chaves duplicadas são transmitidas, tento filtrá-las",
-        "nl": "Er worden dubbele sleutels verzonden, ik probeer ze eruit te filteren",
-        "fr": "Les clés en double sont transmises, j'essaye de les filtrer",
-        "it": "Vengono trasmesse chiavi duplicate, provo a filtrarle",
-        "es": "Se transmiten claves duplicadas, trato de filtrarlas",
-        "pl": "Przesyłane są zduplikowane klucze, staram się je odfiltrować",
-        "zh-cn": "重复的密钥被传输，我尝试将其过滤掉"
-      },
-      "1.0.0": {
-        "en": "ready to publish",
-        "de": "bereit zu veröffentlichen",
-        "ru": "готов опубликовать",
-        "pt": "pronto para publicar",
-        "nl": "klaar om te publiceren",
-        "fr": "prêt à publier",
-        "it": "pronto per la pubblicazione",
-        "es": "listo para publicar",
-        "pl": "gotowy do publikacji",
-        "zh-cn": "准备发布"
       }
     },
     "title": "Growatt Shine API",

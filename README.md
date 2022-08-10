@@ -164,6 +164,10 @@ ShineWiFi module.
 
 ## Changelog
 
+### 1.1.16 (10.08.2022)
+
+- (PLCHome) https rejectUnauthorized false
+
 ### 1.1.15 (28.04.2022)
 
 - (PLCHome) Apple devices cannot open the adapter's config page with Safari, all values ​​are empty
