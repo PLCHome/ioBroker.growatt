@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.16",
+    "version": "1.1.17",
     "news": {
+      "1.1.17": {
+        "en": "Problems with debug messages",
+        "de": "Probleme mit Debug-Nachrichten",
+        "ru": "Проблемы с отладкими сообщениями",
+        "pt": "Problemas com mensagens de depuração",
+        "nl": "Problemen met debug berichten",
+        "fr": "Problèmes avec les messages debug",
+        "it": "Problemi con messaggi debug",
+        "es": "Problemas con mensajes de depuración",
+        "pl": "Problemy z debugowaniem wiadomości",
+        "zh-cn": "D. 信息传播问题"
+      },
       "1.1.16": {
         "en": "https unauthorized calls not rejected ",
         "de": "https unautorisierte anrufe nicht abgelehnt",

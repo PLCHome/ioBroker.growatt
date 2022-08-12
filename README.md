@@ -164,6 +164,10 @@ ShineWiFi module.
 
 ## Changelog
 
+### 1.1.17 (10.08.2022)
+
+- (PLCHome) JSON Loopkiller
+
 ### 1.1.16 (10.08.2022)
 
 - (PLCHome) https rejectUnauthorized false
