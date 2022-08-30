@@ -164,6 +164,10 @@ ShineWiFi module.
 
 ## Changelog
 
+### 1.1.18 (30.08.2022)
+
+- (PLCHome) HTML Header
+
 ### 1.1.17 (10.08.2022)
 
 - (PLCHome) JSON Loopkiller

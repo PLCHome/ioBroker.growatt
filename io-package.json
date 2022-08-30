@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.17",
+    "version": "1.1.18",
     "news": {
+      "1.1.17": {
+        "en": "Http Header",
+        "de": "Http Header",
+        "ru": "Http Header",
+        "pt": "Cabeçalho de Http",
+        "nl": "HTP Head",
+        "fr": "Http Header",
+        "it": "Htttp Header",
+        "es": "Htp Header",
+        "pl": "Http Head (ang.)",
+        "zh-cn": "Htp Head"
+      },
       "1.1.17": {
         "en": "Problems with debug messages",
         "de": "Probleme mit Debug-Nachrichten",
