@@ -29,7 +29,7 @@
     "growatt": "^0.2.14"
   },
   "devDependencies": {
-    "@iobroker/testing": "^4.1.0",
+    "@iobroker/testing": "^3.0.2",
     "axios": "^0.27.2",
     "chai": "^4.3.6",
     "eslint": "^8.23.0",
