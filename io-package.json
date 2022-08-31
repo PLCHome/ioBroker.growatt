@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.18",
+    "version": "1.1.19",
     "news": {
-      "1.1.17": {
+      "1.1.19": {
         "en": "Http Header",
         "de": "Http Header",
         "ru": "Http Header",
