@@ -9,6 +9,12 @@
 
 [![NPM](https://nodei.co/npm/iobroker.growatt.png?downloads=true)](https://nodei.co/npm/iobroker.growatt/)
 
+### Important: please read
+
+Growatt's cloud servers are very unstable. There are error messages and timeouts when data is requested.
+If you are still thinking about getting an inverter, it is better to use a good product from Kostal or something similar. Devices that transmit the data directly in the house via modbus-ip are best.
+There is also the [Grott project](https://github.com/johanmeijer/grott) that intercepts the data from the communication. Here, however, it also happens that older data sets are transmitted or the transmission is suspended, since this only listens in and temporarily stores the data.
+
 ### growatt adapter for ioBroker
 
 ioBroker Growatt Adapter to communiacte with Growatt Shine Server.
