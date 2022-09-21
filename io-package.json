@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.1.19",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "Added an offset to numeric values. My inverter reset te total quantity by itself. Now the total quantity can be corrected.",
+        "de": "Hinzugefügt einen Offset zu numerischen Werten. Mein Inverter setzt die gesamte Menge von sich zurück. Nun kann die Gesamtmenge korrigiert werden.",
+        "ru": "Добавлена компенсация в числовые значения. Мой инвертор сбрасывает общее количество сам по себе. Теперь общее количество можно исправить.",
+        "pt": "Adicionado um deslocamento para valores numéricos. Meu inversor redefinir a quantidade total por si só. Agora a quantidade total pode ser corrigida.",
+        "nl": "Voegde een offset toe aan talrijke waarden. Mijn inverter reset te totale hoeveelheid van zichzelf. Nu kan de totale hoeveelheid gecorrigeerd worden.",
+        "fr": "Ajout d'un décalage aux valeurs numériques. Mon inverseur réinitialiser la quantité totale de te par lui-même. Maintenant, la quantité totale peut être corrigée.",
+        "it": "Aggiunto un offset ai valori numerici. Il mio inverter reset te quantità totale da solo. Ora la quantità totale può essere corretta.",
+        "es": "Agregó un offset a valores numéricos. Mi inverter reset te cantidad total por sí mismo. Ahora se puede corregir la cantidad total.",
+        "pl": "Dodany do wartości liczbowych. My inverter reset the total amount by itself.. Teraz całkowita ilość może być poprawiona.",
+        "zh-cn": "增加对数字价值的抵消。 我热切地把破伤风总量逐出。 现在可以纠正总数。."
+      },
       "1.1.19": {
         "en": "Http Header",
         "de": "Http Header",
@@ -179,6 +191,7 @@
     "plantData": true,
     "deviceData": true,
     "objUpdate": {},
+    "objOffset": {},
     "webTimeout": 60,
     "processTimeout": 600,
     "sessionHold": true,

@@ -164,7 +164,11 @@ ShineWiFi module.
 
 ## Changelog
 
-### 1.1.18 (30.08.2022)
+### 1.2.1 (21.09.2022)
+
+- (PLCHome) Added an offset to numeric values. My inverter reset te total quantity by itself. Now the total quantity can be corrected.
+
+### 1.1.19 (30.08.2022)
 
 - (PLCHome) HTML Header
 

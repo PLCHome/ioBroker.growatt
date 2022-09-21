@@ -53,6 +53,7 @@ class Growatt extends utils.Adapter {
   async onReady() {
     this.getForeignObject('system.config', (errFO, obj) => {
       this.config.objUpdate = this.config.objUpdate || {};
+      this.config.objOffset = this.config.objOffset || {};
       this.getStates(`${this.name}.${this.instance}.*`, (errGS, states) => {
         Object.keys(states).forEach(id => {
           const ebene = id.toString().split('.');
@@ -193,6 +194,9 @@ class Growatt extends utils.Adapter {
           objType = 'boolean';
         }
       }
+      if (objType === 'number' && !(typeof this.config.objOffset[eleSearch] === 'undefined') && this.config.objOffset[eleSearch].offset) {
+        data += this.config.objOffset[eleSearch].offset;
+      }
       if (typeof this.objNames[eleSearch] === 'undefined') {
         this.log.silly(`Create object not exists ${ele} type:${objType} role:${objRole}`);
         await this.setObjectNotExistsAsync(ele, {
@@ -211,7 +215,7 @@ class Growatt extends utils.Adapter {
         this.log.info(`added: ${ele}`);
         this.objNames[eleSearch] = ele;
       }
-      this.log.silly(`Set value ${this.objNames[eleSearch]}:${data}`);
+      this.log.silly(`Set value ${this.objNames[eleSearch]} type ${objType} : ${data}`);
       this.setStateAsync(this.objNames[eleSearch], { val: data, ack: true });
     }
   }

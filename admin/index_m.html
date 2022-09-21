@@ -17,6 +17,7 @@
 
     <script type="text/javascript">
       let secret = 'Zgfr56gFe87jJOM';
+      const NUMBER = 'number';
 
       if (!encrypt || typeof encrypt !== 'function') {
         function encrypt(key, value) {
@@ -55,20 +56,30 @@
         let newId = ebene.join('.');
         //let n = ebene[ebene.length-1]
         //let parent = ebene.slice(0,ebene.length-1).join('.');
-        objList.push({ id: newId, name: obj.common.name, type: obj.common.type, created: new Date(obj.ts).toLocaleString(), action: 'normal' });
+        let row = { id: newId, name: obj.common.name, type: obj.common.type, created: new Date(obj.ts).toLocaleString(), action: 'normal' };
+        if (row.type.toLowerCase() == NUMBER) {
+          row.offset = 0;
+        }
+        objList.push(row);
       }
 
       function showObjList(onChange, settings, objList) {
-        update = Object.assign({}, settings.objUpdate);
+        let update = Object.assign({}, settings.objUpdate);
+        let offset = Object.assign({}, settings.objOffset);
         objList.forEach(function (o) {
-          if (update[o.id.toLowerCase]) {
-            o.action = update[o.id.toLowerCase].action;
+          if (update[o.id.toLowerCase()]) {
+            o.action = update[o.id.toLowerCase()].action;
           }
-          delete update[o.id.toLowerCase];
+          delete update[o.id.toLowerCase()];
         });
         Object.keys(update).forEach(id => {
           if (update[id].action == 'delete') {
             objList.push({ id: update[id].id, name: '', type: '', created: '', action: update[id].action });
+          }
+        });
+        objList.forEach(function (o) {
+          if (offset[o.id.toLowerCase()]) {
+            o.offset = offset[o.id.toLowerCase()].offset;
           }
         });
         objList.sort(function (dev1, dev2) {
@@ -88,6 +99,11 @@
           $('[data-name=name]').attr('readonly', 'readonly');
           $('[data-name=type]').attr('readonly', 'readonly');
           $('[data-name=created]').attr('readonly', 'readonly');
+          var _objects = table2values('objects');
+          for (var i = 0; i < _objects.length; i++) {
+            if (_objects[i].type.toLowerCase() != NUMBER)
+              $('#objects .values-input[data-name="offset"][data-index="' + i + '"]').attr('readonly', 'readonly');
+          }
           return;
         });
       }
@@ -190,6 +206,17 @@
         return objUpdate;
       }
 
+      function getObjOffset() {
+        let objectListAll = table2values('objects');
+        let objOffset = {};
+        objectListAll.forEach(function (o) {
+          if (o.offset && !!parseFloat(o.offset) && o.offset != 0) {
+            objOffset[o.id.toLowerCase()] = { id: o.id, offset: parseFloat(o.offset) };
+          }
+        });
+        return objOffset;
+      }
+
       function improveValues(obj) {
         if (typeof obj.webTimeout === 'undefined' || obj.webTimeout == '') obj.webTimeout = '60';
         if (typeof obj.processTimeout === 'undefined' || obj.processTimeout == '') obj.processTimeout = '600';
@@ -203,6 +230,7 @@
       function save(callback) {
         var obj = {};
         obj.objUpdate = getObjUpdate();
+        obj.objOffset = getObjOffset();
 
         $('.value').each(function () {
           var $this = $(this);
@@ -349,6 +377,7 @@
                     >
                       Action
                     </th>
+                    <th data-name="offset" data-type="number" style="width: 8em; white-space: nowrap">Offset</th>
                     <th data-name="id" style="width: 35em; white-space: nowrap">ID</th>
                     <th data-name="name" style="width: 10em; white-space: nowrap">Name</th>
                     <th data-name="type" style="width: 6em; white-space: nowrap">Type</th>
