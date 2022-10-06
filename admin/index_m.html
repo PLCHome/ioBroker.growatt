@@ -46,6 +46,16 @@
         }
       }
 
+      function initLoggerText() {
+        $('#datalogger').html(
+          '<h6>' +
+            translateWord(
+              'The instance must be running and logged in to the server. Then the settings of the data logger can be called up via the refresh button in this tab.'
+            ) +
+            '</h6>'
+        );
+      }
+
       function storeObject(id, obj, objList) {
         let ebene = id.split('.');
         ebene.shift();
@@ -94,6 +104,7 @@
           }
           return y.length - x.length;
         });
+        initLoggerText();
         values2table('objects', objList, onChange, function () {
           $('[data-name=id]').attr('disabled', 'disabled');
           $('[data-name=name]').attr('readonly', 'readonly');
@@ -182,6 +193,11 @@
             obj.objUpdate = getObjUpdate();
             emitObjects(onChange, obj);
           });
+        $('#tab-manage-datalogger')
+          .find('.btn-datalogger-reload')
+          .on('click', function () {
+            getDatalogger();
+          });
         // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
         if (M) M.updateTextFields();
       }
@@ -226,6 +242,235 @@
         if (typeof obj.errorCycleTime === 'undefined' || obj.errorCycleTime == '') obj.errorCycleTime = '120';
       }
 
+      function getDatalogger() {
+        $('#datalogger').empty();
+        let callTimeout = setTimeout(() => {
+          initLoggerText();
+        }, 5000);
+        sendTo('growatt.' + instance, 'getDatalogger', '{}', function (result) {
+          clearTimeout(callTimeout);
+          let res = JSON.parse(result);
+          let r = '';
+          for (let row = 0; row < res.length; row += 1) {
+            function aRow(html) {
+              return '<div class="row">' + html + '</div>';
+            }
+            function aText(width, id, label, val) {
+              return (
+                '<div class="col s' +
+                width +
+                ' input-field ' +
+                id +
+                (row + 1) +
+                '">' +
+                '  <input type="text" class="value" id="' +
+                id +
+                (row + 1) +
+                '" disabled>' +
+                val +
+                '</>' +
+                '  <label for="' +
+                id +
+                (row + 1) +
+                '">' +
+                translateWord(label) +
+                '</label>' +
+                '</div>'
+              );
+            }
+            function aCheck(val) {
+              let result = '';
+              if (val.toString().toLowerCase === 'true') {
+                result = 'checked';
+              }
+              return result;
+            }
+            function aNCheck(val) {
+              let result = '';
+              if (val.toString().toLowerCase === 'false') {
+                result = 'checked';
+              }
+              return result;
+            }
+            function aBox(width, id, label, val) {
+              return (
+                '<div class="col s' +
+                width +
+                ' input-field ' +
+                id +
+                (row + 1) +
+                '">' +
+                '  <input type="checkbox" class="value" id="' +
+                id +
+                (row + 1) +
+                '" disabled ' +
+                val +
+                ' />' +
+                '  <span for="' +
+                id +
+                (row + 1) +
+                '" >' +
+                translateWord(label) +
+                '</span>' +
+                '</div>'
+              );
+            }
+            function aButton(width, typ, id, label, func, data) {
+              return (
+                '<div class="col s' +
+                width +
+                ' input-field ' +
+                id +
+                (row + 1) +
+                '">' +
+                '  <a class="btn btn-small" id="' +
+                id +
+                (row + 1) +
+                '" href="javascript:' +
+                func +
+                '(' +
+                JSON.stringify(data).replaceAll('"', '&quot;') +
+                ');">' +
+                '  <i class="material-icons left">' +
+                typ +
+                '</i>' +
+                '  ' +
+                translateWord(label) +
+                '  </a>' +
+                '</div>'
+              );
+            }
+
+            r +=
+              aRow('<h6 class="sub-title col12">' + translateWord('Datalogger') + ' ' + (row + 1) + '</h6>') +
+              aRow(
+                aText(4, 'plantId', 'PV plant id', res[row].plantId) +
+                  aText(4, 'plantName', 'PV plant name', res[row].plantName) +
+                  aText(4, 'accountName', 'Account name', res[row].accountName) +
+                  aText(4, 'sn', 'Serial number', res[row].sn) +
+                  aText(4, 'alias', 'Alias', res[row].alias) +
+                  aText(4, 'firmwareVersion', 'Firmware version', res[row].firmwareVersion) +
+                  aText(4, 'deviceTypeIndicate', 'Device type index', res[row].deviceTypeIndicate) +
+                  aText(4, 'deviceType', 'Device type', res[row].deviceType) +
+                  aText(4, 'stateGridModel', 'Wifi model', res[row].stateGridModel) +
+                  aText(4, 'lost', 'Comunication lost', res[row].lost) +
+                  aText(4, 'simSignal', 'Wifi signal level', res[row].simSignal) +
+                  aText(4, 'ipAndPort', 'IP and port', res[row].ipAndPort) +
+                  aText(4, 'interval', 'Interval', res[row].interval) +
+                  aText(4, 'lastUpdateTime', 'Last update timepoint', res[row].lastUpdateTime)
+              ) +
+              aRow(
+                aButton(4, 'av_timer', 'btninterval', 'Interval', 'setLoggerInterval', { sn: res[row].sn }) +
+                  aButton(4, 'cloud', 'btnserverip', 'Server ip', 'setLoggerIp', { sn: res[row].sn }) +
+                  aButton(4, 'cloud_queue', 'btnserverport', 'Server port', 'setLoggerPort', { sn: res[row].sn }) +
+                  aButton(4, 'play_for_work', 'btnfirmware', 'Check firmware', 'checkLoggerFirmware', {
+                    type: res[row].deviceTypeIndicate,
+                    version: res[row].firmwareVersion,
+                  }) +
+                  aButton(4, 'replay', 'btnrestart', 'Restart datalogger', 'restartDatalogger', { sn: res[row].sn })
+              );
+          }
+          $('#datalogger').html(r);
+        });
+      }
+
+      function alertResponse(result) {
+        let s = '';
+        let res = JSON.parse(result);
+        if (res.success && res.success.toString().toLowerCase() === 'true') {
+          s = translateWord('success');
+        } else {
+          s = translateWord('no success');
+        }
+        alert(translateWord("The server's response") + ': ' + s + ': ' + res.msg);
+      }
+
+      function promptResult(result, ask) {
+        let res = JSON.parse(result);
+        if (res.success && res.success.toString().toLowerCase() === 'true') {
+          return prompt(translateWord(ask), res.msg);
+        } else {
+          alert(translateWord("The server's response") + ': ' + translateWord('no success') + ': ' + res.msg);
+        }
+      }
+
+      function setLoggerInterval(opt) {
+        let callTimeout = setTimeout(() => {
+          alert('The server did not respond to the request!');
+        }, 20000);
+        sendTo('growatt.' + instance, 'getDataLoggerIntervalRegister', JSON.stringify({ sn: opt.sn }), function (result) {
+          clearTimeout(callTimeout);
+          let interval = promptResult(result, 'Please enter new interval in minutes');
+          if (interval !== null) {
+            let callTimeoutInner = setTimeout(() => {
+              alert('The server did not respond to the request!');
+            }, 20000);
+            sendTo('growatt.' + instance, 'setDataLoggerIntervalRegister', JSON.stringify({ sn: opt.sn, value: interval }), function (result) {
+              clearTimeout(callTimeoutInner);
+              alertResponse(result);
+            });
+          }
+        });
+      }
+
+      function setLoggerIp(opt) {
+        let callTimeout = setTimeout(() => {
+          alert('The server did not respond to the request!');
+        }, 20000);
+        sendTo('growatt.' + instance, 'getDataLoggerIpRegister', JSON.stringify({ sn: opt.sn }), function (result) {
+          clearTimeout(callTimeout);
+          let ip = promptResult(result, 'Please enter new IP for server');
+          if (ip !== null) {
+            let callTimeoutInner = setTimeout(() => {
+              alert('The server did not respond to the request!');
+            }, 20000);
+            sendTo('growatt.' + instance, 'setDataLoggerIntervalRegister', JSON.stringify({ sn: opt.sn, value: ip }), function (result) {
+              clearTimeout(callTimeoutInner);
+              alertResponse(result);
+            });
+          }
+        });
+      }
+
+      function setLoggerPort(opt) {
+        let callTimeout = setTimeout(() => {
+          alert('The server did not respond to the request!');
+        }, 20000);
+        sendTo('growatt.' + instance, 'getDataLoggerPortRegister', JSON.stringify({ sn: opt.sn }), function (result) {
+          clearTimeout(callTimeout);
+          let port = promptResult(result, 'Please enter new port for server');
+          if (port !== null) {
+            let callTimeoutInner = setTimeout(() => {
+              alert('The server did not respond to the request!');
+            }, 20000);
+            sendTo('growatt.' + instance, 'setDataLoggerIntervalRegister', JSON.stringify({ sn: opt.sn, value: ip }), function (result) {
+              clearTimeout(callTimeoutInner);
+              alertResponse(result);
+            });
+          }
+        });
+      }
+
+      function checkLoggerFirmware(opt) {
+        let callTimeout = setTimeout(() => {
+          alert('The server did not respond to the request!');
+        }, 20000);
+        sendTo('growatt.' + instance, 'checkLoggerFirmware', JSON.stringify({ type: opt.type, version: opt.version }), function (result) {
+          clearTimeout(callTimeout);
+          alertResponse(result);
+        });
+      }
+
+      function restartDatalogger(opt) {
+        let callTimeout = setTimeout(() => {
+          alert('The server did not respond to the request!');
+        }, 20000);
+        sendTo('growatt.' + instance, 'restartDatalogger', JSON.stringify({ sn: opt.sn }), function (result) {
+          clearTimeout(callTimeout);
+          alertResponse(result);
+        });
+      }
+
       // This will be called by the admin adapter when the user presses the save button
       function save(callback) {
         var obj = {};
@@ -264,7 +509,6 @@
           <img src="growatt.png" class="logo" />
         </div>
       </div>
-      <!-- Put your content here -->
       <div class="row">
         <div class="col s12">
           <ul class="tabs">
@@ -274,11 +518,13 @@
             <li class="tab col s2">
               <a href="#tab-manage-objects" class="translate">Manage Objects</a>
             </li>
+            <li class="tab col s2">
+              <a href="#tab-manage-datalogger" class="translate">Manage Dataloggers</a>
+            </li>
           </ul>
         </div>
 
         <div id="tab-main" class="col s12 page">
-          <!-- For example columns with settings: -->
           <div class="row">
             <div class="col s12 input-field">
               <input type="checkbox" class="value" id="keyLogin" />
@@ -355,36 +601,69 @@
               <label class="translate" for="errorCycleTime">Error cycle time in seconds</label>
             </div>
           </div>
-        </div>
-        <div id="tab-manage-objects" class="col s12 page" style="height: auto; width: auto">
-          <div class="col s12">
-            <a class="btn-floating btn-small translate btn-objects-reload" title="reload" data-lang-title="reload">
-              <i class="material-icons">refresh</i>
-            </a>
+          <div class="row">
+            <div class="col s6 input-field">
+              <input type="text" class="value" id="growattServer" />
+              <label for="growattServer" class="translate">Growatt server default https://server.growatt.com</label>
+            </div>
           </div>
-          <div class="col s12" id="objects">
-            <div class="table-values-div">
-              <table class="table-values">
-                <thead>
-                  <tr>
-                    <th data-name="_index" style="width: 2em"></th>
-                    <th
-                      data-name="action"
-                      class="translate"
-                      style="width: 4em; white-space: nowrap"
-                      data-options="normal;delete;noupdate"
-                      data-type="select"
-                    >
-                      Action
-                    </th>
-                    <th data-name="offset" data-type="number" style="width: 8em; white-space: nowrap">Offset</th>
-                    <th data-name="id" style="width: 35em; white-space: nowrap">ID</th>
-                    <th data-name="name" style="width: 10em; white-space: nowrap">Name</th>
-                    <th data-name="type" style="width: 6em; white-space: nowrap">Type</th>
-                    <th data-name="created" class="translate" style="width: 8em; white-space: nowrap">Created</th>
-                  </tr>
-                </thead>
-              </table>
+        </div>
+
+        <div id="tab-manage-objects" class="col s12 page" style="height: auto; width: auto">
+          <div class="row">
+            <div class="col s12">
+              <a class="btn-floating btn-small btn-objects-reload" title="reload" data-lang-title="reload">
+                <i class="material-icons">refresh</i>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12" id="objects">
+              <div class="table-values-div">
+                <table class="table-values">
+                  <thead>
+                    <tr>
+                      <th data-name="_index" style="width: 2em"></th>
+                      <th data-name="action" style="width: 4em; white-space: nowrap" data-options="normal;delete;noupdate" data-type="select">
+                        <span class="translate">Action</span>
+                      </th>
+                      <th data-name="offset" data-type="number" style="width: 8em; white-space: nowrap">
+                        <span class="translate">Offset</span>
+                      </th>
+                      <th data-name="id" style="width: 35em; white-space: nowrap">
+                        <span class="translate">ID</span>
+                      </th>
+                      <th data-name="name" style="width: 10em; white-space: nowrap">
+                        <span class="translate">Name</span>
+                      </th>
+                      <th data-name="type" style="width: 6em; white-space: nowrap">
+                        <span class="translate">Type</span>
+                      </th>
+                      <th data-name="created" style="width: 8em; white-space: nowrap">
+                        <span class="translate">Created</span>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-manage-datalogger" class="col s12 page" style="height: auto; width: auto">
+          <div class="row">
+            <div class="col s12">
+              <a class="btn-floating btn-small btn-datalogger-reload" title="reload" data-lang-title="reload">
+                <i class="material-icons">refresh</i>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12" id="datalogger">
+              <a class="col s12"
+                >The instance must be running and logged in to the server. Then the settings of the data logger can be called up via the refresh
+                button in this tab.</a
+              >
             </div>
           </div>
         </div>

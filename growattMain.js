@@ -16,6 +16,19 @@ function getTime() {
 function getTimeDiff(start) {
   return getTime() - start;
 }
+const getJSONCircularReplacer = () => {
+  const seen = new WeakMap();
+  return (key, val) => {
+    const value = val;
+    if (typeof value === 'object' && value !== null) {
+      if (seen.has(value)) {
+        return `loop on ${seen.get(value)}`;
+      }
+      seen.set(value, key);
+    }
+    return value;
+  };
+};
 
 /**
  * Is called to decrypt the Password
@@ -25,7 +38,7 @@ function getTimeDiff(start) {
 function decrypt(key, value) {
   let result = '';
   for (let i = 0; i < value.length; i += 1) {
-    /* eslint-disable no-bitwise */
+    /* eslint-disable-next-line no-bitwise */
     result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
   }
   return result;
@@ -45,6 +58,7 @@ class Growatt extends utils.Adapter {
     this.objNames = {};
     this.on('ready', this.onReady.bind(this));
     this.on('unload', this.onUnload.bind(this));
+    this.on('message', this.onMessage.bind(this));
   }
 
   /**
@@ -241,6 +255,7 @@ class Growatt extends utils.Adapter {
 
   /**
    * Is Called to get Data
+   * @param {bool} ndel no delete
    */
   async growattLogout(ndel) {
     if (this.log && this.log.debug) this.log.debug('Enter growattLogout');
@@ -256,6 +271,9 @@ class Growatt extends utils.Adapter {
     if (this.log && this.log.debug) this.log.debug(`Leave growattLogout :${getTimeDiff(allTimeDiff)}ms`);
   }
 
+  /**
+   * Is Called to get a lifesign
+   */
   lifeSignCallback() {
     this.log.debug(`Enter lifeSignCallback ${this.config.processTimeout * 1000}ms`);
     clearTimeout(this.processTimeout);
@@ -285,20 +303,24 @@ class Growatt extends utils.Adapter {
     try {
       if (typeof this.growatt === 'undefined') {
         this.log.debug('Growatt new API');
-        /* eslint-disable no-new */
-        this.growatt = new API({ timeout: this.config.webTimeout * 1000, lifeSignCallback: this.lifeSignCallback.bind(this) });
+        /* eslint-disable-next-line no-new */
+        this.growatt = new API({
+          timeout: this.config.webTimeout * 1000,
+          lifeSignCallback: this.lifeSignCallback.bind(this),
+          server: this.config.growattServer || '',
+        });
       }
       this.log.debug(`Growatt isConnected() : ${this.growatt.isConnected()}`);
       if (!this.growatt.isConnected()) {
         if (this.config.keyLogin) {
           this.log.debug('Growatt share plant login');
           await this.growatt.sharePlantLogin(this.config.shareKey).catch(e => {
-            this.log.warn(`Login to share plant:${typeof e === 'object' ? JSON.stringify(e) : e}`);
+            this.log.warn(`Login to share plant:${typeof e === 'object' ? JSON.stringify(e, getJSONCircularReplacer()) : e}`);
           });
         } else {
           this.log.debug('Growatt login with user and password');
           await this.growatt.login(this.config.user, this.config.password).catch(e => {
-            this.log.warn(`Login:${typeof e === 'object' ? JSON.stringify(e) : e}`);
+            this.log.warn(`Login:${typeof e === 'object' ? JSON.stringify(e, getJSONCircularReplacer()) : e}`);
           });
         }
         this.log.debug(`Growatt isConnected() : ${this.growatt.isConnected()}`);
@@ -378,6 +400,170 @@ class Growatt extends utils.Adapter {
       this.log.debug(`Leave growattData :${getTimeDiff(allTimeDiff)}ms`);
     }
   }
+
+  /**
+   * spinoff onMessage, reads a register
+   * @param {string} sn serielnumber of datalogger
+   * @param {integer} register to read
+   * @param {object} obj the messageoject
+   */
+  readLoggerRegister(register, obj) {
+    if (this.growatt && this.growatt.isConnected()) {
+      const data = JSON.parse(obj.message);
+      this.growatt
+        .getDataLoggerRegister(data.sn, register)
+        .then(res => {
+          this.log.debug(`readLoggerRegister: ${JSON.stringify(res, getJSONCircularReplacer())}`);
+          if (obj.callback && typeof res.success !== 'undefined') {
+            this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+          }
+        })
+        .catch(e => {
+          this.log.error(e);
+        });
+    }
+  }
+
+  /**
+   * spinoff onMessage, writes a register
+   * @param {string} sn serielnumber of datalogger
+   * @param {integer} register to write
+   * @param {string} value to write
+   * @param {object} obj the messageoject
+   */
+  writeLoggerRegister(register, obj) {
+    if (this.growatt && this.growatt.isConnected()) {
+      const data = JSON.parse(obj.message);
+      this.growatt
+        .setDataLoggerRegister(data.sn, register, data.value)
+        .then(res => {
+          this.log.debug(`writeLoggerRegister: ${JSON.stringify(res, getJSONCircularReplacer())}`);
+          if (obj.callback && typeof res.success !== 'undefined') {
+            this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+          }
+        })
+        .catch(e => {
+          this.log.error(e);
+        });
+    }
+  }
+
+  /**
+   * spinoff onMessage, writes with function
+   * @param {string} sn serielnumber of datalogger
+   * @param {integer} function to use
+   * @param {string} value to write
+   * @param {object} obj the messageoject
+   */
+  writeLoggerFunction(func, obj) {
+    if (this.growatt && this.growatt.isConnected()) {
+      const data = JSON.parse(obj.message);
+      this.growatt
+        .setDataLoggerParam(data.sn, func, data.value)
+        .then(res => {
+          this.log.debug(`writeLoggerFunction: ${JSON.stringify(res, getJSONCircularReplacer())}`);
+          if (obj.callback && typeof res.success !== 'undefined') {
+            this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+          }
+        })
+        .catch(e => {
+          this.log.error(e);
+        });
+    }
+  }
+
+  /**
+   * onMessage, from Admin interface
+   * @param {object} obj the messageoject
+   */
+  onMessage(obj) {
+    let wait = false;
+    this.log.debug(JSON.stringify(obj, getJSONCircularReplacer()));
+    if (obj) {
+      switch (obj.command) {
+        case 'getDatalogger':
+          if (this.growatt && this.growatt.isConnected()) {
+            wait = true;
+            this.growatt
+              .getDataLoggers()
+              .then(res => {
+                this.log.debug(`getDatalogger: ${JSON.stringify(res, getJSONCircularReplacer())}`);
+                if (obj.callback) {
+                  this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+                }
+              })
+              .catch(e => {
+                this.log.error(e);
+              });
+          }
+          break;
+        case 'getDataLoggerIntervalRegister':
+          wait = true;
+          this.readLoggerRegister(API.LOGGERREGISTER.INTERVAL, obj);
+          break;
+        case 'setDataLoggerIntervalRegister':
+          wait = true;
+          this.writeLoggerRegister(API.LOGGERREGISTER.INTERVAL, obj);
+          break;
+        case 'getDataLoggerIpRegister':
+          wait = true;
+          this.readLoggerRegister(API.LOGGERREGISTER.SERVERIP, obj);
+          break;
+        case 'setDataLoggerIp':
+          wait = true;
+          this.writeLoggerFunction(API.LOGGERFUNCTION.SERVERIP, obj);
+          break;
+        case 'getDataLoggerPortRegister':
+          wait = true;
+          this.readLoggerRegister(API.LOGGERREGISTER.SERVERPORT, obj);
+          break;
+        case 'setDataLoggerPort':
+          wait = true;
+          this.writeLoggerFunction(API.LOGGERFUNCTION.SERVERPORT, obj);
+          break;
+        case 'checkLoggerFirmware':
+          if (this.growatt && this.growatt.isConnected()) {
+            wait = true;
+            const data = JSON.parse(obj.message);
+            this.growatt
+              .checkDataLoggerFirmware(data.type, data.version)
+              .then(res => {
+                this.log.debug(`checkDataLoggerFirmware: ${JSON.stringify(res, getJSONCircularReplacer())}`);
+                if (obj.callback && typeof res.success !== 'undefined') {
+                  this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+                }
+              })
+              .catch(e => {
+                this.log.error(e);
+              });
+          }
+          break;
+        case 'restartDatalogger':
+          if (this.growatt && this.growatt.isConnected()) {
+            wait = true;
+            const data = JSON.parse(obj.message);
+            this.growatt
+              .setDataLoggerRestart(data.sn)
+              .then(res => {
+                if (obj.callback) {
+                  this.sendTo(obj.from, obj.command, res.msg, obj.callback);
+                }
+              })
+              .catch(e => {
+                this.log.error(e);
+              });
+          }
+          break;
+        default:
+          this.log.warn(`Unknown command: ${obj.command}`);
+          return false;
+      }
+    }
+    if (!wait && obj.callback) {
+      this.sendTo(obj.from, obj.command, obj.message, obj.callback);
+    }
+    return true;
+  }
 }
 
 // @ts-ignore parent is a valid property on module
@@ -389,5 +575,6 @@ if (module.parent) {
   module.exports = options => new Growatt(options);
 } else {
   // otherwise start the instance directly
+  /* eslint-disable-next-line no-new */
   new Growatt();
 }

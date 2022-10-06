@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "1.2.1",
+    "version": "2.0.0",
     "news": {
+      "2.0.0": {
+        "en": "Data logger settings can be called up and changed. The server url can be changed.",
+        "de": "Datenloggereinstellungen können aufgerufen und geändert werden. Der Server url kann geändert werden.",
+        "ru": "Параметры логгера данных можно назвать вверх и изменить. Сервер URL можно изменить.",
+        "pt": "As configurações do registrador de dados podem ser chamadas e alteradas. A URL do servidor pode ser alterada.",
+        "nl": "Data logger kan worden opgeroepen en veranderd. De server kan veranderd worden.",
+        "fr": "Les paramètres du enregistreur de données peuvent être appelés et modifiés. L'url du serveur peut être changé.",
+        "it": "Le impostazioni del data logger possono essere richiamate e modificate. L'url del server può essere modificato.",
+        "es": "Los ajustes del registrador de datos se pueden llamar y cambiar. El url servidor puede ser cambiado.",
+        "pl": "Takie ustawienia mogą być nazywane i zmienione. Serwer url może zostać zmieniony.",
+        "zh-cn": "数据采伐环境可以被要求和改变。 服务器可改变。."
+      },
       "1.2.1": {
         "en": "Added an offset to numeric values. My inverter reset te total quantity by itself. Now the total quantity can be corrected.",
         "de": "Hinzugefügt einen Offset zu numerischen Werten. Mein Inverter setzt die gesamte Menge von sich zurück. Nun kann die Gesamtmenge korrigiert werden.",
@@ -62,54 +74,6 @@
         "es": "Los dispositivos Apple no pueden abrir la página de configuración del adaptador con Safari, todos los valores están vacíos",
         "pl": "Urządzenia Apple nie mogą otworzyć strony konfiguracji adaptera w Safari, wszystkie wartości są puste",
         "zh-cn": "苹果设备无法用Safari打开适配器的配置页面，所有值都是空的"
-      },
-      "1.1.14": {
-        "en": "Restart loop when exception",
-        "de": "Schleife neu starten, wenn Ausnahme",
-        "ru": "Перезапустить цикл при исключении",
-        "pt": "Reinicie o loop quando for exceção",
-        "nl": "Herstart lus bij uitzondering",
-        "fr": "Redémarrer la boucle en cas d'exception",
-        "it": "Riavvia il ciclo in caso di eccezione",
-        "es": "Reiniciar bucle cuando se produce una excepción",
-        "pl": "Uruchom ponownie pętlę, gdy wyjątek",
-        "zh-cn": "异常时重启循环"
-      },
-      "1.1.13": {
-        "en": "total data and history data missing for type inv",
-        "de": "Gesamtdaten und Historiendaten fehlen bei Typ inv",
-        "ru": "общие данные и данные истории отсутствуют для типа inv",
-        "pt": "dados totais e dados do histórico ausentes para o tipo inv",
-        "nl": "totale gegevens en geschiedenisgegevens ontbreken voor type inv",
-        "fr": "données totales et données d'historique manquantes pour le type inv",
-        "it": "dati totali e dati storici mancanti per tipo inv",
-        "es": "faltan datos totales y datos históricos para el tipo inv",
-        "pl": "brak danych całkowitych i danych historycznych dla typu inv",
-        "zh-cn": "类型 inv 的总数据和历史数据缺失"
-      },
-      "1.1.12": {
-        "en": "api maintance",
-        "de": "API-Wartung",
-        "ru": "обслуживание API",
-        "pt": "manutenção de API",
-        "nl": "api-onderhoud",
-        "fr": "maintenance de l'API",
-        "it": "manutenzione API",
-        "es": "mantenimiento api",
-        "pl": "konserwacja API",
-        "zh-cn": "api维护"
-      },
-      "1.1.11": {
-        "en": "For the firsttime uppressed the warning: /error.do?errorMess=errorNoLogin",
-        "de": "Zum ersten Mal die Warnung unterdrückt: /error.do?errorMess=errorNoLogin",
-        "ru": "В первый раз подавил предупреждение: /error.do?errorMess=errorNoLogin",
-        "pt": "Pela primeira vez, reprimiu o aviso: /error.do?errorMess=errorNoLogin",
-        "nl": "Voor het eerst de waarschuwing omhoog gedrukt: /error.do?errorMess=errorNoLogin",
-        "fr": "Pour la première fois, l'avertissement a été supprimé : /error.do?errorMess=errorNoLogin",
-        "it": "Per la prima volta è stato premuto l'avviso: /error.do?errorMess=errorNoLogin",
-        "es": "Por primera vez subió la advertencia: /error.do?errorMess=errorNoLogin",
-        "pl": "Po raz pierwszy pominięto ostrzeżenie: /error.do?errorMess=errorNoLogin",
-        "zh-cn": "第一次压制警告：/error.do?errorMess=errorNoLogin"
       }
     },
     "title": "Growatt Shine API",
@@ -160,12 +124,15 @@
     "readme": "https://github.com/PLCHome/ioBroker.growatt/blob/master/README.md",
     "loglevel": "info",
     "mode": "daemon",
+    "messagebox": true,
+    "subscribe": "messagebox",
     "type": "energy",
     "compact": true,
     "connectionType": "cloud",
     "dataSource": "poll",
     "localLink": "https://server.growatt.com/",
     "materialize": true,
+    "adminUI": { "config": "materialize" },
     "plugins": {
       "sentry": {
         "dsn": "https://580e0de8b3414b6caba783785eb4e240@o1143033.ingest.sentry.io/6202057"
@@ -197,7 +164,8 @@
     "sessionHold": true,
     "sessionTime": 0,
     "cycleTime": 30,
-    "errorCycleTime": 120
+    "errorCycleTime": 120,
+    "growattServer": ""
   },
   "objects": [],
   "instanceObjects": [
