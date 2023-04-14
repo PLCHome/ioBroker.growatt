@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "news": {
+      "2.1.0": {
+        "en": "TLX Hybrid is now working.\nStatus data now also from TLX/TLXH.\nIf there are different inverters, these are now shown.",
+        "de": "TLX Hybrid arbeitet jetzt.\nStatusdaten nun auch von TLX/TLXH.\nSind verschiedene Wechselrichter vorhanden, werden diese nun angezeigt.",
+        "ru": "ТЛС Гибрид теперь работает.\nДанные о состоянии теперь также от TLX/TLXH.\nЕсли есть разные инверторы, они теперь показаны.",
+        "pt": "TLX O híbrido está a funcionar.\nDados de status agora também de TLX/TLXH.\nSe houver inversores diferentes, estes são agora mostrados.",
+        "nl": "TLX Hybrid werkt nu.\nStatus gegevens van TLTLXH.\nAls er verschillende inverters zijn, zijn deze nu getoond.",
+        "fr": "TLX Hybrid travaille maintenant.\nLes données de statut sont maintenant également de TLX/TLXH.\nS'il y a différents inverseurs, ils sont maintenant montrés.",
+        "it": "TLX Hybrid sta lavorando.\nDati di stato ora anche da TLX/TLXH.\nSe ci sono diversi inverter, questi sono ora mostrati.",
+        "es": "TLX híbrido está funcionando.\nDatos de estado ahora también de TLX/TLXH.\nSi hay diferentes inversores, estos se muestran ahora.",
+        "pl": "TLX Obecnie pracuje Hybrid.\nDane statystyczne pochodzą z TLX/TLXH.\nJeśli istnieją różne odwzorowania, są one teraz pokazane.",
+        "uk": "ТЛКС Гібрид тепер працює.\nСтатус на сервери.\nЯкщо є різні інвертори, це зараз показано.",
+        "zh-cn": "B. 建 议 目前正努力解决这一问题。.\n现状数据现在也来自TLX/TLXH。.\n如果有不同的防污者,现在就有这种资料。."
+      },
       "2.0.0": {
         "en": "Data logger settings can be called up and changed. The server url can be changed.",
         "de": "Datenloggereinstellungen können aufgerufen und geändert werden. Der Server url kann geändert werden.",
@@ -38,42 +51,6 @@
         "es": "Htp Header",
         "pl": "Http Head (ang.)",
         "zh-cn": "Htp Head"
-      },
-      "1.1.17": {
-        "en": "Problems with debug messages",
-        "de": "Probleme mit Debug-Nachrichten",
-        "ru": "Проблемы с отладкими сообщениями",
-        "pt": "Problemas com mensagens de depuração",
-        "nl": "Problemen met debug berichten",
-        "fr": "Problèmes avec les messages debug",
-        "it": "Problemi con messaggi debug",
-        "es": "Problemas con mensajes de depuración",
-        "pl": "Problemy z debugowaniem wiadomości",
-        "zh-cn": "D. 信息传播问题"
-      },
-      "1.1.16": {
-        "en": "https unauthorized calls not rejected ",
-        "de": "https unautorisierte anrufe nicht abgelehnt",
-        "ru": "https несанкционированные звонки не отклонены",
-        "pt": "chamadas não autorizadas https não rejeitadas",
-        "nl": "htp's onbevoegde telefoontjes niet afgewezen",
-        "fr": "appels non autorisés",
-        "it": "https chiamate non autorizzate non respinte",
-        "es": "llamadas no autorizadas no rechazadas",
-        "pl": "nieautoryzowane wezwania nie odrzucono",
-        "zh-cn": "未经授权的呼吁"
-      },
-      "1.1.15": {
-        "en": "Apple devices cannot open the adapter's config page with Safari, all values ​​are empty ",
-        "de": "Apple-Geräte können die Konfigurationsseite des Adapters nicht mit Safari öffnen, alle Werte sind leer",
-        "ru": "Устройства Apple не могут открыть страницу конфигурации адаптера с помощью Safari, все значения пусты",
-        "pt": "Dispositivos Apple não podem abrir a página de configuração do adaptador com Safari, todos os valores estão vazios",
-        "nl": "Apple-apparaten kunnen de configuratiepagina van de adapter niet openen met Safari, alle waarden zijn leeg",
-        "fr": "Les appareils Apple ne peuvent pas ouvrir la page de configuration de l'adaptateur avec Safari, toutes les valeurs sont vides",
-        "it": "I dispositivi Apple non possono aprire la pagina di configurazione dell'adattatore con Safari, tutti i valori sono vuoti",
-        "es": "Los dispositivos Apple no pueden abrir la página de configuración del adaptador con Safari, todos los valores están vacíos",
-        "pl": "Urządzenia Apple nie mogą otworzyć strony konfiguracji adaptera w Safari, wszystkie wartości są puste",
-        "zh-cn": "苹果设备无法用Safari打开适配器的配置页面，所有值都是空的"
       }
     },
     "title": "Growatt Shine API",
