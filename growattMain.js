@@ -68,6 +68,24 @@ class Growatt extends utils.Adapter {
     this.getForeignObject('system.config', (errFO, obj) => {
       this.config.objUpdate = this.config.objUpdate || {};
       this.config.objOffset = this.config.objOffset || {};
+
+      if (!this.supportsFeature || !this.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
+        if (obj && obj.native && obj.native.secret) {
+          this.config.password = decrypt(obj.native.secret, this.config.password);
+          this.config.shareKey = decrypt(obj.native.secret, this.config.shareKey);
+        } else {
+          this.config.password = decrypt('Zgfr56gFe87jJOM', this.config.password);
+          this.config.shareKey = decrypt('Zgfr56gFe87jJOM', this.config.shareKey);
+        }
+      }
+
+      if (typeof this.config.webTimeout === 'undefined' || this.config.webTimeout === '') this.config.webTimeout = 60;
+      if (typeof this.config.processTimeout === 'undefined' || this.config.processTimeout === '') this.config.processTimeout = 600;
+      if (typeof this.config.sessionHold === 'undefined' || this.config.sessionHold === '') this.config.sessionHold = true;
+      if (typeof this.config.sessionTime === 'undefined' || this.config.sessionTime === '') this.config.sessionTime = 0;
+      if (typeof this.config.cycleTime === 'undefined' || this.config.cycleTime === '') this.config.cycleTime = 30;
+      if (typeof this.config.errorCycleTime === 'undefined' || this.config.errorCycleTime === '') this.config.errorCycleTime = 120;
+
       this.getStates(`${this.name}.${this.instance}.*`, (errGS, states) => {
         Object.keys(states).forEach(id => {
           const ebene = id.toString().split('.');
@@ -110,26 +128,9 @@ class Growatt extends utils.Adapter {
             }
           }
         });
+        this.callRun = true;
+        this.growattData();
       });
-      if (!this.supportsFeature || !this.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
-        if (obj && obj.native && obj.native.secret) {
-          this.config.password = decrypt(obj.native.secret, this.config.password);
-          this.config.shareKey = decrypt(obj.native.secret, this.config.shareKey);
-        } else {
-          this.config.password = decrypt('Zgfr56gFe87jJOM', this.config.password);
-          this.config.shareKey = decrypt('Zgfr56gFe87jJOM', this.config.shareKey);
-        }
-      }
-
-      if (typeof this.config.webTimeout === 'undefined' || this.config.webTimeout === '') this.config.webTimeout = 60;
-      if (typeof this.config.processTimeout === 'undefined' || this.config.processTimeout === '') this.config.processTimeout = 600;
-      if (typeof this.config.sessionHold === 'undefined' || this.config.sessionHold === '') this.config.sessionHold = true;
-      if (typeof this.config.sessionTime === 'undefined' || this.config.sessionTime === '') this.config.sessionTime = 0;
-      if (typeof this.config.cycleTime === 'undefined' || this.config.cycleTime === '') this.config.cycleTime = 30;
-      if (typeof this.config.errorCycleTime === 'undefined' || this.config.errorCycleTime === '') this.config.errorCycleTime = 120;
-
-      this.callRun = true;
-      this.growattData();
     });
   }
 

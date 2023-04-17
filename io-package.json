@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "news": {
+      "2.1.1": {
+        "en": "Calendar structure was not always changed to timestamp.\nImprovement in the internal handling of objects without considering their case.\n",
+        "de": "Die Kalenderstruktur wurde nicht immer zum Zeitstempel geändert.\nVerbesserung der internen Handhabung von Objekten ohne Rücksicht auf ihren Fall.\n",
+        "ru": "Структура календаря не всегда была изменена на timetamp.\nУлучшение внутренней обработки объектов без учета их дела.\n",
+        "pt": "Estrutura do calendário nem sempre foi alterado para timestamp.\nMelhoria no manuseio interno de objetos sem considerar seu caso.\n",
+        "nl": "Calendarstructuur was niet altijd veranderd in tijdstip.\nImproviseren in de interne bedrijven zonder hun zaak te overwegen.\n",
+        "fr": "La structure du calendrier n'a pas toujours été changée en timetamp.\nAmélioration de la manipulation interne des objets sans tenir compte de leur cas.\n",
+        "it": "La struttura del calendario non è sempre stata cambiata in timestamp.\nMiglioramento nella gestione interna degli oggetti senza considerare il loro caso.\n",
+        "es": "La estructura del calendario no siempre se cambió a la hora.\nMejora en el manejo interno de objetos sin considerar su caso.\n",
+        "pl": "Struktura kalendarzowa nie zawsze była zmieniana na znaczek czasowy.\nPoprawa w wewnętrznej obsługi obiektów bez uwzględniania ich sprawy.\n",
+        "uk": "Структура календаря не завжди була змінена на час.\nУдосконалення внутрішніх робіт об’єктів без розгляду справи.\n",
+        "zh-cn": "降级结构并不总是随着时间推移而改变。.\n改进物体的内部处理,而不考虑其情况。.\n"
+      },
       "2.1.0": {
         "en": "TLX Hybrid is now working.\nStatus data now also from TLX/TLXH.\nIf there are different inverters, these are now shown.",
         "de": "TLX Hybrid arbeitet jetzt.\nStatusdaten nun auch von TLX/TLXH.\nSind verschiedene Wechselrichter vorhanden, werden diese nun angezeigt.",
