@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "news": {
-      "3.0.0": {
+      "3.0.1": {
         "en": "Reading the data accelerated due to parallel processing\nWrite inverter settings (mix,tlx/tlxh), it can be activated via the config",
         "de": "Durch parallele Verarbeitung beschleunigtes Lesen der Daten\nSchreib-Wechselrichter-Einstellungen (Mix,tlx/tlxh) kann über die config aktiviert werden",
         "ru": "Чтение данных, ускоряемых из-за параллельной обработки\nНапишите настройки инвертора (mix,tlx/tlxh) его можно активировать через config",
