@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "2.1.1",
+    "version": "3.0.0",
     "news": {
+      "3.0.0": {
+        "en": "Reading the data accelerated due to parallel processing\nWrite inverter settings (mix,tlx/tlxh), it can be activated via the config",
+        "de": "Durch parallele Verarbeitung beschleunigtes Lesen der Daten\nSchreib-Wechselrichter-Einstellungen (Mix,tlx/tlxh) kann über die config aktiviert werden",
+        "ru": "Чтение данных, ускоряемых из-за параллельной обработки\nНапишите настройки инвертора (mix,tlx/tlxh) его можно активировать через config",
+        "pt": "Lendo os dados acelerados devido ao processamento paralelo\nEscreva configurações do inversor (mix,tlx/tlxh) ele pode ser ativado através da configuração",
+        "nl": "Het lezen van de gegevens versneld door parallel verwerking\nSchrijf inverter setting (mix,tlx/tlxh) het kan worden geactiveerd via het configuur",
+        "fr": "Lecture des données accélérées en raison du traitement parallèle\nÉcrire des paramètres d'invertisseur (mix,tlx/tlxh) il peut être activé via la configuration",
+        "it": "Leggere i dati accelerati a causa dell'elaborazione parallela\nScrivere le impostazioni dell'inverter (mix,tlx/tlxh) può essere attivato tramite la configurazione",
+        "es": "Leyendo los datos acelerados debido al procesamiento paralelo\nEscribir configuración de inversor (mix,tlx/tlxh) se puede activar a través del config",
+        "pl": "Czytanie danych przyspieszyło ze względu na przetwarzanie równoległe\nWrite inverter (mix,tlx/tlxh) może być aktywowany poprzez configig",
+        "uk": "Читання даних прискорених через паралельну обробку\nНапишіть параметри інвертора (змішувати,tlx/tlxh) він може бути активований через налаштування",
+        "zh-cn": "阅读由于平行处理而加速的数据\n各种环境中的礼物(mix,tlx/tlxh)可通过吉格尔岛启动。"
+      },
       "2.1.1": {
         "en": "Calendar structure was not always changed to timestamp.\nImprovement in the internal handling of objects without considering their case.\n",
         "de": "Die Kalenderstruktur wurde nicht immer zum Zeitstempel geändert.\nVerbesserung der internen Handhabung von Objekten ohne Rücksicht auf ihren Fall.\n",
@@ -52,18 +65,6 @@
         "es": "Agregó un offset a valores numéricos. Mi inverter reset te cantidad total por sí mismo. Ahora se puede corregir la cantidad total.",
         "pl": "Dodany do wartości liczbowych. My inverter reset the total amount by itself.. Teraz całkowita ilość może być poprawiona.",
         "zh-cn": "增加对数字价值的抵消。 我热切地把破伤风总量逐出。 现在可以纠正总数。."
-      },
-      "1.1.19": {
-        "en": "Http Header",
-        "de": "Http Header",
-        "ru": "Http Header",
-        "pt": "Cabeçalho de Http",
-        "nl": "HTP Head",
-        "fr": "Http Header",
-        "it": "Htttp Header",
-        "es": "Htp Header",
-        "pl": "Http Head (ang.)",
-        "zh-cn": "Htp Head"
       }
     },
     "title": "Growatt Shine API",
@@ -155,7 +156,8 @@
     "sessionTime": 0,
     "cycleTime": 30,
     "errorCycleTime": 120,
-    "growattServer": ""
+    "growattServer": "",
+    "settings": false
   },
   "objects": [],
   "instanceObjects": [

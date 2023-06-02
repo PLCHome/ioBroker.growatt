@@ -56,11 +56,25 @@
         );
       }
 
+      function warnsettings(val) {
+        if (val) {
+          $('#warnsettings').html(
+            '<h6>' +
+              translateWord(
+                'Reading and writing the inverter settings is at your own risk. It can damage the inverter. The functions have been tested to the best of our knowledge.'
+              ) +
+              '</h6>'
+          );
+        } else {
+          $('#warnsettings').html('');
+        }
+      }
+
       function storeObject(id, obj, objList) {
         let ebene = id.split('.');
         ebene.shift();
         ebene.shift();
-        if (ebene[0] == 'info' || ebene.length < 2) {
+        if (ebene[0] == 'info' || ebene[3] == 'settings' || ebene.length < 2) {
           return;
         }
         let newId = ebene.join('.');
@@ -171,6 +185,11 @@
               $('.password').show();
               $('.shareKey').hide();
             }
+          })
+          .trigger('change');
+        $('#settings')
+          .change(function () {
+            warnsettings($(this).prop('checked'));
           })
           .trigger('change');
         $('#sessionHold')
@@ -569,6 +588,15 @@
             <div class="col s6 input-field">
               <input type="checkbox" class="value" id="weather" />
               <label for="weather" class="translate">Read weather</label>
+            </div>
+            <div class="col s6 input-field">
+              <input type="checkbox" class="value" id="settings" />
+              <label for="settings" class="translate">Write inverter settings (only mix/tlx/tlxh)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <a class="col s12" id="warnsettings">&nbsp;</a>
             </div>
           </div>
           <div class="row">

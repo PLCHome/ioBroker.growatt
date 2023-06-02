@@ -7,6 +7,15 @@
 const API = require('growatt');
 const utils = require('@iobroker/adapter-core');
 
+const growartyp = {
+  INUM_0_100: { type: 'number', role: 'value', min: 0, max: 100, step: 1, read: true, write: true },
+  BOOL: { type: 'boolean', role: 'value', read: true, write: true },
+  STIME_H_MIN: { type: 'string', role: 'value', read: true, write: true },
+  DATETIME: { type: 'number', role: 'value.time', read: true, write: true },
+  INUM_0_1: { type: 'number', role: 'value', min: 0, max: 1, step: 1, read: true, write: true },
+};
+const SETTINGS = 'settings';
+
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
@@ -57,6 +66,7 @@ class Growatt extends utils.Adapter {
     this.processTimeout = null;
     this.objNames = {};
     this.on('ready', this.onReady.bind(this));
+    this.on('stateChange', this.onStateChange.bind(this));
     this.on('unload', this.onUnload.bind(this));
     this.on('message', this.onMessage.bind(this));
   }
@@ -68,6 +78,9 @@ class Growatt extends utils.Adapter {
     this.getForeignObject('system.config', (errFO, obj) => {
       this.config.objUpdate = this.config.objUpdate || {};
       this.config.objOffset = this.config.objOffset || {};
+      // ! for stateChange
+      this.subscribeStates('*.read');
+      this.subscribeStates('*.write');
 
       if (!this.supportsFeature || !this.supportsFeature('ADAPTER_AUTO_DECRYPT_NATIVE')) {
         if (obj && obj.native && obj.native.secret) {
@@ -91,7 +104,7 @@ class Growatt extends utils.Adapter {
           const ebene = id.toString().split('.');
           ebene.shift();
           ebene.shift();
-          if (ebene[0] !== 'info' && ebene.length > 1) {
+          if (ebene[0] !== 'info' && ebene[3] !== SETTINGS && ebene.length > 1) {
             const ownID = ebene.join('.');
             const ownIDsearch = ownID.toLowerCase();
             if (this.config.objUpdate[ownIDsearch] && this.config.objUpdate[ownIDsearch].action === 'delete') {
@@ -126,6 +139,10 @@ class Growatt extends utils.Adapter {
             } else {
               this.objNames[ownIDsearch] = ownID;
             }
+          } else if (!this.config.settings && ebene.length > 1 && ebene[3] === SETTINGS) {
+            const ownID = ebene.join('.');
+            this.delObject(ownID);
+            this.log.info(`deleted: ${ownID}`);
           }
         });
         this.callRun = true;
@@ -161,7 +178,7 @@ class Growatt extends utils.Adapter {
   async storeData(plantData, path, key) {
     const ele = path + key;
     const eleSearch = ele.toLowerCase();
-    this.log.silly(`ParseData for ${ele}`);
+    this.log.silly(`storeData for ${ele}`);
     let data = plantData[key];
     if (typeof data === 'object') {
       this.parseData(data, `${ele}.`);
@@ -236,6 +253,238 @@ class Growatt extends utils.Adapter {
   }
 
   /**
+   * 
+   loads the settings of the inverter and pastes the settings.
+   * @param {string} path to id
+   * @param {string} growattType
+   * @param {string} setting
+   * @param {string} sn
+   */
+  async readSetting(path, growattType, setting, sn) {
+    if (this.growatt) {
+      this.growatt
+        .getInverterSetting(growattType, setting, sn)
+        .then(r => {
+          this.log.debug(`Read inverter setting ${setting} : ${JSON.stringify(r, getJSONCircularReplacer())}`);
+          if (r.success) {
+            const params = Object.keys(r);
+            params.forEach(p => {
+              if (p.startsWith('param')) {
+                this.setStateAsync(`${path}.values.${p}`, { val: r[p], ack: true });
+              }
+            });
+          }
+          this.setStateAsync(`${path}.read`, { val: r.success, ack: true });
+        })
+        .catch(e => {
+          this.log.warn(`Read inverter settings ${setting}:${typeof e === 'object' ? JSON.stringify(e, getJSONCircularReplacer()) : e}`);
+        });
+    }
+  }
+
+  /**
+   * 
+   writes the settings to the inverter.
+   * @param {string} path to id
+   * @param {string} growattType
+   * @param {string} setting
+   * @param {string} sn
+   * @param {object param} set
+   */
+  async writeSetting(path, growattType, setting, sn, set) {
+    if (this.growatt && set && set.param) {
+      const runState = [];
+      const values = {};
+      const paramKeys = Object.keys(set.param);
+      paramKeys.forEach(param => {
+        runState.push(
+          this.getStateAsync(`${path}.values.${param}`).then(s => {
+            values[param] = s.val;
+          })
+        );
+      });
+      await Promise.all(runState);
+      this.growatt
+        .setInverterSetting(growattType, setting, sn, values)
+        .then(a => {
+          this.setStateAsync(`${path}.write`, { val: a.success, ack: true });
+          this.setStateAsync(`${path}.msg`, { val: a.msg, ack: true });
+          this.log.debug(`${typeof a === 'object' ? JSON.stringify(a, getJSONCircularReplacer()) : a}`);
+          if (a.success) {
+            this.readSetting(path, growattType, setting, sn);
+          }
+        })
+        .catch(e => {
+          this.setStateAsync(`${path}.write`, { val: false, ack: true });
+          this.setStateAsync(`${path}.msg`, { val: `${e}`, ack: true });
+        });
+      this.log.debug(`write inverter setting ${growattType}, ${setting}, ${sn}, ${JSON.stringify(values, getJSONCircularReplacer())}`);
+    }
+  }
+
+  /**
+   * Called when a subscribed status changes
+   * @param {string} id
+   * @param {ioBroker.State | null | undefined} state
+   */
+  async onStateChange(id, state) {
+    if (state) {
+      if (!state.ack && state.val === true) {
+        const obj = await this.getObjectAsync(id);
+        const splitid = id.split('.');
+        splitid.pop();
+        const path = splitid.join('.');
+        if (obj.native && obj.native.action === 'read') {
+          this.readSetting(path, obj.native.growattType, obj.native.setting, obj.native.sn);
+          if (obj.native.set && obj.native.set.subRead) {
+            obj.native.set.subRead.forEach(read => {
+              this.readSetting(path, obj.native.growattType, read, obj.native.sn);
+            });
+          }
+        } else if (obj.native && obj.native.action === 'write') {
+          this.writeSetting(path, obj.native.growattType, obj.native.setting, obj.native.sn, obj.native.set);
+        }
+      }
+    }
+  }
+
+  /**
+   * 
+   loads the settings of the inverter and pastes the settings.
+   * @param {object} plantData
+   */
+  async loadSettings(plantDatas) {
+    /**
+     Creates an iobroker state or update the properties
+     * @param {this} t
+     * @param {string} ele
+     * @param {string} name
+     * @param {object} common
+     * @param {any} def
+     * @param {object} native
+     */
+    function createS(t, ele, name, common, def, native) {
+      t.log.silly(`Create object not exists ${ele} type:${common} def:${def} native:${native}`);
+      const o = {
+        type: 'state',
+        common: {
+          name,
+        },
+        native: {},
+      };
+      Object.assign(o.common, common);
+      if (typeof def !== 'undefined' && def !== null) {
+        o.common.def = def;
+      }
+      if (typeof native !== 'undefined' && native !== null) {
+        Object.assign(o.native, native);
+      }
+      t.setObjectNotExists(ele, o);
+      t.setObject(ele, o);
+    }
+    /**
+     Creates an iobroker channel or update the properties
+     * @param {this} t
+     * @param {string} ele
+     * @param {string} name
+     */
+    function createC(t, ele, name) {
+      t.log.silly(`Create object not exists ${ele} `);
+      const o = {
+        type: 'channel',
+        common: {
+          name,
+        },
+        native: {},
+      };
+      t.setObjectNotExists(ele, o);
+      t.setObject(ele, o);
+    }
+    if (plantDatas) {
+      const plantDataKeys = Object.keys(plantDatas);
+      plantDataKeys.forEach(plantDataKey => {
+        const plantData = plantDatas[plantDataKey];
+        if (plantData.devices) {
+          const snKeys = Object.keys(plantData.devices);
+          if (snKeys) {
+            snKeys.forEach(sn => {
+              if (plantData.devices[sn].growattType) {
+                const { growattType } = plantData.devices[sn];
+                const path = `${plantDataKey}.devices.${sn}.${SETTINGS}.`;
+                if (this.growatt) {
+                  const com = this.growatt.getInverterCommunication(growattType);
+                  if (com) {
+                    const sets = Object.keys(com);
+                    sets.forEach(setting => {
+                      const set = com[setting];
+                      this.log.silly(`getInverterCommunication ${path} answers ${setting} ${JSON.stringify(set, getJSONCircularReplacer())}`);
+                      if (!set.isSubread) {
+                        createC(this, path + setting, set.name);
+                        createS(
+                          this,
+                          `${path + setting}.write`,
+                          'Write to the inverter',
+                          { type: 'boolean', role: 'value', read: true, write: true },
+                          false,
+                          {
+                            set,
+                            sn,
+                            growattType,
+                            setting,
+                            action: 'write',
+                          }
+                        );
+                        createS(
+                          this,
+                          `${path + setting}.read`,
+                          'read from the inverter',
+                          { type: 'boolean', role: 'value', read: true, write: true },
+                          false,
+                          {
+                            set,
+                            sn,
+                            growattType,
+                            setting,
+                            action: 'read',
+                          }
+                        );
+                        createS(this, `${path + setting}.msg`, 'answer for write from the inverter', {
+                          type: 'string',
+                          role: 'value',
+                          read: true,
+                          write: false,
+                        });
+                        const paramKeys = Object.keys(set.param);
+                        paramKeys.forEach(param => {
+                          const p = set.param[param];
+                          const t = growartyp[p.type];
+                          if (t) {
+                            if (p.values) {
+                              t.states = {};
+                              Object.assign(t.states, p.values);
+                            }
+                            if (p.unit) {
+                              t.unit = p.unit;
+                            }
+                            createS(this, `${path + setting}.values.${param}`, p.name, t, p.def);
+                          }
+                        });
+                        this.readSetting(path + setting, growattType, setting, sn);
+                      } else {
+                        this.readSetting(path + set.isSubread, growattType, setting, sn);
+                      }
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    }
+  }
+
+  /**
    * Parses the data from the website into objects. Is called recrusively.
    * @param {object} plantData
    * @param {path} path to object
@@ -299,6 +548,7 @@ class Growatt extends utils.Adapter {
     this.log.debug(`Enter growattData, Param: sessionHold:${this.config.sessionHold}`);
     const allTimeDiff = getTime();
     let debugTimeDiff = getTime();
+    let afterConnect = false;
     let timeout = this.config.errorCycleTime * 1000;
     this.lifeSignCallback();
     try {
@@ -313,6 +563,7 @@ class Growatt extends utils.Adapter {
       }
       this.log.debug(`Growatt isConnected() : ${this.growatt.isConnected()}`);
       if (!this.growatt.isConnected()) {
+        afterConnect = true;
         if (this.config.keyLogin) {
           this.log.debug('Growatt share plant login');
           await this.growatt.sharePlantLogin(this.config.shareKey).catch(e => {
@@ -345,6 +596,12 @@ class Growatt extends utils.Adapter {
         debugTimeDiff = getTime();
         this.parseData(allPlantData, '');
         this.log.debug(`Growatt time for parseData : ${getTimeDiff(debugTimeDiff)}ms`);
+        if (afterConnect && this.config.settings) {
+          this.log.debug(`Growatt time for settings : ${getTimeDiff(debugTimeDiff)}ms`);
+          debugTimeDiff = getTime();
+          this.loadSettings(allPlantData);
+          this.log.debug(`Growatt time for settings : ${getTimeDiff(debugTimeDiff)}ms`);
+        }
         debugTimeDiff = getTime();
         if (this.callRun) {
           this.setStateAsync('info.connection', { val: true, ack: true });
