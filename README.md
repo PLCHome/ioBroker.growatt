@@ -207,9 +207,8 @@ Therefore, the description has also been removed.
 
 ## Changelog
 
-### 3.0.1 (02.06.2023)
+### 3.0.2 (08.06.2023)
 
-- (PLCHome) Reading the data accelerated due to parallel processing
 - (PLCHome) Write inverter settings, it can be activated via the config
 
   - mix
