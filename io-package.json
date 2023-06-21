@@ -41,33 +41,8 @@
         "pl": "TLX Obecnie pracuje Hybrid.\nDane statystyczne pochodzą z TLX/TLXH.\nJeśli istnieją różne odwzorowania, są one teraz pokazane.",
         "uk": "ТЛКС Гібрид тепер працює.\nСтатус на сервери.\nЯкщо є різні інвертори, це зараз показано.",
         "zh-cn": "B. 建 议 目前正努力解决这一问题。.\n现状数据现在也来自TLX/TLXH。.\n如果有不同的防污者,现在就有这种资料。."
-      },
-      "2.0.0": {
-        "en": "Data logger settings can be called up and changed. The server url can be changed.",
-        "de": "Datenloggereinstellungen können aufgerufen und geändert werden. Der Server url kann geändert werden.",
-        "ru": "Параметры логгера данных можно назвать вверх и изменить. Сервер URL можно изменить.",
-        "pt": "As configurações do registrador de dados podem ser chamadas e alteradas. A URL do servidor pode ser alterada.",
-        "nl": "Data logger kan worden opgeroepen en veranderd. De server kan veranderd worden.",
-        "fr": "Les paramètres du enregistreur de données peuvent être appelés et modifiés. L'url du serveur peut être changé.",
-        "it": "Le impostazioni del data logger possono essere richiamate e modificate. L'url del server può essere modificato.",
-        "es": "Los ajustes del registrador de datos se pueden llamar y cambiar. El url servidor puede ser cambiado.",
-        "pl": "Takie ustawienia mogą być nazywane i zmienione. Serwer url może zostać zmieniony.",
-        "zh-cn": "数据采伐环境可以被要求和改变。 服务器可改变。."
-      },
-      "1.2.1": {
-        "en": "Added an offset to numeric values. My inverter reset te total quantity by itself. Now the total quantity can be corrected.",
-        "de": "Hinzugefügt einen Offset zu numerischen Werten. Mein Inverter setzt die gesamte Menge von sich zurück. Nun kann die Gesamtmenge korrigiert werden.",
-        "ru": "Добавлена компенсация в числовые значения. Мой инвертор сбрасывает общее количество сам по себе. Теперь общее количество можно исправить.",
-        "pt": "Adicionado um deslocamento para valores numéricos. Meu inversor redefinir a quantidade total por si só. Agora a quantidade total pode ser corrigida.",
-        "nl": "Voegde een offset toe aan talrijke waarden. Mijn inverter reset te totale hoeveelheid van zichzelf. Nu kan de totale hoeveelheid gecorrigeerd worden.",
-        "fr": "Ajout d'un décalage aux valeurs numériques. Mon inverseur réinitialiser la quantité totale de te par lui-même. Maintenant, la quantité totale peut être corrigée.",
-        "it": "Aggiunto un offset ai valori numerici. Il mio inverter reset te quantità totale da solo. Ora la quantità totale può essere corretta.",
-        "es": "Agregó un offset a valores numéricos. Mi inverter reset te cantidad total por sí mismo. Ahora se puede corregir la cantidad total.",
-        "pl": "Dodany do wartości liczbowych. My inverter reset the total amount by itself.. Teraz całkowita ilość może być poprawiona.",
-        "zh-cn": "增加对数字价值的抵消。 我热切地把破伤风总量逐出。 现在可以纠正总数。."
       }
     },
-    "title": "Growatt Shine API",
     "titleLang": {
       "en": "Growatt Shine API",
       "de": "Growatt Shine API",
@@ -78,6 +53,7 @@
       "it": "Growatt Shine API",
       "es": "API Growatt Shine",
       "pl": "Growatt Shine API",
+      "uk": "Growatt Shine API",
       "zh-cn": "Growatt Shine API"
     },
     "desc": {
@@ -90,6 +66,7 @@
       "it": "Adattatore per Growatt ioBroker da comunicare con ShineAPI",
       "es": "Adaptador ioBroker Growatt para comunicarse con ShineAPI",
       "pl": "ioBroker Growatt Adapter do komunikacji z ShineAPI",
+      "uk": "ioBroker Growatt адаптер для комунікації з ShineAPI",
       "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
     },
     "authors": ["PLCHome"],
@@ -98,8 +75,6 @@
       "shine",
       "shinephone",
       "shineapi",
-      "ioBroker",
-      "smart home",
       "solarenergy",
       "home automation",
       "solar power",
@@ -121,7 +96,7 @@
     "compact": true,
     "connectionType": "cloud",
     "dataSource": "poll",
-    "localLink": "https://server.growatt.com/",
+    "localLinks": { "_default": "https://server.growatt.com/" },
     "materialize": true,
     "adminUI": { "config": "materialize" },
     "plugins": {
