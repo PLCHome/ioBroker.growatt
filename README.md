@@ -204,6 +204,10 @@ Therefore, the description has also been removed.
 
 ## Changelog
 
+### 3.0.3 (27.06.2023)
+
+- (PLCHome) setting for tlx/tlxh time improved
+
 ### 3.0.2 (08.06.2023)
 
 - (PLCHome) Write inverter settings, it can be activated via the config

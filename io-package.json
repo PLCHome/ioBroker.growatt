@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "news": {
+      "3.0.3": {
+        "en": "setting for tlx/tlxh time improved",
+        "de": "Einstellung für tlx/tlxh Zeit verbessert",
+        "ru": "настройка для tlx/tlxh время улучшено",
+        "pt": "definição para tlx/tlxh tempo melhorado",
+        "nl": "instelling voor tlx/tlxh tijd verbeterd",
+        "fr": "réglage du temps tlx/tlxh amélioré",
+        "it": "impostazione per il tempo tlx/tlxh migliorato",
+        "es": "ajuste para el tiempo tlxh mejorado",
+        "pl": "ustawienie czasu tlx/tlxh poprawiło się",
+        "uk": "налаштування часу tlx/tlxh",
+        "zh-cn": "时间/时间的设置有所改善"
+      },
       "3.0.2": {
         "en": "Write inverter settings (mix,tlx/tlxh), it can be activated via the config",
         "de": "Schreib-Wechselrichter-Einstellungen (Mix,tlx/tlxh) kann über die config aktiviert werden",
@@ -70,17 +83,7 @@
       "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
     },
     "authors": ["PLCHome"],
-    "keywords": [
-      "growatt",
-      "shine",
-      "shinephone",
-      "shineapi",
-      "solarenergy",
-      "home automation",
-      "solar power",
-      "solar power plant",
-      "solaranlage"
-    ],
+    "keywords": ["growatt", "shine", "shinephone", "shineapi", "solarenergy", "home automation", "solar power", "solar power plant", "solaranlage"],
     "license": "MIT",
     "platform": "Javascript/Node.js",
     "main": "growattMain.js",
