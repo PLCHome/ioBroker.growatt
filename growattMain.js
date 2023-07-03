@@ -9,6 +9,8 @@ const utils = require('@iobroker/adapter-core');
 
 const growartyp = {
   INUM_0_100: { type: 'number', role: 'value', min: 0, max: 100, step: 1, read: true, write: true },
+  INUM_0_24: { type: 'number', role: 'value', min: 0, max: 24, step: 1, read: true, write: true },
+  INUM_0_60: { type: 'number', role: 'value', min: 0, max: 60, step: 1, read: true, write: true },
   BOOL: { type: 'boolean', role: 'value', read: true, write: true },
   STIME_H_MIN: { type: 'string', role: 'value', read: true, write: true },
   DATETIME: { type: 'number', role: 'value.time', read: true, write: true },
@@ -277,7 +279,7 @@ class Growatt extends utils.Adapter {
           this.setStateAsync(`${path}.read`, { val: r.success, ack: true });
         })
         .catch(e => {
-          this.log.warn(`Read inverter settings ${setting}:${typeof e === 'object' ? JSON.stringify(e, getJSONCircularReplacer()) : e}`);
+          this.log.warn(`Read inverter settings ${setting}:${e}`);
         });
     }
   }

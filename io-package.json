@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.0.3",
+    "version": "3.0.4",
     "news": {
-      "3.0.3": {
-        "en": "setting for tlx/tlxh time improved",
-        "de": "Einstellung für tlx/tlxh Zeit verbessert",
-        "ru": "настройка для tlx/tlxh время улучшено",
-        "pt": "definição para tlx/tlxh tempo melhorado",
-        "nl": "instelling voor tlx/tlxh tijd verbeterd",
-        "fr": "réglage du temps tlx/tlxh amélioré",
-        "it": "impostazione per il tempo tlx/tlxh migliorato",
-        "es": "ajuste para el tiempo tlxh mejorado",
-        "pl": "ustawienie czasu tlx/tlxh poprawiło się",
-        "uk": "налаштування часу tlx/tlxh",
-        "zh-cn": "时间/时间的设置有所改善"
+      "3.0.4": {
+        "en": "No retrieval of the other parameters value possible after parameter error.\nSetting Grid first and Battery first setting on MIX improved.\nSetting for tlx/tlxh time improved.",
+        "de": "Nach dem Parameterfehler ist kein Abrufen des anderen Parameterwertes möglich.\nGrid erste Einstellung und Batterie erste Einstellung auf MIX verbessert.\nEinstellung für tlx/tlxh Zeit verbessert.",
+        "ru": "Никакое извлечение значения других параметров возможно после ошибки параметра.\nУстановка Grid во-первых и установка батареи сперва на MIX улучшено.\nУстановка для tlx/tlxh времени улучшена.",
+        "pt": "Não é possível recuperar o valor dos outros parâmetros após o erro do parâmetro.\nDefinir grade primeiro e primeira configuração da bateria no MIX melhorou.\nConfiguração para o tempo tlx/tlxh melhorado.",
+        "nl": "Geen verwijdering van de andere parameters die mogelijk zijn na de parameterfout.\nEerst Grid en Battery opzetten voor MIX verbeterd.\nKlaar voor Tlx/Tlxh tijd verbeterd.",
+        "fr": "Aucune récupération de l'autre valeur de paramètres possible après erreur de paramètre.\nRéglage Grid premier et réglage de la batterie sur MIX amélioré.\nRéglage du temps tlx/tlxh amélioré.",
+        "it": "Nessun recupero degli altri parametri possibile dopo l'errore dei parametri.\nImpostazione Griglia prima e batteria prima impostazione su MIX migliorato.\nImpostazione per il tempo tlx/tlxh migliorato.",
+        "es": "No hay recuperación del valor de otros parámetros posible después del error del parámetro.\nAjuste de agarre primero y la instalación de batería en MIX mejorado.\nMejora la configuración del tiempo tlxh/tlxh.",
+        "pl": "Brak odzyskiwania innych parametrów po błędzie parametrów.\nPo raz pierwszy zainstalowano Baterię Grid, a po raz pierwszy ustawiono o MIX.\nPoprawiono tlx/tlxh.",
+        "uk": "Після помилки параметра не існує.\nНастроювання струменя першого і першого встановлення акумулятора на MIX поліпшено.\nНалаштування часу tlx/tlxh.",
+        "zh-cn": "在参数错误之后,无法再计算其他参数值。.\n在IX年第一和Battery先设立全球定位系统。.\n海/海报的设置有所改善。."
       },
       "3.0.2": {
         "en": "Write inverter settings (mix,tlx/tlxh), it can be activated via the config",
