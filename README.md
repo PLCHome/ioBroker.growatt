@@ -9,6 +9,8 @@
 
 [![NPM](https://nodei.co/npm/iobroker.growatt.png?downloads=true)](https://nodei.co/npm/iobroker.growatt/)
 
+**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
+
 This adapter works through Growatt's cloud servers. There is also the [Grott project](https://github.com/johanmeijer/grott) that intercepts the data from the communication.
 
 ---
