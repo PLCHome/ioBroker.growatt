@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "news": {
-      "3.1.0": {
+      "3.1.1": {
         "en": "Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Path of the Growatt web interface.",
         "de": "Unterstützung für Growatt-Seite, wenn Anlage eine C&I-Pflanze-Seite mit indexbC oder Pflanze ist Tun Sie im Pfad der Growatt-Weboberfläche.",
         "ru": "Добавлена поддержка страницы Growatt, когда Plant является C&I Plant page с indexbC или растение Сделайте в пути веб-интерфейса Growatt.",

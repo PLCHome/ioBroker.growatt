@@ -211,7 +211,7 @@ Therefore, the description has also been removed.
 
 ## Changelog
 
-### 3.1.0 (03.07.2023)
+### 3.1.1 (03.07.2023)
 
 - (PLCHome) Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Path of the Growatt web interface. Thanks to Denn281
 
