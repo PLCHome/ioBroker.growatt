@@ -100,6 +100,7 @@ class Growatt extends utils.Adapter {
       if (typeof this.config.sessionTime === 'undefined' || this.config.sessionTime === '') this.config.sessionTime = 0;
       if (typeof this.config.cycleTime === 'undefined' || this.config.cycleTime === '') this.config.cycleTime = 30;
       if (typeof this.config.errorCycleTime === 'undefined' || this.config.errorCycleTime === '') this.config.errorCycleTime = 120;
+      if (typeof this.config.indexCandI === 'undefined' || this.config.indexCandI === '') this.config.indexCandI = false;
 
       this.getStates(`${this.name}.${this.instance}.*`, (errGS, states) => {
         Object.keys(states).forEach(id => {
@@ -561,6 +562,7 @@ class Growatt extends utils.Adapter {
           timeout: this.config.webTimeout * 1000,
           lifeSignCallback: this.lifeSignCallback.bind(this),
           server: this.config.growattServer || '',
+          indexCandI: this.config.indexCandI,
         });
       }
       this.log.debug(`Growatt isConnected() : ${this.growatt.isConnected()}`);

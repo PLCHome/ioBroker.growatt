@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.0.4",
+    "version": "3.1.0",
     "news": {
+      "3.1.0": {
+        "en": "Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Path of the Growatt web interface.",
+        "de": "Unterstützung für Growatt-Seite, wenn Anlage eine C&I-Pflanze-Seite mit indexbC oder Pflanze ist Tun Sie im Pfad der Growatt-Weboberfläche.",
+        "ru": "Добавлена поддержка страницы Growatt, когда Plant является C&I Plant page с indexbC или растение Сделайте в пути веб-интерфейса Growatt.",
+        "pt": "Adicionado suporte para página Growatt quando Plant é uma página Planta C&I com indexbC ou planta Faça no caminho da interface web Growatt.",
+        "nl": "Aangename steun voor Growatt pagina als Plant een CI Plant pagina is met indexbC of plant Doen in Path of the Growatt web interface.",
+        "fr": "Ajout d'un support pour la page Growatt lorsque Plant est une page de plante CôneI avec indexbC ou plante Faire dans Path of the Growatt interface web.",
+        "it": "Aggiunto il supporto per pagina Growatt quando Plant è una pagina C&I Plant con indexbC o pianta Fare in Path of the Growatt web interface.",
+        "es": "Apoyo añadido a la página Growatt cuando la planta es una página de planta CENTEI con indexbC o planta Hacer en Sendero de la interfaz web de Growatt.",
+        "pl": "Wsparcie dla strony Growata, gdy Plant jest stroną C&I Plant z indeksem bC lub rośliną roślinną. Do in Path of the Growatt web interface (ang.).",
+        "uk": "Додано підтримку сторінки Growatt, коли Завод є C&I Заводська сторінка з індексом BC або рослиною Do in Шлях веб-інтерфейсу Growatt.",
+        "zh-cn": "在有指数、C或植物的C&I Plant页的植物种植园时,添加对Growatt页的支持 Growatt网接口的Path"
+      },
       "3.0.4": {
         "en": "No retrieval of the other parameters value possible after parameter error.\nSetting Grid first and Battery first setting on MIX improved.\nSetting for tlx/tlxh time improved.",
         "de": "Nach dem Parameterfehler ist kein Abrufen des anderen Parameterwertes möglich.\nGrid erste Einstellung und Batterie erste Einstellung auf MIX verbessert.\nEinstellung für tlx/tlxh Zeit verbessert.",
@@ -135,6 +148,7 @@
     "cycleTime": 30,
     "errorCycleTime": 120,
     "growattServer": "",
+    "indexCandI": false,
     "settings": false
   },
   "objects": [],

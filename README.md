@@ -85,6 +85,12 @@ The inverter can only change one setting at a time and the transmission path is 
 
 The writing of the settings was developed to the best of our knowledge. However, the author does not assume liability for errors contained in or for damages arising from the use of the software.
 
+#### Write inverter settings
+
+Select it if your Growatt page is a C&I Plant page with indexbC or plantDo in the Path of the Growatt webinterface.
+
+The black C&I pages (commercial and industrial) have an other path to the objects but it semms to work if this Checkbox is on. It Changed index to indexbC in the webpath.
+
 #### Timeout in seconds
 
 The default timeout for HTTP requests. The default value 60 seconds, as with web browsers
@@ -117,7 +123,7 @@ Another url can be entered here, for example to use the US domain. But it must s
 ### Manage Objects
 
 Here you can define what should happen to each value (object) that is picked up by the inverter.
-There are a lot of values ​​that do not belong to your inverter. These can be removed here.
+There are a lot of values that do not belong to your inverter. These can be removed here.
 Since there is no event with which the object list can be reloaded when saving. The update button must be used when save is pressed.
 
 #### Normal
@@ -131,7 +137,7 @@ After the update, only the ID and the action are displayed because the object no
 
 #### No update
 
-The object remains, the values ​​from the inverter are discarded.
+The object remains, the values from the inverter are discarded.
 
 ### Manage Loggers
 
@@ -205,6 +211,10 @@ Therefore, the description has also been removed.
 
 ## Changelog
 
+### 3.1.0 (03.07.2023)
+
+- (PLCHome) Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Path of the Growatt web interface. Thanks to Denn281
+
 ### 3.0.4 (03.07.2023)
 
 - (PLCHome) No retrieval of the other parameters value possible after parameter error
@@ -267,7 +277,7 @@ Therefore, the description has also been removed.
 
 ### 1.1.15 (28.04.2022)
 
-- (PLCHome) Apple devices cannot open the adapter's config page with Safari, all values ​​are empty
+- (PLCHome) Apple devices cannot open the adapter's config page with Safari, all values are empty
 
 ### 1.1.14 (26.04.2022)
 

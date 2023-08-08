@@ -738,4 +738,17 @@ systemDictionary = {
       uk: 'Читання та написання параметрів інвертора на власний ризик. Це може пошкодити інвертор. Наші функції протестовані в кращих знаннях.',
       'zh-cn': '阅读和写信的环境中面临你本身的风险。 它会破坏多样性。 这些职能是对我们知识进行最佳测试的。.',
     },
+  'Select it if your Growatt page is a black C and I page': {
+    en: 'Select it if your Growatt page is a black C&I page',
+    de: 'Wählen Sie es aus, wenn Ihre Growatt-Seite eine schwarze C&I-Seite ist',
+    ru: 'Выберите его, если ваша страница Growatt является черной C & I страницы',
+    pt: 'Selecioná-lo se sua página Growatt é uma página C&I preta',
+    nl: 'Verkoop het als je Growat pagina een zwarte pagina is',
+    fr: 'Sélectionnez-le si votre page Growatt est une page Cautorisation noire',
+    it: 'Selezionalo se la pagina Growatt è una pagina C&I nera',
+    es: 'Seleccione si su página de Growatt es una página de CENTE negro',
+    pl: 'Wybiera go, jeśli twój profil jest czarnym stroną C&I',
+    uk: 'Виберіть його, якщо ваша сторінка Growatt є чорною C&I сторінкою',
+    'zh-cn': '如果你的Growatt页是黑白的C&I页。',
+  },
 };
