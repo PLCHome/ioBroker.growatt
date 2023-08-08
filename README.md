@@ -85,7 +85,7 @@ The inverter can only change one setting at a time and the transmission path is 
 
 The writing of the settings was developed to the best of our knowledge. However, the author does not assume liability for errors contained in or for damages arising from the use of the software.
 
-#### Write inverter settings
+#### Select it if your Growatt page is a black C&I page
 
 Select it if your Growatt page is a C&I Plant page with indexbC or plantDo in the Path of the Growatt webinterface.
 
