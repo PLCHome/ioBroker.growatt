@@ -187,18 +187,53 @@ The return value is returned depending on the parameter transfer. If the paramet
 This command lists the history. It can be used, for example, to supplement data in a database.
 Regardless of the time range, Growatt always seems to return 80 records. If the interval is set to 1 minute and more than 80 minutes are needed, the command must be executed several times and the start from 0 must be increased more and more.
 
-| Parameter | Type    | Description                                                                                      |
-| --------- | ------- | ------------------------------------------------------------------------------------------------ |
-| type      | String  | The type of inverter can be found in object "growatt.<instance>.<nr>.devices.<sn>.growattType".  |
-| sn        | String  | The serialnumber of inverter can be found in object path "growatt.<instance>.<nr>.devices.<sn>". |
-| startDate | Date    | The atart                                                                                        |
-| endDate   | Date    | The end mast be grater then start                                                                |
-| start     | Integer | 0 is the start page for the call with the most recent data first                                 |
+| Parameter | Type    | Description                                                                                                  |
+| --------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| type      | String  | The type of inverter can be found in object "growatt. - instance - . - nr - .devices. - sn - .growattType".  |
+| sn        | String  | The serialnumber of inverter can be found in object path "growatt. - instance - . - nr - .devices. - sn - ". |
+| startDate | Date    | The atart                                                                                                    |
+| endDate   | Date    | The end mast be grater then start                                                                            |
+| start     | Integer | 0 is the start page for the call with the most recent data first                                             |
 
 Example call:
 
 ```
   sendTo('growatt.0','getHistory',{"type":"<your inverter type>","sn":"<your inverter serial>","startDate":new Date((new Date()).getTime()- 60*60*1000),"endDate":new Date() , "start":0},(res)=>{console.log(res)})
+```
+
+Example code:
+
+```
+const sn = " your sn "; //your inverter sn
+const inType = " your typ "; // the invertertyp
+const hist = 'growatt.0. your nr .devices. your sn .historyLast.'; // the Path to history
+const storeField =['accChargePower','etoGridToday']; //the fields to store
+const history = "influx.0" //your History sql.0 or influx.0 or history.0 ...
+const min = 10 // größer 10 min auffüllen....
+
+on({id: hist+'calendar', change: "ne"},(obj)=>{
+    if ((obj.state.val - obj.oldState.val) > min*60000) {
+        console.log(obj.state.val - obj.oldState.val);
+        function fillup(res) {
+            res.forEach((r)=>{
+                const ti = (new Date(r.calendar)).getTime();
+                if (ti > obj.oldState.val && ti < obj.state.val) {
+                    function store(n) {
+                        sendTo(history, 'storeState', {
+                            id: hist+n,
+                            state: {ts: ti, val: r[n], ack: true}
+                        }, result => {console.log(`added ${hist+n} ${new Date(ti)} ${r[n]}`)});
+                    }
+                    storeField.forEach((f) => {store(f)});
+                }
+            })
+        }
+        sendTo('growatt.0','getHistory',{"type":inType,"sn":sn,"startDate":obj.oldState.val,"endDate":obj.state.val, "start":0},fillup)
+        sendTo('growatt.0','getHistory',{"type":inType,"sn":sn,"startDate":obj.oldState.val,"endDate":obj.state.val, "start":1},fillup)
+        sendTo('growatt.0','getHistory',{"type":inType,"sn":sn,"startDate":obj.oldState.val,"endDate":obj.state.val, "start":2},fillup)
+        sendTo('growatt.0','getHistory',{"type":inType,"sn":sn,"startDate":obj.oldState.val,"endDate":obj.state.val, "start":3},fillup)
+    }
+});
 ```
 
 ### getDatalogger
