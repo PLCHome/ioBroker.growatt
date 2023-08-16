@@ -663,6 +663,26 @@ class Growatt extends utils.Adapter {
     }
   }
 
+  confCheckMsgObj(obj, vars) {
+    let res = true;
+    let data = obj.message;
+    if (typeof data === 'string') {
+      data = JSON.parse(data);
+    }
+    if (typeof data !== 'object') {
+      this.log.error(`message arg ${typeof data} not an object or json string`);
+      res = false;
+      return [data, res];
+    }
+    vars.forEach(v => {
+      if (typeof data[v] === 'undefined') {
+        this.log.error(`message <arg>.${v} is missing`);
+        res = false;
+      }
+    });
+    return [data, res];
+  }
+
   /**
    * spinoff onMessage, reads a register
    * @param {string} sn serielnumber of datalogger
@@ -671,13 +691,16 @@ class Growatt extends utils.Adapter {
    */
   readLoggerRegister(register, obj) {
     if (this.growatt && this.growatt.isConnected()) {
-      const data = JSON.parse(obj.message);
+      const [data, ok] = this.confCheckMsgObj(obj, ['sn']);
+      if (!ok) {
+        return;
+      }
       this.growatt
         .getDataLoggerRegister(data.sn, register)
         .then(res => {
           this.log.debug(`readLoggerRegister: ${JSON.stringify(res, getJSONCircularReplacer())}`);
           if (obj.callback && typeof res.success !== 'undefined') {
-            this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+            this.sendTo(obj.from, obj.command, typeof obj.message === 'string' ? JSON.stringify(res, getJSONCircularReplacer()) : res, obj.callback);
           }
         })
         .catch(e => {
@@ -695,13 +718,16 @@ class Growatt extends utils.Adapter {
    */
   writeLoggerRegister(register, obj) {
     if (this.growatt && this.growatt.isConnected()) {
-      const data = JSON.parse(obj.message);
+      const [data, ok] = this.confCheckMsgObj(obj, ['sn', 'value']);
+      if (!ok) {
+        return;
+      }
       this.growatt
         .setDataLoggerRegister(data.sn, register, data.value)
         .then(res => {
           this.log.debug(`writeLoggerRegister: ${JSON.stringify(res, getJSONCircularReplacer())}`);
           if (obj.callback && typeof res.success !== 'undefined') {
-            this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+            this.sendTo(obj.from, obj.command, typeof obj.message === 'string' ? JSON.stringify(res, getJSONCircularReplacer()) : res, obj.callback);
           }
         })
         .catch(e => {
@@ -719,13 +745,16 @@ class Growatt extends utils.Adapter {
    */
   writeLoggerFunction(func, obj) {
     if (this.growatt && this.growatt.isConnected()) {
-      const data = JSON.parse(obj.message);
+      const [data, ok] = this.confCheckMsgObj(obj, ['sn', 'value']);
+      if (!ok) {
+        return;
+      }
       this.growatt
         .setDataLoggerParam(data.sn, func, data.value)
         .then(res => {
           this.log.debug(`writeLoggerFunction: ${JSON.stringify(res, getJSONCircularReplacer())}`);
           if (obj.callback && typeof res.success !== 'undefined') {
-            this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+            this.sendTo(obj.from, obj.command, typeof obj.message === 'string' ? JSON.stringify(res, getJSONCircularReplacer()) : res, obj.callback);
           }
         })
         .catch(e => {
@@ -751,7 +780,12 @@ class Growatt extends utils.Adapter {
               .then(res => {
                 this.log.debug(`getDatalogger: ${JSON.stringify(res, getJSONCircularReplacer())}`);
                 if (obj.callback) {
-                  this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+                  this.sendTo(
+                    obj.from,
+                    obj.command,
+                    typeof obj.message === 'string' ? JSON.stringify(res, getJSONCircularReplacer()) : res,
+                    obj.callback
+                  );
                 }
               })
               .catch(e => {
@@ -786,13 +820,21 @@ class Growatt extends utils.Adapter {
         case 'checkLoggerFirmware':
           if (this.growatt && this.growatt.isConnected()) {
             wait = true;
-            const data = JSON.parse(obj.message);
+            const [data, ok] = this.confCheckMsgObj(obj, ['sn']);
+            if (!ok) {
+              return;
+            }
             this.growatt
               .checkDataLoggerFirmware(data.type, data.version)
               .then(res => {
                 this.log.debug(`checkDataLoggerFirmware: ${JSON.stringify(res, getJSONCircularReplacer())}`);
                 if (obj.callback && typeof res.success !== 'undefined') {
-                  this.sendTo(obj.from, obj.command, JSON.stringify(res, getJSONCircularReplacer()), obj.callback);
+                  this.sendTo(
+                    obj.from,
+                    obj.command,
+                    typeof obj.message === 'string' ? JSON.stringify(res, getJSONCircularReplacer()) : res,
+                    obj.callback
+                  );
                 }
               })
               .catch(e => {
@@ -803,7 +845,10 @@ class Growatt extends utils.Adapter {
         case 'restartDatalogger':
           if (this.growatt && this.growatt.isConnected()) {
             wait = true;
-            const data = JSON.parse(obj.message);
+            const [data, ok] = this.confCheckMsgObj(obj, ['sn']);
+            if (!ok) {
+              return;
+            }
             this.growatt
               .setDataLoggerRestart(data.sn)
               .then(res => {
@@ -816,15 +861,38 @@ class Growatt extends utils.Adapter {
               });
           }
           break;
+        case 'getHistory':
+          if (this.growatt && this.growatt.isConnected()) {
+            wait = true;
+            const [data, ok] = this.confCheckMsgObj(obj, ['type', 'sn', 'startDate', 'endDate', 'start']);
+            if (!ok) {
+              return;
+            }
+            this.growatt
+              .getHistory(data.type, data.sn, new Date(data.startDate), new Date(data.endDate), data.start, true)
+              .then(res => {
+                if (obj.callback) {
+                  this.sendTo(
+                    obj.from,
+                    obj.command,
+                    typeof obj.message === 'string' ? JSON.stringify(res, getJSONCircularReplacer()) : res,
+                    obj.callback
+                  );
+                }
+              })
+              .catch(e => {
+                this.log.error(e);
+              });
+          }
+          break;
         default:
           this.log.warn(`Unknown command: ${obj.command}`);
-          return false;
+          return;
       }
     }
     if (!wait && obj.callback) {
       this.sendTo(obj.from, obj.command, obj.message, obj.callback);
     }
-    return true;
   }
 }
 

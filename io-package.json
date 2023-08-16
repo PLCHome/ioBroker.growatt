@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "news": {
-      "3.1.1": {
-        "en": "Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Path of the Growatt web interface.",
-        "de": "Unterstützung für Growatt-Seite, wenn Anlage eine C&I-Pflanze-Seite mit indexbC oder Pflanze ist Tun Sie im Pfad der Growatt-Weboberfläche.",
-        "ru": "Добавлена поддержка страницы Growatt, когда Plant является C&I Plant page с indexbC или растение Сделайте в пути веб-интерфейса Growatt.",
-        "pt": "Adicionado suporte para página Growatt quando Plant é uma página Planta C&I com indexbC ou planta Faça no caminho da interface web Growatt.",
-        "nl": "Aangename steun voor Growatt pagina als Plant een CI Plant pagina is met indexbC of plant Doen in Path of the Growatt web interface.",
-        "fr": "Ajout d'un support pour la page Growatt lorsque Plant est une page de plante CôneI avec indexbC ou plante Faire dans Path of the Growatt interface web.",
-        "it": "Aggiunto il supporto per pagina Growatt quando Plant è una pagina C&I Plant con indexbC o pianta Fare in Path of the Growatt web interface.",
-        "es": "Apoyo añadido a la página Growatt cuando la planta es una página de planta CENTEI con indexbC o planta Hacer en Sendero de la interfaz web de Growatt.",
-        "pl": "Wsparcie dla strony Growata, gdy Plant jest stroną C&I Plant z indeksem bC lub rośliną roślinną. Do in Path of the Growatt web interface (ang.).",
-        "uk": "Додано підтримку сторінки Growatt, коли Завод є C&I Заводська сторінка з індексом BC або рослиною Do in Шлях веб-інтерфейсу Growatt.",
-        "zh-cn": "在有指数、C或植物的C&I Plant页的植物种植园时,添加对Growatt页的支持 Growatt网接口的Path"
+      "3.1.2": {
+        "en": "Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Growatt web interface path.\nAdded getHistory message.",
+        "de": "Unterstützung für Growatt-Seite, wenn Anlage eine C&I-Pflanze-Seite mit indexbC oder Pflanze ist Machen Sie in Growatt Web-Schnittstellenpfad.\nHinzugefügt getHistory-Nachricht.",
+        "ru": "Добавлена поддержка страницы Growatt, когда Plant является C&I Plant page с indexbC или растение Сделайте в Growatt web интерфейс пути.\nДобавлено getHistory сообщение.",
+        "pt": "Adicionado suporte para página Growatt quando Plant é uma página Planta C&I com indexbC ou planta Faça no caminho de interface web Growatt.\nAdicionada mensagem getHistory.",
+        "nl": "Aangename steun voor Growatt pagina als Plant een CI Plant pagina is met indexbC of plant Doe in Growatt interface pad.\nIk heb zijn boodschap toegevoegd.",
+        "fr": "Ajout d'un support pour la page Growatt lorsque Plant est une page de plante CôneI avec indexbC ou plante Faites dans le chemin d'interface Web de Growatt.\nAjout du message getHistory.",
+        "it": "Aggiunto il supporto per pagina Growatt quando Plant è una pagina C&I Plant con indexbC o pianta Fai il percorso dell'interfaccia web di Growatt.\nAggiunto getHistory messaggio.",
+        "es": "Apoyo añadido a la página Growatt cuando la planta es una página de planta CENTEI con indexbC o planta Hacer en Growatt ruta de interfaz web.\nSe agregó mensaje de historia.",
+        "pl": "Wsparcie dla strony Growata, gdy Plant jest stroną C&I Plant z indeksem bC lub rośliną roślinną. Do in Growatt web path (ang.).\nAdded getHistory message (ang.).",
+        "uk": "Додано підтримку сторінки Growatt, коли Завод є C&I Заводська сторінка з індексом BC або рослиною Відвідайте веб-сайт Growatt.\nДодано getHistory повідомлення.",
+        "zh-cn": "在有指数、C或植物的C&I Plant页的植物种植园时,添加对Growatt页的支持 在Growatt网络接口中。.\n增加获取信息。."
       },
       "3.0.4": {
         "en": "No retrieval of the other parameters value possible after parameter error.\nSetting Grid first and Battery first setting on MIX improved.\nSetting for tlx/tlxh time improved.",
@@ -54,19 +54,6 @@
         "pl": "Struktura kalendarzowa nie zawsze była zmieniana na znaczek czasowy.\nPoprawa w wewnętrznej obsługi obiektów bez uwzględniania ich sprawy.\n",
         "uk": "Структура календаря не завжди була змінена на час.\nУдосконалення внутрішніх робіт об’єктів без розгляду справи.\n",
         "zh-cn": "降级结构并不总是随着时间推移而改变。.\n改进物体的内部处理,而不考虑其情况。.\n"
-      },
-      "2.1.0": {
-        "en": "TLX Hybrid is now working.\nStatus data now also from TLX/TLXH.\nIf there are different inverters, these are now shown.",
-        "de": "TLX Hybrid arbeitet jetzt.\nStatusdaten nun auch von TLX/TLXH.\nSind verschiedene Wechselrichter vorhanden, werden diese nun angezeigt.",
-        "ru": "ТЛС Гибрид теперь работает.\nДанные о состоянии теперь также от TLX/TLXH.\nЕсли есть разные инверторы, они теперь показаны.",
-        "pt": "TLX O híbrido está a funcionar.\nDados de status agora também de TLX/TLXH.\nSe houver inversores diferentes, estes são agora mostrados.",
-        "nl": "TLX Hybrid werkt nu.\nStatus gegevens van TLTLXH.\nAls er verschillende inverters zijn, zijn deze nu getoond.",
-        "fr": "TLX Hybrid travaille maintenant.\nLes données de statut sont maintenant également de TLX/TLXH.\nS'il y a différents inverseurs, ils sont maintenant montrés.",
-        "it": "TLX Hybrid sta lavorando.\nDati di stato ora anche da TLX/TLXH.\nSe ci sono diversi inverter, questi sono ora mostrati.",
-        "es": "TLX híbrido está funcionando.\nDatos de estado ahora también de TLX/TLXH.\nSi hay diferentes inversores, estos se muestran ahora.",
-        "pl": "TLX Obecnie pracuje Hybrid.\nDane statystyczne pochodzą z TLX/TLXH.\nJeśli istnieją różne odwzorowania, są one teraz pokazane.",
-        "uk": "ТЛКС Гібрид тепер працює.\nСтатус на сервери.\nЯкщо є різні інвертори, це зараз показано.",
-        "zh-cn": "B. 建 议 目前正努力解决这一问题。.\n现状数据现在也来自TLX/TLXH。.\n如果有不同的防污者,现在就有这种资料。."
       }
     },
     "titleLang": {

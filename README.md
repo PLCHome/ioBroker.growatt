@@ -176,6 +176,115 @@ The settings are accepted.
 
 ---
 
+## sendTo for scripts
+
+It is possible to send a command to the instance via sendTo. The adapter then responds.
+The following commands are implemented.
+The return value is returned depending on the parameter transfer. If the parameters are passed as a JSON string, a JSON is returned. If the parameters are passed as an object, an object is returned.
+
+### getHistory
+
+This command lists the history. It can be used, for example, to supplement data in a database.
+Regardless of the time range, Growatt always seems to return 80 records. If the interval is set to 1 minute and more than 80 minutes are needed, the command must be executed several times and the start from 0 must be increased more and more.
+
+| Parameter | Type    | Description                                                                                      |
+| --------- | ------- | ------------------------------------------------------------------------------------------------ |
+| type      | String  | The type of inverter can be found in object "growatt.<instance>.<nr>.devices.<sn>.growattType".  |
+| sn        | String  | The serialnumber of inverter can be found in object path "growatt.<instance>.<nr>.devices.<sn>". |
+| startDate | Date    | The atart                                                                                        |
+| endDate   | Date    | The end mast be grater then start                                                                |
+| start     | Integer | 0 is the start page for the call with the most recent data first                                 |
+
+Example call:
+
+```
+  sendTo('growatt.0','getHistory',{"type":"<your inverter type>","sn":"<your inverter serial>","startDate":new Date((new Date()).getTime()- 60*60*1000),"endDate":new Date() , "start":0},(res)=>{console.log(res)})
+```
+
+### getDatalogger
+
+It gives you information about the dataloggers.
+This function has no parameters. Either "{}" or {} must be passed.
+The return is an array of object.
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+
+### getDataLoggerIntervalRegister
+
+It reads out the interval and returns it. the return value is an OBJ. The interval is in msg.
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| sn        | string | The serial number of the logger is returned by getDatalogger. |
+
+### setDataLoggerIntervalRegister
+
+Writes the interval at which the logger sends the data.
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| sn        | string  | The serial number of the logger is returned by getDatalogger. |
+| value     | integer | The new value in minutes                                      |
+
+An object is returned with a message.
+
+### getDataLoggerIpRegister
+
+It reads the IP to which the logger sends the data and returns it. The return value is an OBJ. The IP is in msg.
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| sn        | string | The serial number of the logger is returned by getDatalogger. |
+
+### setDataLoggerIp
+
+It writes the IP to which the logger sends the data. It's useful for the Grott project. The return value is an object that says what happened.
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| sn        | string  | The serial number of the logger is returned by getDatalogger. |
+| value     | integer | The new value in minutes                                      |
+
+An object is returned with a message.
+
+### getDataLoggerPortRegister
+
+It reads the port to which the logger sends the data and returns it. The return value is an OBJ. The IP is in msg.
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| sn        | string | The serial number of the logger is returned by getDatalogger. |
+
+### setDataLoggerPort
+
+It writes the port to which the logger sends the data. It's useful for the Grott project. The return value is an object that says what happened.
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| sn        | string  | The serial number of the logger is returned by getDatalogger. |
+| value     | integer | The new value in minutes                                      |
+
+An object is returned with a message.
+
+### checkLoggerFirmware
+
+Calls up the firmware check from the logger. If an update is necessary, you can see it in the answer.
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| sn        | string | The serial number of the logger is returned by getDatalogger. |
+
+### restartDatalogger
+
+Causes a warm start of the data logger.
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| sn        | string | The serial number of the logger is returned by getDatalogger. |
+
+---
+
 ## Speedup data interval internal method
 
 Have a look at Manage Loggers and Button Interval
@@ -210,6 +319,11 @@ Therefore, the description has also been removed.
 -\*-
 
 ## Changelog
+
+### 3.1.2 (16.08.2023)
+
+- (PLCHome) sendTo now also possible with objects as message data
+- (PLCHome) Added message getHistory
 
 ### 3.1.1 (03.07.2023)
 
