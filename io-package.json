@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.1.2",
+    "version": "3.2.0",
     "news": {
+      "3.2.0": {
+        "en": "Added inverter typ singleBackflow and multipleBackflow",
+        "de": "Inverter Typ singleBackflow und multipleBackflow hinzugefügt",
+        "ru": "Добавлено inverter тип singleBackflow и multipleBackflow",
+        "pt": "Adicionado inversor digite singleBackflow e multipleBackflow",
+        "nl": "Voegde inverter typ singleBackflow en multipleBackflow",
+        "fr": "Ajouté inverter typ singleBackflow et multipleBackflow",
+        "it": "Aggiunto inverter typ singleBackflow e multipleBackflow",
+        "es": "Tipo de inversor singleBackflow y multipleBackflow",
+        "pl": "Zamknięte odwzorowanie na typie singleBackflow i multipleBackflow",
+        "uk": "Додано інвертор тип singleBackflow та multipleBackflow",
+        "zh-cn": "A. 增加各种类型singleBackflow和multipleBackflow"
+      },
       "3.1.2": {
         "en": "Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Growatt web interface path.\nAdded getHistory message.",
         "de": "Unterstützung für Growatt-Seite, wenn Anlage eine C&I-Pflanze-Seite mit indexbC oder Pflanze ist Machen Sie in Growatt Web-Schnittstellenpfad.\nHinzugefügt getHistory-Nachricht.",
