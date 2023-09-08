@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "news": {
-      "3.2.0": {
+      "3.2.1": {
         "en": "Added inverter typ singleBackflow and multipleBackflow",
         "de": "Inverter Typ singleBackflow und multipleBackflow hinzugefügt",
         "ru": "Добавлено inverter тип singleBackflow и multipleBackflow",
