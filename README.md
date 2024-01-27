@@ -66,6 +66,10 @@ This data record contains some data from the device. Some data are also availabl
 
 This data set contains the weather forecast.
 
+#### Read fault log entries
+
+Reads the entries in the fault log of the current year and creates objects with the messages for this. Only the first page with the most current reports is read.
+
 #### Write inverter settings
 
 If this is activated, some settings can be edited for some inverters.
@@ -354,6 +358,11 @@ Therefore, the description has also been removed.
 -\*-
 
 ## Changelog
+
+### 3.2.2 (27.01.2024)
+
+- (PLCHome) Catching of the fault log messages is now possible (Thanx to ZioCain for the code)
+- (PLCHome) Setting active power for MAX inverter (Thanx to sefina for testing)
 
 ### 3.2.1 (08.09.2023)
 

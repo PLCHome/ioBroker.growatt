@@ -115,6 +115,7 @@ class Growatt extends utils.Adapter {
               this.log.info(`deleted: ${ownID}`);
             } else if (
               (!this.config.weather && ebene.length > 1 && ebene[1].toLowerCase() === 'weather') ||
+              (!this.config.faultlog && ebene.length > 1 && ebene[1].toLowerCase() === 'faultlog') ||
               (!this.config.totalData && ebene.length > 3 && ebene[3].toLowerCase() === 'totaldata') ||
               (!this.config.statusData && ebene.length > 3 && ebene[3].toLowerCase() === 'statusdata') ||
               (!this.config.plantData && ebene.length > 1 && ebene[1].toLowerCase() === 'plantdata') ||
@@ -589,6 +590,7 @@ class Growatt extends utils.Adapter {
       if (this.growatt.isConnected()) {
         const allPlantData = await this.growatt.getAllPlantData({
           weather: this.config.weather,
+          faultlog: this.config.faultlog,
           totalData: this.config.totalData,
           statusData: this.config.statusData,
           plantData: this.config.plantData,

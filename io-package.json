@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "news": {
+      "3.2.2": {
+        "en": "Catching of the fault log messages is now possible, setting active power for MAX inverter",
+        "de": "Fangen der Fehlerprotokollnachrichten ist jetzt möglich, Setzen der aktiven Leistung für MAX Wechselrichter",
+        "ru": "Настройка активной мощности для инвертора MAX",
+        "pt": "A captura das mensagens de log de falha agora é possível, definindo a energia ativa para o inversor MAX",
+        "nl": "Het vangen van de fout log berichten is nu mogelijk, het instellen van actieve stroom voor MAX omvormer",
+        "fr": "Capturer les messages de log des défauts est maintenant possible, définir la puissance active pour l'onduleur MAX",
+        "it": "La cattura dei messaggi di registro di guasto è ora possibile, impostando il potere attivo per MAX inverter",
+        "es": "La captación de los mensajes de registro de fallas es ahora posible, estableciendo el poder activo para el inversor MAX",
+        "pl": "Łapanie komunikatów dziennika błędów jest teraz możliwe, ustawienie mocy czynnej dla falownik MAX",
+        "uk": "В даний час можливе встановлення активної потужності для інвертора МАКС",
+        "zh-cn": "现在可以捕捉断层日志消息, 设置 MAX 反转器的主动功率"
+      },
       "3.2.1": {
         "en": "Added inverter typ singleBackflow and multipleBackflow",
         "de": "Inverter Typ singleBackflow und multipleBackflow hinzugefügt",
@@ -134,6 +147,7 @@
     "password": "",
     "shareKey": "",
     "weather": true,
+    "faultlog": false,
     "totalData": true,
     "historyLast": true,
     "statusData": true,
