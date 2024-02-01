@@ -359,6 +359,10 @@ Therefore, the description has also been removed.
 
 ## Changelog
 
+### 3.2.3 (27.01.2024)
+
+- (PLCHome) In Multiple Backflow the objects in Total Data and Status Data were swapped. Please delete the objects below Total Data and Status Data and restart the adapter after the update.
+
 ### 3.2.2 (27.01.2024)
 
 - (PLCHome) Catching of the fault log messages is now possible (Thanx to ZioCain for the code)

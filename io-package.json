@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.2.2",
+    "version": "3.2.3",
     "news": {
+      "3.2.3": {
+        "en": "In Multiple Backflow the objects in Total Data and Status Data were swapped. Please delete the objects below Total Data and Status Data and restart the adapter after the update.",
+        "de": "Im Multiple Backflow wurden die Objekte in Total Data und Status Data vertauscht. Bitte löschen Sie die Objekte unterhalb von Total Data und Status Data und starten Sie den Adapter nach dem Update neu.",
+        "ru": "В нескольких резервах объекты в Total Data и Status Data были обменены. Пожалуйста, удалите объекты ниже Total Data и Status Data и перезагрузите адаптер после обновления.",
+        "pt": "Em Vários Backflow os objetos em Dados Total e Dados de Status foram trocados. Por favor, exclua os objetos abaixo Dados totais e dados de status e reinicie o adaptador após a atualização.",
+        "nl": "In Multiple Backflow werden de objecten in Total Data en Status Data geruild. Verwijder de objecten hieronder Total Data en Status Data en herstart de adapter na de update.",
+        "fr": "Dans Multiple Backflow, les objets de Total Data et Status Data ont été échangés. Veuillez supprimer les objets ci-dessous Total Data et Status Data et redémarrer l'adaptateur après la mise à jour.",
+        "it": "In Multiple Backflow gli oggetti in Dati totali e Dati di stato sono stati scambiati. Si prega di eliminare gli oggetti sottostanti Dati totali e Dati di stato e riavviare l'adattatore dopo l'aggiornamento.",
+        "es": "En Multiple Backflow los objetos en Total Data y Status Data fueron intercambiados. Por favor, elimine los objetos abajo Datos Totales y Datos de Estado y reinicie el adaptador después de la actualización.",
+        "pl": "W Multiple Backflow obiekty w Total Data i Status Data zostały zamienione. Proszę usunąć obiekty poniżej Total Data i Status Data i ponownie uruchomić adapter po aktualizacji.",
+        "uk": "За допомогою декількох резервних копій об’єктів у всіх даних та даних про статус. Введіть номер мобільного, який Ви вказали при укладаннi договору з ідентифікації.",
+        "zh-cn": "在多个后流中,将全部数据和状态数据中的对象互换。 请删除以下的对象 Total Data and Status Data,并在更新后重新启动适配器."
+      },
       "3.2.2": {
         "en": "Catching of the fault log messages is now possible, setting active power for MAX inverter",
         "de": "Fangen der Fehlerprotokollnachrichten ist jetzt möglich, Setzen der aktiven Leistung für MAX Wechselrichter",
@@ -139,6 +152,56 @@
       }
     ]
   },
+  "messages": [
+    {
+      "condition": {
+        "operand": "and",
+        "rules": ["oldVersion<3.2.2", "newVersion>=3.2.3"]
+      },
+      "title": {
+        "en": "Incorrect objects were created in connection with Multiple Backflow.",
+        "de": "Falsche Objekte wurden in Verbindung mit Multiple Backflow erstellt.",
+        "ru": "Неправильные объекты были созданы в связи с Множественным Backflow.",
+        "pt": "Objetos incorretos foram criados em conexão com Vários Backflow.",
+        "nl": "Onjuiste objecten zijn gemaakt in verband met Multiple Backflow.",
+        "fr": "Des objets incorrects ont été créés en liaison avec Multiple Backflow.",
+        "it": "Oggetti non corretti sono stati creati in connessione con Multiple Backflow.",
+        "es": "Se crearon objetos incorrectos en conexión con Multiple Backflow.",
+        "pl": "Nieprawidłowe obiekty zostały utworzone w związku z Multiple Backflow.",
+        "uk": "Некоректні об'єкти були створені у зв'язку з декількома перепадами.",
+        "zh-cn": "在多个后流中创建了不正确的对象 ."
+      },
+      "text": {
+        "en": "If you have multiple backflow objects, please delete the objects in Total Data and Status Data. The objects below Total Data and Status Data were swapped.",
+        "de": "Wenn Sie mehrere Backflow-Objekte haben, löschen Sie bitte die Objekte in Total Data und Status Data. Die Objekte unter Gesamtdaten und Statusdaten wurden vertauscht.",
+        "ru": "Если у вас есть несколько объектов обратного потока, пожалуйста, удалите объекты в Total Data и Status Data. Объекты ниже Total Data и Status Data были изменены.",
+        "pt": "Se você tiver vários objetos de backflow, exclua os objetos em Dados totais e dados de status. Os objetos abaixo dos dados totais e dados de status foram trocados.",
+        "nl": "Als u meerdere backflow objecten hebt, verwijder dan de objecten in Total Data en Status Data. De objecten hieronder Total Data en Status Data werden geruild.",
+        "fr": "Si vous avez plusieurs objets backflow, veuillez supprimer les objets dans Total Data et Status Data. Les objets ci-dessous ont été échangés.",
+        "it": "Se si dispone di più oggetti di backflow, si prega di eliminare gli oggetti in Dati totali e Dati di stato. Gli oggetti sottostanti Dati totali e Dati di stato sono stati scambiati.",
+        "es": "Si tiene múltiples objetos de flujo de respaldo, por favor, eliminar los objetos en Datos Totales y Datos del estado. Los objetos debajo de Total Data and Status Data fueron intercambiados.",
+        "pl": "Jeśli masz wiele obiektów back flow, usuń obiekty w Total Data i Status Data. Obiekty poniżej Total Data i Status Data zostały zamienione.",
+        "uk": "Якщо у вас є кілька об'єктів зворотного потоку, будь ласка, видаліть об'єкти в загальній даних та даних стану. Об'єкти, які були заповнені.",
+        "zh-cn": "如果您有多个回流对象,请删除全部数据和状态数据中的对象。 数据总数和状态数据下的对象已互换."
+      },
+      "link": "https://github.com/PLCHome/ioBroker.growatt/blob/master/README.md",
+      "level": "warn",
+      "linkText": {
+        "en": "Documentation",
+        "de": "Dokumentation",
+        "ru": "Документация",
+        "pt": "Documentação",
+        "nl": "Document",
+        "fr": "Documentation",
+        "it": "Documentazione",
+        "es": "Documentación",
+        "pl": "Dokumentacja",
+        "uk": "Документація",
+        "zh-cn": "文件"
+      },
+      "buttons": ["agree", "cancel"]
+    }
+  ],
   "encryptedNative": ["password", "shareKey"],
   "protectedNative": ["password", "shareKey"],
   "native": {
