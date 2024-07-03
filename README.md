@@ -363,8 +363,7 @@ Therefore, the description has also been removed.
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 3.2.4 (2024-07-03)
 
 - (PLCHome) Configure this adapter to use the release script.
 - (PLCHome) no connection can be established password must now be transferred as MD5 hash.

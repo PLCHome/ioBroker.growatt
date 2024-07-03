@@ -1,6 +1,6 @@
 {
   "name": "iobroker.growatt",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "ioBroker Growatt Adapter to communiacte with ShineAPI",
   "author": {
     "name": "PLCHome"
@@ -25,7 +25,7 @@
     "url": "https://github.com/PLCHome/ioBroker.growatt"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.1.6",
