@@ -367,6 +367,8 @@ Therefore, the description has also been removed.
 ### **WORK IN PROGRESS**
 
 - (PLCHome) Configure this adapter to use the release script.
+- (PLCHome) no connection can be established password must now be transferred as MD5 hash.
+- (PLCHome) cookie issue
 
 ### 3.2.3 (27.01.2024)
 
