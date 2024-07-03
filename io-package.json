@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "news": {
+      "3.2.4": {
+        "en": "No connection can be established password must now be transferred as MD5 hash.",
+        "de": "Keine Verbindung kann hergestellt werden Passwort muss jetzt als MD5 Hash übertragen werden.",
+        "ru": "Никакое соединение не может быть установлено паролем теперь должно быть передано как MD5 хэш.",
+        "pt": "Nenhuma conexão pode ser estabelecida senha deve agora ser transferida como hash MD5.",
+        "nl": "Geen verbinding kan worden ingesteld wachtwoord moet nu worden overgedragen als MD5 hash.",
+        "fr": "Aucune connexion ne peut être établie mot de passe doit maintenant être transféré comme MD5 hachage.",
+        "it": "Nessuna connessione può essere stabilita password deve ora essere trasferito come hash MD5.",
+        "es": "Ninguna conexión puede establecerse contraseña debe ser transferida ahora como MD5 hash.",
+        "pl": "Hasło nie może zostać ustanowione jako hasz MD5.",
+        "uk": "Немає підключення може бути встановленим паролем, щоб тепер передаватися як MD5.",
+        "zh-cn": "无法建立连接密码, 现在必须作为 MD5 散列传输 ."
+      },
       "3.2.3": {
         "en": "In Multiple Backflow the objects in Total Data and Status Data were swapped. Please delete the objects below Total Data and Status Data and restart the adapter after the update.",
         "de": "Im Multiple Backflow wurden die Objekte in Total Data und Status Data vertauscht. Bitte löschen Sie die Objekte unterhalb von Total Data und Status Data und starten Sie den Adapter nach dem Update neu.",
