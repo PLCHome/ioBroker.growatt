@@ -15,97 +15,6 @@
         "pl": "Hasło nie może zostać ustanowione jako hasz MD5.",
         "uk": "Немає підключення може бути встановленим паролем, щоб тепер передаватися як MD5.",
         "zh-cn": "无法建立连接密码, 现在必须作为 MD5 散列传输 ."
-      },
-      "3.2.3": {
-        "en": "In Multiple Backflow the objects in Total Data and Status Data were swapped. Please delete the objects below Total Data and Status Data and restart the adapter after the update.",
-        "de": "Im Multiple Backflow wurden die Objekte in Total Data und Status Data vertauscht. Bitte löschen Sie die Objekte unterhalb von Total Data und Status Data und starten Sie den Adapter nach dem Update neu.",
-        "ru": "В нескольких резервах объекты в Total Data и Status Data были обменены. Пожалуйста, удалите объекты ниже Total Data и Status Data и перезагрузите адаптер после обновления.",
-        "pt": "Em Vários Backflow os objetos em Dados Total e Dados de Status foram trocados. Por favor, exclua os objetos abaixo Dados totais e dados de status e reinicie o adaptador após a atualização.",
-        "nl": "In Multiple Backflow werden de objecten in Total Data en Status Data geruild. Verwijder de objecten hieronder Total Data en Status Data en herstart de adapter na de update.",
-        "fr": "Dans Multiple Backflow, les objets de Total Data et Status Data ont été échangés. Veuillez supprimer les objets ci-dessous Total Data et Status Data et redémarrer l'adaptateur après la mise à jour.",
-        "it": "In Multiple Backflow gli oggetti in Dati totali e Dati di stato sono stati scambiati. Si prega di eliminare gli oggetti sottostanti Dati totali e Dati di stato e riavviare l'adattatore dopo l'aggiornamento.",
-        "es": "En Multiple Backflow los objetos en Total Data y Status Data fueron intercambiados. Por favor, elimine los objetos abajo Datos Totales y Datos de Estado y reinicie el adaptador después de la actualización.",
-        "pl": "W Multiple Backflow obiekty w Total Data i Status Data zostały zamienione. Proszę usunąć obiekty poniżej Total Data i Status Data i ponownie uruchomić adapter po aktualizacji.",
-        "uk": "За допомогою декількох резервних копій об’єктів у всіх даних та даних про статус. Введіть номер мобільного, який Ви вказали при укладаннi договору з ідентифікації.",
-        "zh-cn": "在多个后流中,将全部数据和状态数据中的对象互换。 请删除以下的对象 Total Data and Status Data,并在更新后重新启动适配器."
-      },
-      "3.2.2": {
-        "en": "Catching of the fault log messages is now possible, setting active power for MAX inverter",
-        "de": "Fangen der Fehlerprotokollnachrichten ist jetzt möglich, Setzen der aktiven Leistung für MAX Wechselrichter",
-        "ru": "Настройка активной мощности для инвертора MAX",
-        "pt": "A captura das mensagens de log de falha agora é possível, definindo a energia ativa para o inversor MAX",
-        "nl": "Het vangen van de fout log berichten is nu mogelijk, het instellen van actieve stroom voor MAX omvormer",
-        "fr": "Capturer les messages de log des défauts est maintenant possible, définir la puissance active pour l'onduleur MAX",
-        "it": "La cattura dei messaggi di registro di guasto è ora possibile, impostando il potere attivo per MAX inverter",
-        "es": "La captación de los mensajes de registro de fallas es ahora posible, estableciendo el poder activo para el inversor MAX",
-        "pl": "Łapanie komunikatów dziennika błędów jest teraz możliwe, ustawienie mocy czynnej dla falownik MAX",
-        "uk": "В даний час можливе встановлення активної потужності для інвертора МАКС",
-        "zh-cn": "现在可以捕捉断层日志消息, 设置 MAX 反转器的主动功率"
-      },
-      "3.2.1": {
-        "en": "Added inverter typ singleBackflow and multipleBackflow",
-        "de": "Inverter Typ singleBackflow und multipleBackflow hinzugefügt",
-        "ru": "Добавлено inverter тип singleBackflow и multipleBackflow",
-        "pt": "Adicionado inversor digite singleBackflow e multipleBackflow",
-        "nl": "Voegde inverter typ singleBackflow en multipleBackflow",
-        "fr": "Ajouté inverter typ singleBackflow et multipleBackflow",
-        "it": "Aggiunto inverter typ singleBackflow e multipleBackflow",
-        "es": "Tipo de inversor singleBackflow y multipleBackflow",
-        "pl": "Zamknięte odwzorowanie na typie singleBackflow i multipleBackflow",
-        "uk": "Додано інвертор тип singleBackflow та multipleBackflow",
-        "zh-cn": "A. 增加各种类型singleBackflow和multipleBackflow"
-      },
-      "3.1.2": {
-        "en": "Added support for Growatt page when Plant is a C&I Plant page with indexbC or plantDo in Growatt web interface path.\nAdded getHistory message.",
-        "de": "Unterstützung für Growatt-Seite, wenn Anlage eine C&I-Pflanze-Seite mit indexbC oder Pflanze ist Machen Sie in Growatt Web-Schnittstellenpfad.\nHinzugefügt getHistory-Nachricht.",
-        "ru": "Добавлена поддержка страницы Growatt, когда Plant является C&I Plant page с indexbC или растение Сделайте в Growatt web интерфейс пути.\nДобавлено getHistory сообщение.",
-        "pt": "Adicionado suporte para página Growatt quando Plant é uma página Planta C&I com indexbC ou planta Faça no caminho de interface web Growatt.\nAdicionada mensagem getHistory.",
-        "nl": "Aangename steun voor Growatt pagina als Plant een CI Plant pagina is met indexbC of plant Doe in Growatt interface pad.\nIk heb zijn boodschap toegevoegd.",
-        "fr": "Ajout d'un support pour la page Growatt lorsque Plant est une page de plante CôneI avec indexbC ou plante Faites dans le chemin d'interface Web de Growatt.\nAjout du message getHistory.",
-        "it": "Aggiunto il supporto per pagina Growatt quando Plant è una pagina C&I Plant con indexbC o pianta Fai il percorso dell'interfaccia web di Growatt.\nAggiunto getHistory messaggio.",
-        "es": "Apoyo añadido a la página Growatt cuando la planta es una página de planta CENTEI con indexbC o planta Hacer en Growatt ruta de interfaz web.\nSe agregó mensaje de historia.",
-        "pl": "Wsparcie dla strony Growata, gdy Plant jest stroną C&I Plant z indeksem bC lub rośliną roślinną. Do in Growatt web path (ang.).\nAdded getHistory message (ang.).",
-        "uk": "Додано підтримку сторінки Growatt, коли Завод є C&I Заводська сторінка з індексом BC або рослиною Відвідайте веб-сайт Growatt.\nДодано getHistory повідомлення.",
-        "zh-cn": "在有指数、C或植物的C&I Plant页的植物种植园时,添加对Growatt页的支持 在Growatt网络接口中。.\n增加获取信息。."
-      },
-      "3.0.4": {
-        "en": "No retrieval of the other parameters value possible after parameter error.\nSetting Grid first and Battery first setting on MIX improved.\nSetting for tlx/tlxh time improved.",
-        "de": "Nach dem Parameterfehler ist kein Abrufen des anderen Parameterwertes möglich.\nGrid erste Einstellung und Batterie erste Einstellung auf MIX verbessert.\nEinstellung für tlx/tlxh Zeit verbessert.",
-        "ru": "Никакое извлечение значения других параметров возможно после ошибки параметра.\nУстановка Grid во-первых и установка батареи сперва на MIX улучшено.\nУстановка для tlx/tlxh времени улучшена.",
-        "pt": "Não é possível recuperar o valor dos outros parâmetros após o erro do parâmetro.\nDefinir grade primeiro e primeira configuração da bateria no MIX melhorou.\nConfiguração para o tempo tlx/tlxh melhorado.",
-        "nl": "Geen verwijdering van de andere parameters die mogelijk zijn na de parameterfout.\nEerst Grid en Battery opzetten voor MIX verbeterd.\nKlaar voor Tlx/Tlxh tijd verbeterd.",
-        "fr": "Aucune récupération de l'autre valeur de paramètres possible après erreur de paramètre.\nRéglage Grid premier et réglage de la batterie sur MIX amélioré.\nRéglage du temps tlx/tlxh amélioré.",
-        "it": "Nessun recupero degli altri parametri possibile dopo l'errore dei parametri.\nImpostazione Griglia prima e batteria prima impostazione su MIX migliorato.\nImpostazione per il tempo tlx/tlxh migliorato.",
-        "es": "No hay recuperación del valor de otros parámetros posible después del error del parámetro.\nAjuste de agarre primero y la instalación de batería en MIX mejorado.\nMejora la configuración del tiempo tlxh/tlxh.",
-        "pl": "Brak odzyskiwania innych parametrów po błędzie parametrów.\nPo raz pierwszy zainstalowano Baterię Grid, a po raz pierwszy ustawiono o MIX.\nPoprawiono tlx/tlxh.",
-        "uk": "Після помилки параметра не існує.\nНастроювання струменя першого і першого встановлення акумулятора на MIX поліпшено.\nНалаштування часу tlx/tlxh.",
-        "zh-cn": "在参数错误之后,无法再计算其他参数值。.\n在IX年第一和Battery先设立全球定位系统。.\n海/海报的设置有所改善。."
-      },
-      "3.0.2": {
-        "en": "Write inverter settings (mix,tlx/tlxh), it can be activated via the config",
-        "de": "Schreib-Wechselrichter-Einstellungen (Mix,tlx/tlxh) kann über die config aktiviert werden",
-        "ru": "Напишите настройки инвертора (mix,tlx/tlxh) его можно активировать через config",
-        "pt": "Escreva configurações do inversor (mix,tlx/tlxh) ele pode ser ativado através da configuração",
-        "nl": "Schrijf inverter setting (mix,tlx/tlxh) het kan worden geactiveerd via het configuur",
-        "fr": "Écrire des paramètres d'invertisseur (mix,tlx/tlxh) il peut être activé via la configuration",
-        "it": "Scrivere le impostazioni dell'inverter (mix,tlx/tlxh) può essere attivato tramite la configurazione",
-        "es": "Escribir configuración de inversor (mix,tlx/tlxh) se puede activar a través del config",
-        "pl": "Write inverter (mix,tlx/tlxh) może być aktywowany poprzez configig",
-        "uk": "Напишіть параметри інвертора (змішувати,tlx/tlxh) він може бути активований через налаштування",
-        "zh-cn": "各种环境中的礼物(mix,tlx/tlxh)可通过吉格尔岛启动。"
-      },
-      "2.1.1": {
-        "en": "Calendar structure was not always changed to timestamp.\nImprovement in the internal handling of objects without considering their case.\n",
-        "de": "Die Kalenderstruktur wurde nicht immer zum Zeitstempel geändert.\nVerbesserung der internen Handhabung von Objekten ohne Rücksicht auf ihren Fall.\n",
-        "ru": "Структура календаря не всегда была изменена на timetamp.\nУлучшение внутренней обработки объектов без учета их дела.\n",
-        "pt": "Estrutura do calendário nem sempre foi alterado para timestamp.\nMelhoria no manuseio interno de objetos sem considerar seu caso.\n",
-        "nl": "Calendarstructuur was niet altijd veranderd in tijdstip.\nImproviseren in de interne bedrijven zonder hun zaak te overwegen.\n",
-        "fr": "La structure du calendrier n'a pas toujours été changée en timetamp.\nAmélioration de la manipulation interne des objets sans tenir compte de leur cas.\n",
-        "it": "La struttura del calendario non è sempre stata cambiata in timestamp.\nMiglioramento nella gestione interna degli oggetti senza considerare il loro caso.\n",
-        "es": "La estructura del calendario no siempre se cambió a la hora.\nMejora en el manejo interno de objetos sin considerar su caso.\n",
-        "pl": "Struktura kalendarzowa nie zawsze była zmieniana na znaczek czasowy.\nPoprawa w wewnętrznej obsługi obiektów bez uwzględniania ich sprawy.\n",
-        "uk": "Структура календаря не завжди була змінена на час.\nУдосконалення внутрішніх робіт об’єктів без розгляду справи.\n",
-        "zh-cn": "降级结构并不总是随着时间推移而改变。.\n改进物体的内部处理,而不考虑其情况。.\n"
       }
     },
     "titleLang": {
@@ -141,7 +50,6 @@
       "type": "free"
     },
     "platform": "Javascript/Node.js",
-    "main": "growattMain.js",
     "icon": "growatt.png",
     "enabled": true,
     "extIcon": "https://raw.githubusercontent.com/PLCHome/ioBroker.growatt/master/admin/growatt.png",
@@ -155,7 +63,6 @@
     "connectionType": "cloud",
     "dataSource": "poll",
     "localLinks": { "_default": "https://server.growatt.com/" },
-    "materialize": true,
     "adminUI": { "config": "materialize" },
     "plugins": {
       "sentry": {
