@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.2.4",
+    "version": "3.2.5",
     "news": {
+      "3.2.5": {
+        "en": "Solved the problem that no inverter list but result 2 was returned in NOAH.\nAdded NOAH.",
+        "de": "Lösen Sie das Problem, dass keine Inverterliste, sondern Ergebnis 2 in NOAH zurückgegeben wurde.\nNOAH hinzugefügt.",
+        "ru": "Решение проблемы, что ни один инверторный список, но результат 2 был возвращен в NOAH.\nДобавлен НОАХ.",
+        "pt": "Resolvido o problema que nenhuma lista de inversores, mas o resultado 2 foi retornado em NOAH.\nAdicionado NOAH.",
+        "nl": "Loste het probleem op dat geen inverterlijst maar resultaat 2 werd teruggegeven in NOAH.\nToegevoegd NOAH.",
+        "fr": "Résoudre le problème qu'aucune liste d'onduleurs mais le résultat 2 a été retourné en NOAH.\nAjout de NOAH.",
+        "it": "Risolto il problema che nessun elenco inverter ma il risultato 2 è stato restituito in NOAH.\nAggiunta NOAH.",
+        "es": "Resolvió el problema de que ninguna lista de inversores pero el resultado 2 fue devuelto en NOAH.\nAñadido NOAH.",
+        "pl": "Rozwiązał problem, zgodnie z którym w NOAH nie została zwrócona żadna lista zwrotna, ale wynik 2.\nDodano NOAH.",
+        "uk": "Вирішено проблему, яка не перевернула список, але результат 2 був повернений в NOAH.\nДодано NOAH.",
+        "zh-cn": "解决了在NOAH中没有反向列表但结果2被返回的问题.\n添加了NOAH."
+      },
       "3.2.4": {
         "en": "No connection can be established password must now be transferred as MD5 hash.",
         "de": "Keine Verbindung kann hergestellt werden Passwort muss jetzt als MD5 Hash übertragen werden.",
@@ -43,8 +56,20 @@
       "uk": "ioBroker Growatt адаптер для комунікації з ShineAPI",
       "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
     },
-    "authors": ["PLCHome"],
-    "keywords": ["growatt", "shine", "shinephone", "shineapi", "solarenergy", "home automation", "solar power", "solar power plant", "solaranlage"],
+    "authors": [
+      "PLCHome"
+    ],
+    "keywords": [
+      "growatt",
+      "shine",
+      "shinephone",
+      "shineapi",
+      "solarenergy",
+      "home automation",
+      "solar power",
+      "solar power plant",
+      "solaranlage"
+    ],
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
@@ -62,8 +87,12 @@
     "compact": true,
     "connectionType": "cloud",
     "dataSource": "poll",
-    "localLinks": { "_default": "https://server.growatt.com/" },
-    "adminUI": { "config": "materialize" },
+    "localLinks": {
+      "_default": "https://server.growatt.com/"
+    },
+    "adminUI": {
+      "config": "materialize"
+    },
     "plugins": {
       "sentry": {
         "dsn": "https://580e0de8b3414b6caba783785eb4e240@o1143033.ingest.sentry.io/6202057"
@@ -79,7 +108,10 @@
     {
       "condition": {
         "operand": "and",
-        "rules": ["oldVersion<3.2.2", "newVersion>=3.2.3"]
+        "rules": [
+          "oldVersion<3.2.2",
+          "newVersion>=3.2.3"
+        ]
       },
       "title": {
         "en": "Incorrect objects were created in connection with Multiple Backflow.",
@@ -122,11 +154,20 @@
         "uk": "Документація",
         "zh-cn": "文件"
       },
-      "buttons": ["agree", "cancel"]
+      "buttons": [
+        "agree",
+        "cancel"
+      ]
     }
   ],
-  "encryptedNative": ["password", "shareKey"],
-  "protectedNative": ["password", "shareKey"],
+  "encryptedNative": [
+    "password",
+    "shareKey"
+  ],
+  "protectedNative": [
+    "password",
+    "shareKey"
+  ],
   "native": {
     "keyLogin": false,
     "user": "",
