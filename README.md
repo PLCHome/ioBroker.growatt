@@ -363,6 +363,12 @@ Therefore, the description has also been removed.
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+- (PLCHome) Solved the problem that no inverter list but result 2 was returned in NOAH.
+- (PLCHome) Added NOAH.
+
 ### 3.2.4 (2024-07-03)
 
 - (PLCHome) Configure this adapter to use the release script.

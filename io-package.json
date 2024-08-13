@@ -136,7 +136,10 @@
     },
     "authors": ["PLCHome"],
     "keywords": ["growatt", "shine", "shinephone", "shineapi", "solarenergy", "home automation", "solar power", "solar power plant", "solaranlage"],
-    "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "main": "growattMain.js",
     "icon": "growatt.png",
@@ -146,7 +149,7 @@
     "loglevel": "info",
     "mode": "daemon",
     "messagebox": true,
-    "subscribe": "messagebox",
+    "tier": 3,
     "type": "energy",
     "compact": true,
     "connectionType": "cloud",
