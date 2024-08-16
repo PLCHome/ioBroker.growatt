@@ -164,7 +164,7 @@ class Growatt extends utils.Adapter {
       clearTimeout(this.processTimeout);
       clearTimeout(this.callTimeout);
       this.growattLogout();
-      this.setStateAsync('info.connection', { val: false, ack: true });
+      this.setState('info.connection', { val: false, ack: true });
 
       callback();
       // eslint-disable-next-line no-unused-vars
@@ -252,7 +252,7 @@ class Growatt extends utils.Adapter {
         this.objNames[eleSearch] = ele;
       }
       this.log.silly(`Set value ${this.objNames[eleSearch]} type ${objType} : ${data}`);
-      this.setStateAsync(this.objNames[eleSearch], { val: data, ack: true });
+      this.setState(this.objNames[eleSearch], { val: data, ack: true });
     }
   }
 
@@ -274,11 +274,11 @@ class Growatt extends utils.Adapter {
             const params = Object.keys(r);
             params.forEach(p => {
               if (p.startsWith('param')) {
-                this.setStateAsync(`${path}.values.${p}`, { val: r[p], ack: true });
+                this.setState(`${path}.values.${p}`, { val: r[p], ack: true });
               }
             });
           }
-          this.setStateAsync(`${path}.read`, { val: r.success, ack: true });
+          this.setState(`${path}.read`, { val: r.success, ack: true });
         })
         .catch(e => {
           this.log.warn(`Read inverter settings ${setting}:${e}`);
@@ -311,16 +311,16 @@ class Growatt extends utils.Adapter {
       this.growatt
         .setInverterSetting(growattType, setting, sn, values)
         .then(a => {
-          this.setStateAsync(`${path}.write`, { val: a.success, ack: true });
-          this.setStateAsync(`${path}.msg`, { val: a.msg, ack: true });
+          this.setState(`${path}.write`, { val: a.success, ack: true });
+          this.setState(`${path}.msg`, { val: a.msg, ack: true });
           this.log.debug(`${typeof a === 'object' ? JSON.stringify(a, getJSONCircularReplacer()) : a}`);
           if (a.success) {
             this.readSetting(path, growattType, setting, sn);
           }
         })
         .catch(e => {
-          this.setStateAsync(`${path}.write`, { val: false, ack: true });
-          this.setStateAsync(`${path}.msg`, { val: `${e}`, ack: true });
+          this.setState(`${path}.write`, { val: false, ack: true });
+          this.setState(`${path}.msg`, { val: `${e}`, ack: true });
         });
       this.log.debug(`write inverter setting ${growattType}, ${setting}, ${sn}, ${JSON.stringify(values, getJSONCircularReplacer())}`);
     }
@@ -610,7 +610,7 @@ class Growatt extends utils.Adapter {
         }
         debugTimeDiff = getTime();
         if (this.callRun) {
-          this.setStateAsync('info.connection', { val: true, ack: true });
+          this.setState('info.connection', { val: true, ack: true });
           timeout = this.config.cycleTime * 1000 - getTimeDiff(allTimeDiff);
           if (timeout < 100) {
             timeout = 100;
@@ -619,7 +619,7 @@ class Growatt extends utils.Adapter {
         return;
       }
       this.log.info('not connected');
-      this.setStateAsync('info.connection', { val: false, ack: true });
+      this.setState('info.connection', { val: false, ack: true });
     } catch (e) {
       if (e.toString().toLowerCase().includes('errornologin')) {
         if (!this.config.sessionHold || this.relogin) {
@@ -635,7 +635,7 @@ class Growatt extends utils.Adapter {
       } else {
         this.log.error(`Growatt exception: ${e}`);
       }
-      this.setStateAsync('info.connection', { val: false, ack: true });
+      this.setState('info.connection', { val: false, ack: true });
       this.growattLogout();
       if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
         const sentryInstance = this.getPluginInstance('sentry');
