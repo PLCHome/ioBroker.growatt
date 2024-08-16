@@ -29,8 +29,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.1.6",
-    "axios": "^1.7.3",
-    "eslint": "^8.48.0",
+    "axios": "^1.7.4",
     "growatt": "^0.7.5"
   },
   "devDependencies": {
@@ -38,20 +37,22 @@
     "@alcalzone/release-script-plugin-iobroker": "^3.7.2",
     "@alcalzone/release-script-plugin-license": "^3.7.0",
     "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.0",
     "@iobroker/testing": "^4.1.3",
     "chai": "^5.1.1",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
     "gulp": "^5.0.0",
     "mocha": "^10.7.3",
     "prettier": "^3.3.3"
   },
   "main": "growattMain.js",
   "scripts": {
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix",
+    "lint": "eslint . ",
+    "lint:fix": "eslint . --fix",
     "test:package": "mocha test/package --exit",
     "test:integration": "mocha test/integration --exit",
     "release": "release-script"

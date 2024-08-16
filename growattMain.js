@@ -49,7 +49,6 @@ const getJSONCircularReplacer = () => {
 function decrypt(key, value) {
   let result = '';
   for (let i = 0; i < value.length; i += 1) {
-    /* eslint-disable-next-line no-bitwise */
     result += String.fromCharCode(key[i % key.length].charCodeAt(0) ^ value.charCodeAt(i));
   }
   return result;
@@ -168,6 +167,7 @@ class Growatt extends utils.Adapter {
       this.setStateAsync('info.connection', { val: false, ack: true });
 
       callback();
+      // eslint-disable-next-line no-unused-vars
     } catch (e) {
       callback();
     }
@@ -257,7 +257,7 @@ class Growatt extends utils.Adapter {
   }
 
   /**
-   * 
+   *
    loads the settings of the inverter and pastes the settings.
    * @param {string} path to id
    * @param {string} growattType
@@ -287,7 +287,7 @@ class Growatt extends utils.Adapter {
   }
 
   /**
-   * 
+   *
    writes the settings to the inverter.
    * @param {string} path to id
    * @param {string} growattType
@@ -353,7 +353,7 @@ class Growatt extends utils.Adapter {
   }
 
   /**
-   * 
+   *
    loads the settings of the inverter and pastes the settings.
    * @param {object} plantData
    */
@@ -558,7 +558,7 @@ class Growatt extends utils.Adapter {
     try {
       if (typeof this.growatt === 'undefined') {
         this.log.debug('Growatt new API');
-        /* eslint-disable-next-line no-new */
+
         this.growatt = new API({
           timeout: this.config.webTimeout * 1000,
           lifeSignCallback: this.lifeSignCallback.bind(this),
@@ -907,6 +907,6 @@ if (module.parent) {
   module.exports = options => new Growatt(options);
 } else {
   // otherwise start the instance directly
-  /* eslint-disable-next-line no-new */
+
   new Growatt();
 }
