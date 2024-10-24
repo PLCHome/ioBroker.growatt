@@ -15,6 +15,7 @@ const growartyp = {
   STIME_H_MIN: { type: 'string', role: 'value', read: true, write: true },
   DATETIME: { type: 'number', role: 'value.time', read: true, write: true },
   INUM_0_1: { type: 'number', role: 'value', min: 0, max: 1, step: 1, read: true, write: true },
+  INUM_0_2: { type: 'number', role: 'value', min: 0, max: 2, step: 1, read: true, write: true },
 };
 const SETTINGS = 'settings';
 
