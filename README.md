@@ -363,7 +363,7 @@ Therefore, the description has also been removed.
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.3.0 (2024-10-25)
 
 - (PLCHome) Added time slots for TLXH. Thanks to olli0815 for debugging and support.
 - (PLCHome) Added Inverter On Off for TLX und TLXH. Thanks to olli0815 for debugging and support.

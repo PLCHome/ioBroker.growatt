@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "growatt",
-    "version": "3.2.5",
+    "version": "3.3.0",
     "news": {
+      "3.3.0": {
+        "en": "Added time slots for TLXH. Thanks to olli0815 for debugging and support.\nAdded Inverter On Off for TLX und TLXH. Thanks to olli0815 for debugging and support.",
+        "de": "Zeitschlitze für TLXH hinzugefügt. Dank olli0815 für Debugging und Support.\nInverter On Off für TLX und TLXH hinzugefügt. Dank olli0815 für Debugging und Support.",
+        "ru": "Добавлены временные слоты для TLXH. Благодаря olli0815 для отладки и поддержки.\nДобавлено Inverter On Off для TLX und TLXH. Благодаря olli0815 для отладки и поддержки.",
+        "pt": "Tempo adicionado slots para TLXH. Graças ao olli0815 para depuração e apoio.\nAdicionado Inverter On Off para TLX und TLXH. Graças ao olli0815 para depuração e apoio.",
+        "nl": "Toegevoegd tijdslots voor TLXH. Dankzij Olli0815 voor debuggen en ondersteuning.\nToegevoegd Inverter On Off voor TLX und TLXH. Dankzij Olli0815 voor debuggen en ondersteuning.",
+        "fr": "Ajout de créneaux horaires pour TLXH. Merci à olli0815 pour le débogage et le soutien.\nAjouté Inverter On Off pour TLX und TLXH. Merci à olli0815 pour le débogage et le soutien.",
+        "it": "Aggiunta di slot tempo per TLXH. Grazie a olli0815 per debug e supporto.\nAggiunto Inverter On Off per TLX und TLXH. Grazie a olli0815 per debug e supporto.",
+        "es": "Ranuras de tiempo agregadas para TLXH. Gracias a olli0815 por depurar y apoyar.\nAñadido Inverter on off para TLX und TLXH. Gracias a olli0815 por depurar y apoyar.",
+        "pl": "Dodano szczeliny czasowe dla TLXH. Dzięki olli0815 za debugowanie i wsparcie.\nDodano Inverter On Off dla TLX und TLXH. Dzięki olli0815 za debugowanie i wsparcie.",
+        "uk": "Додано часові слоти для TLXH. Завдяки olli0815 для видалення та підтримки.\nДодано інвертор на вимкнення для TLX und TLXH. Завдяки olli0815 для видалення та підтримки.",
+        "zh-cn": "为 TLXH 添加了时间档 。 感谢olli0815的调试和支持.\n为 TLX und TLXH 添加了反转器 Off. 感谢olli0815的调试和支持."
+      },
       "3.2.5": {
         "en": "Solved the problem that no inverter list but result 2 was returned in NOAH.\nAdded NOAH.",
         "de": "Lösen Sie das Problem, dass keine Inverterliste, sondern Ergebnis 2 in NOAH zurückgegeben wurde.\nNOAH hinzugefügt.",
@@ -56,8 +69,20 @@
       "uk": "ioBroker Growatt адаптер для комунікації з ShineAPI",
       "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
     },
-    "authors": ["PLCHome"],
-    "keywords": ["growatt", "shine", "shinephone", "shineapi", "solarenergy", "home automation", "solar power", "solar power plant", "solaranlage"],
+    "authors": [
+      "PLCHome"
+    ],
+    "keywords": [
+      "growatt",
+      "shine",
+      "shinephone",
+      "shineapi",
+      "solarenergy",
+      "home automation",
+      "solar power",
+      "solar power plant",
+      "solaranlage"
+    ],
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
@@ -96,7 +121,10 @@
     {
       "condition": {
         "operand": "and",
-        "rules": ["oldVersion<3.2.2", "newVersion>=3.2.3"]
+        "rules": [
+          "oldVersion<3.2.2",
+          "newVersion>=3.2.3"
+        ]
       },
       "title": {
         "en": "Incorrect objects were created in connection with Multiple Backflow.",
@@ -139,11 +167,20 @@
         "uk": "Документація",
         "zh-cn": "文件"
       },
-      "buttons": ["agree", "cancel"]
+      "buttons": [
+        "agree",
+        "cancel"
+      ]
     }
   ],
-  "encryptedNative": ["password", "shareKey"],
-  "protectedNative": ["password", "shareKey"],
+  "encryptedNative": [
+    "password",
+    "shareKey"
+  ],
+  "protectedNative": [
+    "password",
+    "shareKey"
+  ],
   "native": {
     "keyLogin": false,
     "user": "",
