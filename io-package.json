@@ -69,20 +69,8 @@
       "uk": "ioBroker Growatt адаптер для комунікації з ShineAPI",
       "zh-cn": "ioBroker Growatt适配器可与ShineAPI通信"
     },
-    "authors": [
-      "PLCHome"
-    ],
-    "keywords": [
-      "growatt",
-      "shine",
-      "shinephone",
-      "shineapi",
-      "solarenergy",
-      "home automation",
-      "solar power",
-      "solar power plant",
-      "solaranlage"
-    ],
+    "authors": ["PLCHome"],
+    "keywords": ["growatt", "shine", "shinephone", "shineapi", "solarenergy", "home automation", "solar power", "solar power plant", "solaranlage"],
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
@@ -121,10 +109,7 @@
     {
       "condition": {
         "operand": "and",
-        "rules": [
-          "oldVersion<3.2.2",
-          "newVersion>=3.2.3"
-        ]
+        "rules": ["oldVersion<3.2.2", "newVersion>=3.2.3"]
       },
       "title": {
         "en": "Incorrect objects were created in connection with Multiple Backflow.",
@@ -167,20 +152,11 @@
         "uk": "Документація",
         "zh-cn": "文件"
       },
-      "buttons": [
-        "agree",
-        "cancel"
-      ]
+      "buttons": ["agree", "cancel"]
     }
   ],
-  "encryptedNative": [
-    "password",
-    "shareKey"
-  ],
-  "protectedNative": [
-    "password",
-    "shareKey"
-  ],
+  "encryptedNative": ["password", "shareKey"],
+  "protectedNative": ["password", "shareKey"],
   "native": {
     "keyLogin": false,
     "user": "",
