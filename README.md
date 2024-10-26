@@ -26,6 +26,10 @@ Not all plant types are implemented.
 
 Currently only data can be read, writing parameters or changing parameters is not possible.
 
+### Can I spend a coffee?
+
+Of course if you like my work via Paypal to PLChome _at_ fontanestr _dot_ de
+
 ---
 
 ## Adapter admin page
