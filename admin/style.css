@@ -6,5 +6,21 @@
   /* Don't cut off dropdowns! */
   overflow: initial;
 }
+/* Style for small Screens */
+@media screen and (max-width: 768px) {
+  .m {
+    overflow: hidden;
+  }
+}
 
+/* Style for very small Screens */
+@media screen and (max-width: 600px) {
+  .m .dropdown-menu {
+    position: fixed;
+  }
+
+  .m .page {
+    height: calc(100% - 110px);
+  }
+}
 /* Add your styles here */
