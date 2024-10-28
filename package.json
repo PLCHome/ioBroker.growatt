@@ -57,7 +57,16 @@
     "test:integration": "mocha test/integration --exit",
     "release": "release-script"
   },
-  "bugs": {
+  "files": [
+    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).json",
+    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+    "lib/",
+    "media/",
+    "io-package.json",
+    "LICENSE",
+    "growattMain.js",
+    "README.md"
+  ],"bugs": {
     "url": "https://github.com/PLCHome/ioBroker.growatt/issues"
   },
   "readmeFilename": "README.md"
