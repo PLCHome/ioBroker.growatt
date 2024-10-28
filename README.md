@@ -367,6 +367,7 @@ Therefore, the description has also been removed.
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+
 ### 3.3.1 (2024-10-26)
 
 - (PLCHome) Added ac charge for TLXH. Thanx to olli0815!
