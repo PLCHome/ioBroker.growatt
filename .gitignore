@@ -1,2 +1,4 @@
 node_modules/*
 test.json
+#ignore .commitinfo created by ioBroker release script
+.commitinfo
