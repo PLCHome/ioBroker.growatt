@@ -628,7 +628,7 @@ Therefore, the description has also been removed.
 
 The MIT License (MIT)
 
-Copyright (c) 2024 PLCHome
+Copyright (c) 2024-2026 PLCHome
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
