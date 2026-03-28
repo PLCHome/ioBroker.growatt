@@ -20,7 +20,7 @@ const growartyp = {
 const SETTINGS = 'settings';
 
 // Load your modules here, e.g.:
-// const fs = require("fs");
+// const fs = require("node:fs");
 
 function getTime() {
   return new Date().getTime();
