@@ -368,6 +368,9 @@ Therefore, the description has also been removed.
   ### **WORK IN PROGRESS**
 -->
 
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 3.3.1 (2024-10-26)
 
 - (PLCHome) Added ac charge for TLXH. Thanx to olli0815!
