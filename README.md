@@ -368,6 +368,10 @@ Therefore, the description has also been removed.
   ### **WORK IN PROGRESS**
 -->
 
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 3.3.1 (2024-10-26)
 
 - (PLCHome) Added ac charge for TLXH. Thanx to olli0815!
